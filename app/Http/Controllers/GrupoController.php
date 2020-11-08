@@ -52,8 +52,9 @@ class GrupoController extends Controller
             'nombre'=>$data['nombre'],
             
         ]);
+        $grupo = DB::table('grupos')->get();
         //dd( $request->all() );
-        return view('grupos.create');  
+        return view('grupos.create')->with('grupo',$grupo);  
 
 
     }
