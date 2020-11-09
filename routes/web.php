@@ -52,6 +52,29 @@ Route::post('/sc',[App\Http\Controllers\SubCuentaController::class,'store'])
 	->name('clases.create');
 	Route::post('/cl',[App\Http\Controllers\ClaseController::class,'store'])
 	->name('clases.store');
+	/*
+//---------------BALANCES GENERALES (SEPARADOR Y POR AÑOS)
+	Route::get('/bg/create',[App\Http\Controllers\BalancegeneralController::class,'create'])
+	->name('balancesgenerales.create');
+	Route::post('/bg',[App\Http\Controllers\BalancegeneralController::class,'store'])
+	->name('balancesgenerales.store');
+*/
+//---------------INFORMES FINANCIEROS
+	Route::get('/if/create',[App\Http\Controllers\InformefinancieroController::class,'create'])
+	->name('informesfinancieros.create');
+
+	Route::post('/if',[App\Http\Controllers\InformefinancieroController::class,'store'])
+	->name('informesfinancieros.store');
+
+
+
+
+//---------------EMPRESA
+	Route::get('/e/create',[App\Http\Controllers\EmpresaController::class,'create'])
+	->name('empresas.create');
+	Route::post('/e',[App\Http\Controllers\EmpresaController::class,'store'])
+	->name('empresas.store');
+
 
 
 Auth::routes();
