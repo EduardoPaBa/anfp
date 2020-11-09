@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('botones')
+<a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
+@endsection
 @section('content')
 
 <h1 class="text-center mb-5">Crear Empresa</h1>

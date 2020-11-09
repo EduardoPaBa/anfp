@@ -15,7 +15,10 @@ class CreateInformefinancierosTable extends Migration
     {
         Schema::create('informefinancieros', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->integer('anio');
+            $table->foreignId('empresas_id');
+            $table->foreign('empresas_id')->references('id')->on('empresas');
         });
     }
 

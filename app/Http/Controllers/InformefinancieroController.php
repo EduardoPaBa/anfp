@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\informefinanciero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InformefinancieroController extends Controller
 {
@@ -25,7 +26,11 @@ class InformefinancieroController extends Controller
     public function create()
     {
         //
-        return view('informesfinancieros.create');
+        $empresa = DB::table('empresas')->get()->pluck('id','nombre');
+        $emp = DB::table('empresas')->get()->pluck('id','sector');
+        return view('informesfinancieros.create')
+            ->with('empresa',$empresa)
+            ->with('emp',$emp);
     }
 
     /**
@@ -37,7 +42,21 @@ class InformefinancieroController extends Controller
     public function store(Request $request)
     {
         //
-        return view('informesfinancieros.create');
+        $data=request();
+        DB::table('informefinancieros')->insert([
+            
+            'nombre'=>$data['nombre'],
+            'anio'=>$data['anio'],
+            'empresas_id'=>$data['empresas']
+        ]);
+
+
+
+        $empresa = DB::table('empresas')->get()->pluck('id','nombre');
+        $emp = DB::table('empresas')->get()->pluck('id','sector');
+        return view('informesfinancieros.create')
+            ->with('empresa',$empresa)
+            ->with('emp',$emp);
         
     }
 

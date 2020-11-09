@@ -12,6 +12,31 @@
 		<dir class="col-md-8">
 			<form method="POST" action="{{ route('grupos.store') }}" novalidate>
 				@csrf
+
+
+				<div class="form-group">
+					 <label for="empresas">Balance General al que pertenece</label>
+					 <select 
+					 	name="empresas"
+					 	class="form-control"
+					 	id="empresas"
+					 >
+					 
+
+					 	@foreach ($inffin as $cod => $ii)
+					 	@foreach ($infi as $nom => $iii)
+					 	
+					 	@if($iii==$ii)
+					 	<option value="{{$ii}}" >{{$cod}} - año:{{$nom}}</option> 
+					 	@endif
+					 	
+					 	@endforeach
+					 	@endforeach
+					 </select>
+				</div>
+
+
+
 				<div class="form-group">
 					<label for="codigo">Código</label>
 					<input type="text" 
@@ -41,7 +66,7 @@
 		</dir>
 	</dir>
 
-<h1 class="text-center mb-5">CLASES</h1>
+<h1 class="text-center mb-5">GRUPOS</h1>
 <div class="col-md-10 mx-auto bg-white p-3">
 	<table class="table">
 		<thead class="bg-primary text-light">

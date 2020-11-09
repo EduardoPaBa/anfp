@@ -26,12 +26,19 @@ class GrupoController extends Controller
     public function create()
     {
         //
-        
+        $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
+        $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
+        $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
+        $empre = DB::table('empresas')->get()->pluck('id','nombre');
         
         $grupo = DB::table('grupos')->get();
 
         return view('grupos.create')
-            ->with('grupo',$grupo);
+            ->with('grupo',$grupo)
+            ->with('inffin',$inffin)
+            ->with('infi',$infi)
+            ->with('ifs',$ifs)
+            ->with('empre',$empre);
 
 
 
@@ -50,11 +57,23 @@ class GrupoController extends Controller
         DB::table('grupos')->insert([
             'codigo'=>$data['codigo'],
             'nombre'=>$data['nombre'],
+            'informefinancieros_id'=>$data['bg']
             
         ]);
         $grupo = DB::table('grupos')->get();
+
+        $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
+        $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
+        $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
+        $empre = DB::table('empresas')->get()->pluck('id','nombre');
+
         //dd( $request->all() );
-        return view('grupos.create')->with('grupo',$grupo);  
+        return view('grupos.create')
+        ->with('grupo',$grupo)
+        ->with('inffin',$inffin)
+        ->with('infi',$infi)
+        ->with('ifs',$ifs)
+        ->with('empre',$empre);  
 
 
     }
