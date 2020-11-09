@@ -5,7 +5,14 @@
 <a href="{{ route('clases.create') }}" class="btn btn-primary mr-2">Crear nueva Clase</a>
 <a href="{{ route('cuentas.create') }}" class="btn btn-primary mr-2">Crear nueva Cuenta</a>
 <a href="{{ route('subcuentas.create') }}" class="btn btn-primary mr-2">Crear nueva Sub Cuenta</a>
+
+<br>
+<br>
+
+<a href="{{ route('analisis.balancegeneral') }}" class="btn btn-primary mr-2">Balance General</a>
 @endsection
+
+
 
 
 @section('content')

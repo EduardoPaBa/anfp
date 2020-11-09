@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+
+Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
+	->name('analisis.balancegeneral');
+
 //-------------------SUB CUENTAS
 //Route::get('/subcuentas','SubCuentasController@index');
 Route::get('/sc',[App\Http\Controllers\SubCuentaController::class,'index'])
