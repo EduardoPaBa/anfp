@@ -15,11 +15,11 @@
 
 
 				<div class="form-group">
-					 <label for="empresas">Balance General al que pertenece</label>
+					 <label for="bg">Balance General al que pertenece</label>
 					 <select 
-					 	name="empresas"
+					 	name="bg"
 					 	class="form-control"
-					 	id="empresas"
+					 	id="bg"
 					 >
 					 
 
