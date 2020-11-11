@@ -85,19 +85,8 @@
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
 				<td>{{$sc->valor}}</td>
-				<?php 
-				$grande; 
-				$humilde; 
-				?>
-				@foreach($cl as $ch)
-					<?php 
-						$grande="{{$ch->id}}";
-						$humilde="{{$sc->clases_id}}";
-					?>
-					@if( $grande == $humilde )
-						<td>{{$ch->codigo}}</td>
-					@endif
-				@endforeach
+				<td>{{$sc->clcodigo}}</td>
+					
 
 				<td>
 					<a href="{{ route('cuentas.edit', ['cuenta'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>

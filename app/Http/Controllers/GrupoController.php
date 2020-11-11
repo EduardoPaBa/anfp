@@ -31,7 +31,12 @@ class GrupoController extends Controller
         $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
         $empre = DB::table('empresas')->get()->pluck('id','nombre');
         
-        $grupo = DB::table('grupos')->get();
+        //$grupo = DB::table('grupos')->get();
+
+        $grupo = DB::table('grupos')
+          ->join('informefinancieros','informefinancieros.id','=','grupos.informefinancieros_id')
+          ->select('grupos.*','informefinancieros.nombre as inombre')
+          ->get();
 
         return view('grupos.create')
             ->with('grupo',$grupo)
@@ -39,9 +44,6 @@ class GrupoController extends Controller
             ->with('infi',$infi)
             ->with('ifs',$ifs)
             ->with('empre',$empre);
-
-
-
     }
 
     /**
@@ -60,12 +62,17 @@ class GrupoController extends Controller
             'informefinancieros_id'=>$data['bg']
             
         ]);
-        $grupo = DB::table('grupos')->get();
-
+        //$grupo = DB::table('grupos')->get();
         $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
         $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
         $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
         $empre = DB::table('empresas')->get()->pluck('id','nombre');
+
+        $grupo = DB::table('grupos')
+          ->join('informefinancieros','informefinancieros.id','=','grupos.informefinancieros_id')
+          ->select('grupos.*','informefinancieros.nombre as inombre')
+          ->get();
+
 
         //dd( $request->all() );
         return view('grupos.create')
@@ -74,7 +81,6 @@ class GrupoController extends Controller
         ->with('infi',$infi)
         ->with('ifs',$ifs)
         ->with('empre',$empre);  
-
 
     }
 
@@ -101,7 +107,6 @@ class GrupoController extends Controller
     {
         //$grupo = DB::table('grupos')->get();
         //$grupo = Grupo::findOrFail($id);
-        
         return view('grupos.edit')
                 ->with('grupo', $grupo);
     }

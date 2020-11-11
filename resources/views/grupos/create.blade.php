@@ -12,8 +12,6 @@
 		<dir class="col-md-8">
 			<form method="POST" action="{{ route('grupos.store') }}" novalidate>
 				@csrf
-
-
 				<div class="form-group">
 					 <label for="bg">Balance General al que pertenece</label>
 					 <select 
@@ -21,8 +19,6 @@
 					 	class="form-control"
 					 	id="bg"
 					 >
-					 
-
 					 	@foreach ($inffin as $cod => $ii)
 					 	@foreach ($infi as $nom => $iii)
 					 	
@@ -34,8 +30,6 @@
 					 	@endforeach
 					 </select>
 				</div>
-
-
 
 				<div class="form-group">
 					<label for="codigo">Código</label>
@@ -55,7 +49,6 @@
 						placeholder="Nombre Grupo"
 					/>
 				</div>
-				
 
 				<div class="form-group">
 					<input type="submit" class="btn btn-primary" 
@@ -83,7 +76,7 @@
 			<tr>
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
-				<td>trabajando aun xd</td>
+				<td>{{$sc->inombre}}</td>
 				<td>
 					<a href="{{ route('grupos.edit', ['grupo'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				

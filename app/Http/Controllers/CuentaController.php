@@ -31,8 +31,12 @@ class CuentaController extends Controller
         $clase = DB::table('clases')->get()->pluck('id','codigo');
         $clas = DB::table('clases')->get()->pluck('id','nombre');
 
-        $cuenta = DB::table('cuentas')->get();
+        //$cuenta = DB::table('cuentas')->get();
         $cl = DB::table('clases')->get();
+        $cuenta = DB::table('cuentas')
+          ->join('clases','clases.id','=','cuentas.clases_id')
+          ->select('cuentas.*','clases.codigo as clcodigo')
+          ->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)
@@ -61,8 +65,12 @@ class CuentaController extends Controller
         $clase = DB::table('clases')->get()->pluck('id','codigo');
         $clas = DB::table('clases')->get()->pluck('id','nombre');
         
-        $cuenta = DB::table('cuentas')->get();
+        //$cuenta = DB::table('cuentas')->get();
         $cl = DB::table('clases')->get();
+        $cuenta = DB::table('cuentas')
+          ->join('clases','clases.id','=','cuentas.clases_id')
+          ->select('cuentas.*','clases.codigo as clcodigo')
+          ->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)

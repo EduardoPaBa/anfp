@@ -20,8 +20,6 @@
 					 	class="form-control"
 					 	id="grupos"
 					 >
-					 
-
 					 	@foreach ($grupo as $cod => $ii)
 					 	@foreach ($gru as $nom => $iii)
 					 	@if($iii==$ii)
@@ -78,20 +76,7 @@
 			<tr>
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
-				
-				<?php 
-				$grande; 
-				$humilde; 
-				?>
-				@foreach($gr as $ch)
-					<?php 
-						$grande="{{$ch->id}}";
-						$humilde="{{$sc->grupos_id}}";
-					?>
-					@if( $grande == $humilde )
-						<td>{{$ch->codigo}}</td>
-					@endif
-				@endforeach
+				<td>{{$sc->gcodigo}}</td>
 
 				<td>
 					<a href="{{ route('clases.edit', ['clase'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>

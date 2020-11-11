@@ -29,8 +29,12 @@ class ClaseController extends Controller
         $grupo = DB::table('grupos')->get()->pluck('id','codigo');
         $gru = DB::table('grupos')->get()->pluck('id','nombre');
 
-        $clase = DB::table('clases')->get();
+        //$clase = DB::table('clases')->get();
         $gr = DB::table('grupos')->get();
+        $clase = DB::table('clases')
+          ->join('grupos','grupos.id','=','clases.grupos_id')
+          ->select('clases.*','grupos.codigo as gcodigo')
+          ->get();
 
         return view('clases.create')
             ->with('grupo',$grupo)
@@ -61,8 +65,12 @@ class ClaseController extends Controller
         $grupo = DB::table('grupos')->get()->pluck('id','codigo');
         $gru = DB::table('grupos')->get()->pluck('id','nombre'); 
 
-        $clase = DB::table('clases')->get();
+        //$clase = DB::table('clases')->get();
         $gr = DB::table('grupos')->get();
+        $clase = DB::table('clases')
+          ->join('grupos','grupos.id','=','clases.grupos_id')
+          ->select('clases.*','grupos.codigo as gcodigo')
+          ->get();
 
         return view('clases.create')
             ->with('grupo',$grupo)

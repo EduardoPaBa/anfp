@@ -16,14 +16,15 @@
 				@csrf
 				@method('PUT')
 				
+				
 				<div class="form-group">
 					 <label for="bg">Balance General al que pertenece</label>
 					 <input type="text" name="bg" class="form-control" 
 						id="bg"
 						placeholder="Balance General"
-						value="{{ $grupo->informefinancieros_id }}"
-						disabled="true" /> 
+						disabled="true" value="{{ $grupo->informefinancieros_id }}" /> 
 				</div>
+				
 
 				<div class="form-group">
 					<label for="codigo">Código</label>

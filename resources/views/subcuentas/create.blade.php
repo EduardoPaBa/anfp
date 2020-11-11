@@ -85,15 +85,12 @@
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
 				<td>{{$sc->valor}}</td>
-				<?php 
-				$grande; 
-				$humilde; 
-				?>
+				
 				@foreach($cuenhumilde as $ch)
-					<?php 
+					@php 
 						$grande="{{$ch->id}}";
 						$humilde="{{$sc->cuentas_id}}";
-					?>
+					@endphp
 					@if( $grande == $humilde )
 						<td>{{$ch->codigo}}</td>
 					@endif

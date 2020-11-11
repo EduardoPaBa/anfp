@@ -17,8 +17,6 @@
 					 	class="form-control"
 					 	id="empresas"
 					 >
-					
-					 
 					 	@foreach ($empresa as $cod => $ii)
 					 	@foreach ($emp as $nom => $iii)
 					 	@if($iii==$ii)
@@ -75,21 +73,7 @@
 			<tr>
 				<td>{{$inf->nombre}}</td>
 				<td>{{$inf->anio}}</td>
-				
-				<?php 
-				$grande; 
-				$humilde; 
-				?>
-				@foreach($e as $empre)
-					<?php 
-						$grande="{{$inf->empresas_id}}";
-						$humilde="{{$empre->id}}";
-					?>
-					@if( $grande == $humilde )
-						<td>{{$empre->nombre}}</td>
-					@endif
-				@endforeach
-
+				<td>{{$inf->enombre}}</td>
 				<td>
 					<a href="{{ route('informefinancieros.edit', ['informefinanciero'=>$inf->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				

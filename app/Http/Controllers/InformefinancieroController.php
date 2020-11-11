@@ -26,8 +26,12 @@ class InformefinancieroController extends Controller
     public function create()
     {
         //
-        $if = DB::table('informefinancieros')->get();
+        //$if = DB::table('informefinancieros')->get();
         $e = DB::table('empresas')->get();
+        $if = DB::table('informefinancieros')
+          ->join('empresas','empresas.id','=','informefinancieros.empresas_id')
+          ->select('informefinancieros.*','empresas.nombre as enombre')
+          ->get();
         $empresa = DB::table('empresas')->get()->pluck('id','nombre');
         $emp = DB::table('empresas')->get()->pluck('id','sector');
         return view('informesfinancieros.create')
@@ -55,8 +59,12 @@ class InformefinancieroController extends Controller
         ]);
 
 
-        $if = DB::table('informefinancieros')->get();
+        //$if = DB::table('informefinancieros')->get();
         $e = DB::table('empresas')->get();
+        $if = DB::table('informefinancieros')
+          ->join('empresas','empresas.id','=','informefinancieros.empresas_id')
+          ->select('informefinancieros.*','empresas.nombre as enombre')
+          ->get();
         $empresa = DB::table('empresas')->get()->pluck('id','nombre');
         $emp = DB::table('empresas')->get()->pluck('id','sector');
         return view('informesfinancieros.create')
