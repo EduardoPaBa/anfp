@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('botones')
-<a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
+<a href="{{ route('clases.create') }}" class="btn btn-primary mr-2">Volver</a>
 @endsection
 
 
 @section('content')
-	<h1 class="text-center mb-5">Crear Clase</h1>
+	<h1 class="text-center mb-5">Editar Clase</h1>
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
