@@ -25,7 +25,8 @@ class EmpresaController extends Controller
     public function create()
     {
         //
-        return view('empresas.create');
+        $empresa = DB::table('empresas')->get();
+        return view('empresas.create')->with('empresa',$empresa);
     }
 
     /**
@@ -44,7 +45,10 @@ class EmpresaController extends Controller
             
         ]);
 
-        return view('empresas.create');
+        $empresa = DB::table('empresas')->get();
+
+        return view('empresas.create')
+            ->with('empresa',$empresa);
     }
 
     /**
@@ -56,6 +60,7 @@ class EmpresaController extends Controller
     public function show(empresa $empresa)
     {
         //
+
     }
 
     /**
@@ -67,6 +72,7 @@ class EmpresaController extends Controller
     public function edit(empresa $empresa)
     {
         //
+        return view('empresas.edit')->with('empresa',$empresa);
     }
 
     /**
@@ -78,7 +84,21 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, empresa $empresa)
     {
-        //
+        
+        $request->validate([
+            'nombre' => 'required',
+            'sector' => 'required',
+        ]);
+        
+
+        $empresa->nombre = $request->nombre;
+        $empresa->sector = $request->sector;
+
+        $empresa->save();
+
+        //$grupo = Grupo::find($id)->update($request->all()); 
+        return redirect()->route('empresas.create', $empresa); 
+        //return $empresa;
     }
 
     /**
@@ -90,5 +110,7 @@ class EmpresaController extends Controller
     public function destroy(empresa $empresa)
     {
         //
+        $empresa->delete();
+        return redirect()->route('empresas.create', $empresa); 
     }
 }

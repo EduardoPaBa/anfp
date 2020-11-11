@@ -2,7 +2,7 @@
 
 @section('botones')
 <a href="{{ route('empresas.create') }}" class="btn btn-primary mr-2">Empresas</a>
-<a href="{{ route('informesfinancieros.create') }}" class="btn btn-primary mr-2">Informes Financieros</a>
+<a href="{{ route('informefinancieros.create') }}" class="btn btn-primary mr-2">Informes Financieros</a>
 
 <br>
 <br>
@@ -10,7 +10,7 @@
 <a href="{{ route('grupos.create') }}" class="btn btn-primary mr-2">Crear nuevo Grupo</a>
 <a href="{{ route('clases.create') }}" class="btn btn-primary mr-2">Crear nueva Clase</a>
 <a href="{{ route('cuentas.create') }}" class="btn btn-primary mr-2">Crear nueva Cuenta</a>
-<a href="{{ route('subcuentas.create') }}" class="btn btn-primary mr-2">Crear nueva Sub Cuenta</a>
+<a href="{{ route('sub_cuentas.create') }}" class="btn btn-primary mr-2">Crear nueva Sub Cuenta</a>
 <br>
 <br>
 <a href="{{ route('analisis.balancegeneral') }}" class="btn btn-primary mr-2">Ver Balance General</a>

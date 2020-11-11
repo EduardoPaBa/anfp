@@ -92,6 +92,8 @@ class CuentaController extends Controller
     public function edit(Cuenta $cuenta)
     {
         //
+        return view('cuentas.edit')
+            ->with('cuenta',$cuenta);
     }
 
     /**
@@ -104,6 +106,20 @@ class CuentaController extends Controller
     public function update(Request $request, Cuenta $cuenta)
     {
         //
+        $request->validate([
+            'codigo' => 'required',
+            'nombre' => 'required',
+            'valor' => 'required',
+        ]);
+
+        $cuenta->codigo = $request->codigo;
+        $cuenta->nombre = $request->nombre;
+        $cuenta->valor = $request->valor;
+
+        $cuenta->save();
+
+        return redirect()->route('cuentas.create',$cuenta);
+
     }
 
     /**
@@ -115,5 +131,8 @@ class CuentaController extends Controller
     public function destroy(Cuenta $cuenta)
     {
         //
+        $cuenta->delete();
+
+        return redirect()->route('cuentas.create',$cuenta);
     }
 }

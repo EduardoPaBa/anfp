@@ -16,7 +16,7 @@ class SubCuentaController extends Controller
     public function index()
     {
         //
-        return view('subcuentas.index');
+        return view('sub_cuentas.index');
     }
 
     /**
@@ -93,6 +93,8 @@ class SubCuentaController extends Controller
     public function edit(SubCuenta $subCuenta)
     {
         //
+        return view('subcuentas.edit')
+            ->with('subCuenta',$subCuenta);
     }
 
     /**
@@ -105,6 +107,19 @@ class SubCuentaController extends Controller
     public function update(Request $request, SubCuenta $subCuenta)
     {
         //
+        $request->validate([
+            'codigo' => 'required',
+            'nombre' => 'required',
+            'valor' => 'required',
+        ]);
+
+        $subCuenta->codigo = $request->codigo;
+        $subCuenta->nombre = $request->nombre;
+        $subCuenta->valor = $request->valor;
+
+        $subCuenta->save();
+
+        return redirect()->route('sub_cuentas.create',$subCuenta);
     }
 
     /**
@@ -116,5 +131,8 @@ class SubCuentaController extends Controller
     public function destroy(SubCuenta $subCuenta)
     {
         //
+        $subCuenta->delete();
+
+        return redirect()->route('sub_cuentas.create',$subCuenta);
     }
 }

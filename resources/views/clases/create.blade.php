@@ -32,19 +32,6 @@
 					 </select>
 				</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 				<div class="form-group">
 					<label for="codigo">Código</label>
 					<input type="text" 
@@ -106,13 +93,19 @@
 					@endif
 				@endforeach
 
-				<td></td>
+				<td>
+					<a href="{{ route('clases.edit', ['clase'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
+				
+					<form action="{{ route('clases.destroy', ['clase'=>$sc->id]) }}" method="POST">
+						@csrf
+						@method('DELETE')
+						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
+					</form>
+				</td>
 			</tr> 
 			@endforeach
 		</tbody>
 	</table>
 </div>
-
-
 
 @endsection

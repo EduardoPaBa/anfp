@@ -90,7 +90,8 @@ class ClaseController extends Controller
      */
     public function edit(Clase $clase)
     {
-        //
+        return view('clases.edit')
+            ->with('clase',$clase);
     }
 
     /**
@@ -103,6 +104,17 @@ class ClaseController extends Controller
     public function update(Request $request, Clase $clase)
     {
         //
+        $request->validate([
+            'nombre' => 'required',
+            'codigo' => 'required',
+        ]);
+
+        $clase->codigo = $request->codigo;
+        $clase->nombre = $request->nombre;
+
+        $clase->save();
+
+        return redirect()->route('clases.create',$clase);
     }
 
     /**
@@ -114,5 +126,8 @@ class ClaseController extends Controller
     public function destroy(Clase $clase)
     {
         //
+        $clase->delete();
+
+        return redirect()->route('clases.create',$clase);
     }
 }

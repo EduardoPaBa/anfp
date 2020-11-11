@@ -87,6 +87,8 @@ class GrupoController extends Controller
     public function show(Grupo $grupo)
     {
         //
+        $grupo = Grupo::findOrFail($id);
+        return view('grupos.show', compact('grupo'));
     }
 
     /**
@@ -97,7 +99,11 @@ class GrupoController extends Controller
      */
     public function edit(Grupo $grupo)
     {
-        //
+        //$grupo = DB::table('grupos')->get();
+        //$grupo = Grupo::findOrFail($id);
+        
+        return view('grupos.edit')
+                ->with('grupo', $grupo);
     }
 
     /**
@@ -107,10 +113,22 @@ class GrupoController extends Controller
      * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grupo $grupo)
-    {
-        //
-    }
+
+    
+     public function update(Request $request, Grupo $grupo) {
+
+        $request->validate([
+            'codigo' => 'required',
+            'nombre' => 'required',
+        ]);
+        
+        $grupo->codigo = $request->codigo;
+        $grupo->nombre = $request->nombre;
+        //$grupo->informefinancieros_id = $request->informefinancieros_id;
+        $grupo->save();
+        //$grupo = Grupo::find($id)->update($request->all()); 
+        return redirect()->route('grupos.create', $grupo); 
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -120,6 +138,9 @@ class GrupoController extends Controller
      */
     public function destroy(Grupo $grupo)
     {
-        //
+        $grupo->delete();
+
+        return redirect()->route('grupos.create');
+
     }
 }

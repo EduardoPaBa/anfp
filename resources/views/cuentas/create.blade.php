@@ -19,9 +19,7 @@
 					 	name="clases"
 					 	class="form-control"
 					 	id="clases"
-					 >
-					 
-
+					 >					 
 					 	@foreach ($clase as $cod => $ii)
 					 	@foreach ($clas as $nom => $iii)
 					 	@if($iii==$ii)
@@ -31,12 +29,6 @@
 					 	@endforeach
 					 </select>
 				</div>
-
-
-
-
-
-
 
 				<div class="form-group">
 					<label for="codigo">Código</label>
@@ -64,52 +56,6 @@
 						id="valor"
 						placeholder="Valor Cuenta"
 					/>
-				</div>
-
-				<div class="form-group">
-					<label for="iva">IVA</label>
-					<input type="text" 
-						name="iva" 
-						class="form-control" 
-						id="iva"
-						placeholder="IVA" readonly="iva" 
-					/>
-				</div>
-
-				<div class="form-group">
-					<label for="total">Total</label>
-					<input type="text" 
-						name="total" 
-						class="form-control" 
-						id="total"
-						placeholder="Total Cuenta" readonly="total" 
-					/>
-
-				<?php
-				if (isset($_POST["submit"]) && !empty($_POST["submit"])) {
-					if ($_POST["nombre"] == "activo") {
-					
-					$valorC = $_POST["valor"];
-					$ivaC = $_POST["iva"];
-					$totalC = $_POST["total"];
-
-					$ivaCalc = $valorC * 0.12;
-					$totalCalc = $valorC + $ivaCalc;
-
-					echo "<h1>" .$ivaCalc . "</h1>";
-					echo "<h1>" .$totalCalc . "</h1>";
-					}else{
-						$valorC = $_POST["valor"];
-							$ivaCalc = 0;
-							$totalCalc = $valorC + $ivaCalc;
-
-							echo "<h1>" .$ivaCalc . "</h1>";
-							echo "<h1>" .$totalCalc . "</h1>";
-					}	
-				}
-					
-				?>
-					
 				</div>
 
 				<div class="form-group">
@@ -153,7 +99,15 @@
 					@endif
 				@endforeach
 
-				<td></td>
+				<td>
+					<a href="{{ route('cuentas.edit', ['cuenta'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
+				
+					<form action="{{ route('cuentas.destroy', ['cuenta'=>$sc->id]) }}" method="POST">
+						@csrf
+						@method('DELETE')
+						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
+					</form>
+				</td>
 			</tr> 
 			@endforeach
 		</tbody>

@@ -11,7 +11,7 @@
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
-			<form method="POST" action="{{ route('subcuentas.store') }}" novalidate>
+			<form method="POST" action="{{ route('sub_cuentas.store') }}" novalidate>
 				@csrf
 				<div class="form-group">
 					 <label for="cuentas">Cuenta a la que pertenece</label>
@@ -20,8 +20,6 @@
 					 	class="form-control"
 					 	id="cuentas"
 					 >
-					 
-
 					 	@foreach ($cuenta as $cod => $ii)
 					 	@foreach ($cue as $nom => $iii)
 					 	@if($iii==$ii)
@@ -31,8 +29,6 @@
 					 	@endforeach
 					 </select>
 				</div>
-
-
 
 				<div class="form-group">
 					<label for="codigo">Código</label>
@@ -61,8 +57,6 @@
 						placeholder="Valor SubCuenta"
 					/>
 				</div>
-
-
 
 				<div class="form-group">
 					<input type="submit" class="btn btn-primary" 
@@ -105,7 +99,15 @@
 					@endif
 				@endforeach
 
-				<td></td>
+				<td>
+					<a href="{{ route('sub_cuentas.edit', ['sub_cuenta'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
+				
+					<form action="{{ route('sub_cuentas.destroy', ['sub_cuenta'=>$sc->id]) }}" method="POST">
+						@csrf
+						@method('DELETE')
+						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
+					</form>
+				</td>
 			</tr> 
 			@endforeach
 		</tbody>

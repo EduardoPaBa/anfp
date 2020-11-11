@@ -6,7 +6,7 @@
 
 
 @section('content')
-	<h1 class="text-center mb-5">Crear Grupo</h1>
+	<h1 class="text-center mb-5">Detalle Grupo</h1>
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
@@ -39,21 +39,10 @@
 
 				<div class="form-group">
 					<label for="codigo">Código</label>
-					<input type="text" 
-						name="codigo" 
-						class="form-control" 
-						id="codigo"
-						placeholder="Código Grupo"
-					/>
+					<p class="text-uppercase col-auto text-left"><strong>Codigo: </strong> {{$grupo->codigo}}</p>
 				</div>
 				<div class="form-group">
-					<label for="nombre">Nombre</label>
-					<input type="text" 
-						name="nombre" 
-						class="form-control" 
-						id="nombre"
-						placeholder="Nombre Grupo"
-					/>
+					<p class="text-uppercase col-auto text-left"><strong>Nombre: </strong> {{$grupo->nombre}}</p>
 				</div>
 				
 
@@ -85,13 +74,7 @@
 				<td>{{$sc->nombre}}</td>
 				<td>trabajando aun xd</td>
 				<td>
-					<a href="{{ route('grupos.edit', ['grupo'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
-				
-					<form action="{{ route('grupos.destroy', ['grupo'=>$sc->id]) }}" method="POST">
-						@csrf
-						@method('DELETE')
-						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
-					</form>
+					
 				</td>
 			</tr> 
 			@endforeach
