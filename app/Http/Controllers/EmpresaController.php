@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class EmpresaController extends Controller
 {
     /**
@@ -25,7 +26,11 @@ class EmpresaController extends Controller
     public function create()
     {
         //
-        $empresa = DB::table('empresas')->get();
+        $empresa = DB::table('empresas')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
+        ->get();
         return view('empresas.create')->with('empresa',$empresa);
     }
 
@@ -42,10 +47,15 @@ class EmpresaController extends Controller
         DB::table('empresas')->insert([
             'nombre'=>$data['nombre'],
             'sector'=>$data['sector'],
+            'user_id'=>Auth::id()
             
         ]);
 
-        $empresa = DB::table('empresas')->get();
+        $empresa = DB::table('empresas')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
+        ->get();
 
         return view('empresas.create')
             ->with('empresa',$empresa);

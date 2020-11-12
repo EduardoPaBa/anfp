@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\informefinanciero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class InformefinancieroController extends Controller
 {
@@ -27,15 +28,29 @@ class InformefinancieroController extends Controller
     {
         //
         //$if = DB::table('informefinancieros')->get();
-        $e = DB::table('empresas')->get();
+        
         $if = DB::table('informefinancieros')
-          ->join('empresas','empresas.id','=','informefinancieros.empresas_id')
-          ->select('informefinancieros.*','empresas.nombre as enombre')
-          ->get();
-        $empresa = DB::table('empresas')->get()->pluck('id','nombre');
-        $emp = DB::table('empresas')->get()->pluck('id','sector');
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+        
+        $e = DB::table('empresas')
+        
+        ->get();
+        
+        $empresa = DB::table('empresas')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
+        ->get()->pluck('id','nombre');
+        
+        $emp = DB::table('empresas')
+        ->get()->pluck('id','sector');
+        
         return view('informesfinancieros.create')
-        ->with('if',$if)
+            ->with('if',$if)
             ->with('e',$e)
             ->with('empresa',$empresa)
             ->with('emp',$emp);
@@ -60,12 +75,20 @@ class InformefinancieroController extends Controller
 
 
         //$if = DB::table('informefinancieros')->get();
-        $e = DB::table('empresas')->get();
+        
         $if = DB::table('informefinancieros')
-          ->join('empresas','empresas.id','=','informefinancieros.empresas_id')
-          ->select('informefinancieros.*','empresas.nombre as enombre')
-          ->get();
-        $empresa = DB::table('empresas')->get()->pluck('id','nombre');
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+
+        $e = DB::table('empresas')->get();
+        $empresa = DB::table('empresas')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
+        ->get()->pluck('id','nombre');
         $emp = DB::table('empresas')->get()->pluck('id','sector');
         return view('informesfinancieros.create')
             ->with('if',$if)

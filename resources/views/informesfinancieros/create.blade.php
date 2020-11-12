@@ -20,7 +20,7 @@
 					 	@foreach ($empresa as $cod => $ii)
 					 	@foreach ($emp as $nom => $iii)
 					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" >{{$cod}} - {{$nom}}</option> 
+					 	<option value="{{$ii}}" > {{$iii}} {{$ii}} {{$cod}} - {{$nom}}</option> 
 					 	@endif
 					 	@endforeach
 					 	@endforeach
@@ -73,7 +73,18 @@
 			<tr>
 				<td>{{$inf->nombre}}</td>
 				<td>{{$inf->anio}}</td>
-				<td>{{$inf->enombre}}</td>
+				
+
+				@foreach($e as $empresas)
+					<?php 
+						$afuera="{{$empresas->id}}";
+						$misma="{{$inf->empresas_id}}";
+					?>
+					@if( $afuera == $misma )
+						<td>{{$empresas->nombre}}</td>
+					@endif
+				@endforeach
+
 				<td>
 					<a href="{{ route('informefinancieros.edit', ['informefinanciero'=>$inf->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				

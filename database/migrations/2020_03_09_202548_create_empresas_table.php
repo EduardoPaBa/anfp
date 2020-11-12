@@ -17,6 +17,9 @@ class CreateEmpresasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('sector');
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
 
         });
     }
