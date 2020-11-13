@@ -59,7 +59,7 @@ class SubCuentaController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
-        $subcu = DB::table('sub_cuentas')
+        $subcu = DB::table('sub_cuentas')->orderBy('codigo')
         ->join ('cuentas','sub_cuentas.cuentas_id','=', 'cuentas.id')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
@@ -129,7 +129,7 @@ class SubCuentaController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
-        $subcu = DB::table('sub_cuentas')
+        $subcu = DB::table('sub_cuentas')->orderBy('codigo')
         ->join ('cuentas','sub_cuentas.cuentas_id','=', 'cuentas.id')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')

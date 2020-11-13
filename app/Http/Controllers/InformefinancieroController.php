@@ -29,7 +29,7 @@ class InformefinancieroController extends Controller
         //
         //$if = DB::table('informefinancieros')->get();
         
-        $if = DB::table('informefinancieros')
+        $if = DB::table('informefinancieros')->orderBy('id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
@@ -76,7 +76,7 @@ class InformefinancieroController extends Controller
 
         //$if = DB::table('informefinancieros')->get();
         
-        $if = DB::table('informefinancieros')
+        $if = DB::table('informefinancieros')->orderBy('id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')

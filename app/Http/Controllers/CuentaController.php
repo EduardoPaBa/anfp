@@ -55,7 +55,7 @@ class CuentaController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
         
-        $cuenta = DB::table('cuentas')
+        $cuenta = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
@@ -117,7 +117,7 @@ class CuentaController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
         
-        $cuenta = DB::table('cuentas')
+        $cuenta = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')

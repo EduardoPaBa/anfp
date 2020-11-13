@@ -26,7 +26,7 @@ class EmpresaController extends Controller
     public function create()
     {
         //
-        $empresa = DB::table('empresas')
+        $empresa = DB::table('empresas')->orderBy('id')
         ->join ('users','empresas.user_id','=','users.id')
         ->where ('users.id','=', Auth::id())
         ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
@@ -51,7 +51,7 @@ class EmpresaController extends Controller
             
         ]);
 
-        $empresa = DB::table('empresas')
+        $empresa = DB::table('empresas')->orderBy('id')
         ->join ('users','empresas.user_id','=','users.id')
         ->where ('users.id','=', Auth::id())
         ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')

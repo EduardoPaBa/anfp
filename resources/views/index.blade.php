@@ -28,7 +28,7 @@
 @endsection
 
 @section('content')
-<h1 class="text-center mb-5">PAPÁ ALIAS CHAFA</h1>
+<h1 class="text-center mb-5">HUMILDE</h1>
 <div class="col-md-10 mx-auto bg-white p-3">
 	<table class="table" id="table">
 		<thead class="bg-primary text-light">

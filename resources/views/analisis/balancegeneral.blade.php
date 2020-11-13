@@ -82,5 +82,88 @@ $valorCompSubCuentas="{grande patas}";
 @endforeach
 
 
+<div class="col-md-10 mx-auto bg-white p-3">
+	<table class="table" id="table">
+		<thead class="bg-primary text-light">
+			<tr>
+				<th >Codigo</th>
+				<th >Nombre</th>
+				<th >Valor</th>
+				<th >Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			@foreach ($subcuentas as $sc)
+				<tr>	
+					<td>{{$sc->codigo}}</td>
+					<td>{{$sc->nombre}}</td>
+					<td>{{$sc->valor}}</td>
+					<td> </td>	
+				</tr>
+			@endforeach
+
+
+
+			@foreach ($grupos as $gr)
+			<tr>		
+				<td>{{$gr->codigo}}</td>
+				<td>{{$gr->nombre}}</td>
+				<td> </td>
+				<td> </td>
+				@foreach ($clases as $cl)
+				@php
+				$x="{{$gr->id}}";
+				$y="{{$cl->grupos_id}}";
+				@endphp
+				@if($x==$y)
+				<tr>	
+					<td>{{$cl->codigo}}</td>
+					<td>{{$cl->nombre}}</td>
+					<td> </td>
+					<td> </td>
+					@foreach ($cuentas as $cu)
+						@php
+						$x="{{$cl->id}}";
+						$y="{{$cu->clases_id}}";
+						@endphp
+						@if($x==$y)
+						<tr>	
+							<td>{{$cu->codigo}}</td>
+							<td>{{$cu->nombre}}</td>
+							<td>{{$cu->valor}}</td>
+							<td> </td>
+							@foreach ($subcuentas as $sc)
+								@php
+								$x="{{$cu->id}}";
+								$y="{{$sc->cuentas_id}}";
+								@endphp
+								@if($x==$y)
+								<tr>	
+									<td>{{$sc->codigo}}</td>
+									<td>{{$sc->nombre}}</td>
+									<td>{{$sc->valor}}</td>
+									<td> </td>	
+								</tr>
+								@endif
+							@endforeach
+						</tr>
+						@endif
+					@endforeach
+				
+				</tr>
+				@endif
+				@endforeach
+			</tr>
+			@endforeach
+			
+				
+		</tbody>
+	</table>
+</div>
+
+
+
+
 
 @endsection

@@ -50,7 +50,7 @@ class GrupoController extends Controller
         $empre = DB::table('empresas')
         ->get()->pluck('id','nombre');
 
-        $grupo = DB::table('grupos')
+        $grupo = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
@@ -111,7 +111,7 @@ class GrupoController extends Controller
         $empre = DB::table('empresas')
         ->get()->pluck('id','nombre');
 
-        $grupo = DB::table('grupos')
+        $grupo = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')

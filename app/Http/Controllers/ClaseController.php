@@ -51,7 +51,7 @@ class ClaseController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
         
-        $clase = DB::table('clases')
+        $clase = DB::table('clases')->orderBy('codigo')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
@@ -116,7 +116,7 @@ class ClaseController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
         
-        $clase = DB::table('clases')
+        $clase = DB::table('clases')->orderBy('codigo')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
