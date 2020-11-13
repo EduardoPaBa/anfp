@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('head')
-
 @endsection
 
-
-
+@section('estilo')
+	<link href="{{ asset('css/seleccion.css') }}" rel="stylesheet">
+@endsection
+@section('javascript')
+	<script src="{{ asset('js/seleccion.js') }}"></script>
+@endsection
 
 @section('botones')
 <a href="{{ route('empresas.create') }}" class="btn btn-primary mr-2">Empresas</a>
@@ -22,12 +25,7 @@
 <br>
 <a href="{{ route('analisis.balancegeneral') }}" class="btn btn-primary mr-2">Ver Balance General</a>
 
-
-
 @endsection
-
-
-
 
 @section('content')
 <h1 class="text-center mb-5">PAPÁ ALIAS CHAFA</h1>
@@ -58,29 +56,5 @@
 	</table>
 </div>
 
-<input type="text" name="codigo" id="codigo">
-@section('estilo')
-<style type="text/css">
-	tr.seleccionado td{
-		background: blue;
-		color: white;
-	}	
-</style>
-
-@endsection
-@section('javascript')
-	<script type="text/javascript">
-	$(function() { // after the page has loaded..
-    	//alert('javascript');
-    	$('#table tr').click(function(event) {
-	    var valor = document.getElementById("codigo");
-	    var fila = event.target.parentNode;
-	    valor.value = fila.children[2].innerHTML
-	    $('#table tr').removeClass('seleccionado');
-	    $(this).addClass('seleccionado');
-	});
-	});
-	</script>
-@endsection
-
+<a href=""><input type="text" name="codigo" id="codigo"></a>
 @endsection
