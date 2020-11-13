@@ -26,11 +26,38 @@ class GrupoController extends Controller
     public function create()
     {
         
-        $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
-        $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
-        $ifs = DB::table('informefinancieros')->get();
-        $empre = DB::table('empresas')->get()->pluck('id','nombre');
-        $grupo = DB::table('grupos')->get();
+         $inffin = DB::table('informefinancieros')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id()) 
+        ->get()->pluck('id','nombre');
+
+        $infi = DB::table('informefinancieros')
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','anio');
+
+        $ifs = DB::table('informefinancieros')
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+
+        $empre = DB::table('empresas')
+        ->get()->pluck('id','nombre');
+
+        $grupo = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
 
         return view('grupos.create')
             ->with('grupo',$grupo)
@@ -60,11 +87,37 @@ class GrupoController extends Controller
         ]);
         //$grupo = DB::table('grupos')->get();
         
-        $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
-        $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
-        $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
-        $empre = DB::table('empresas')->get()->pluck('id','nombre');
-        $grupo = DB::table('grupos')->get();
+        $inffin = DB::table('informefinancieros')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id()) 
+        ->get()->pluck('id','nombre');
+
+        $infi = DB::table('informefinancieros')
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','anio');
+
+        $ifs = DB::table('informefinancieros')
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+
+        $empre = DB::table('empresas')
+        ->get()->pluck('id','nombre');
+
+        $grupo = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
 
 
         //dd( $request->all() );
