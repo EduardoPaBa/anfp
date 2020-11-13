@@ -13,6 +13,21 @@ class prueba extends Controller
      */
     public function index()
     {
+        // --- EMPRESAS
+        $empresas = DB::table('empresas')->orderBy('id')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('empresas.id','empresas.nombre','empresas.sector')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
+        // --- INFORMEFINANCIEROS
+        $infin = DB::table('informefinancieros')->orderBy('id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
     	// --- GRUPOS
         $grupos = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
@@ -61,7 +76,9 @@ class prueba extends Controller
             ->with('clases',$clases)
             ->with('cuentas',$cuentas)
             ->with('subcuentas',$subcuentas)
-            ->with('grupos',$grupos);
+            ->with('grupos',$grupos)
+            ->with('infin',$infin)
+            ->with('empresas',$empresas);
         
         
     }
