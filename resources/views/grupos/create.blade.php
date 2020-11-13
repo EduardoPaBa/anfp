@@ -76,8 +76,15 @@
 			<tr>
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
-				<td>{{$sc->inombre}}</td>
-				<td>
+				@foreach($ifs as $ch)
+					@php 
+						$grande="{{$ch->id}}";
+						$humilde="{{$sc->informefinancieros_id}}";
+					@endphp
+					@if( $grande == $humilde )
+						<td>{{$ch->nombre}}</td>
+					@endif
+				@endforeach				<td>
 					<a href="{{ route('grupos.edit', ['grupo'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				
 					<form action="{{ route('grupos.destroy', ['grupo'=>$sc->id]) }}" method="POST">

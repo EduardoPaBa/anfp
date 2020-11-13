@@ -76,7 +76,19 @@
 			<tr>
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
-				<td>{{$sc->gcodigo}}</td>
+				<?php 
+				$grande; 
+				$humilde; 
+				?>
+				@foreach($gr as $ch)
+					<?php 
+						$grande="{{$ch->id}}";
+						$humilde="{{$sc->grupos_id}}";
+					?>
+					@if( $grande == $humilde )
+						<td>{{$ch->codigo}}</td>
+					@endif
+				@endforeach
 
 				<td>
 					<a href="{{ route('clases.edit', ['clase'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>

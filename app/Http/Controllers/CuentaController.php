@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class CuentaController extends Controller
 {
     /**
@@ -30,13 +30,8 @@ class CuentaController extends Controller
         
         $clase = DB::table('clases')->get()->pluck('id','codigo');
         $clas = DB::table('clases')->get()->pluck('id','nombre');
-
-        //$cuenta = DB::table('cuentas')->get();
         $cl = DB::table('clases')->get();
-        $cuenta = DB::table('cuentas')
-          ->join('clases','clases.id','=','cuentas.clases_id')
-          ->select('cuentas.*','clases.codigo as clcodigo')
-          ->get();
+        $cuenta = DB::table('cuentas')->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)
@@ -54,29 +49,28 @@ class CuentaController extends Controller
     public function store(Request $request)
     {
         //
-          $data=request();
+        $data=request();
         DB::table('cuentas')->insert([
             'codigo'=>$data['codigo'],
             'nombre'=>$data['nombre'],
             'valor'=>$data['valor'],
             'clases_id'=>$data['clases']
         ]);
-        //dd( $request->all() );
+        
+
         $clase = DB::table('clases')->get()->pluck('id','codigo');
         $clas = DB::table('clases')->get()->pluck('id','nombre');
-        
-        //$cuenta = DB::table('cuentas')->get();
         $cl = DB::table('clases')->get();
-        $cuenta = DB::table('cuentas')
-          ->join('clases','clases.id','=','cuentas.clases_id')
-          ->select('cuentas.*','clases.codigo as clcodigo')
-          ->get();
+        $cuenta = DB::table('cuentas')->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)
             ->with('clas',$clas)
             ->with('cl',$cl)
             ->with('cuenta',$cuenta);
+
+        // ->join('clases','clases.id','=','cuentas.clases_id')
+        //->select('cuentas.*','clases.codigo as clcodigo')
 
     }
 

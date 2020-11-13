@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SubCuenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class SubCuentaController extends Controller
 {
     /**
@@ -57,7 +57,7 @@ class SubCuentaController extends Controller
             'valor'=>$data['valor'],
             'cuentas_id'=>$data['cuentas']
         ]);
-        //dd( $request->all() );
+        
         
         //REDIRECCIONANDO
         $cuenta = DB::table('cuentas')->get()->pluck('id','codigo');

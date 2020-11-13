@@ -85,7 +85,19 @@
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
 				<td>{{$sc->valor}}</td>
-				<td>{{$sc->clcodigo}}</td>
+				<?php 
+				$grande; 
+				$humilde; 
+				?>
+				@foreach($cl as $ch)
+					<?php 
+						$grande="{{$ch->id}}";
+						$humilde="{{$sc->clases_id}}";
+					?>
+					@if( $grande == $humilde )
+						<td>{{$ch->codigo}}</td>
+					@endif
+				@endforeach
 					
 
 				<td>

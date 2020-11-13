@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class ClaseController extends Controller
 {
     /**
@@ -28,13 +28,13 @@ class ClaseController extends Controller
         //
         $grupo = DB::table('grupos')->get()->pluck('id','codigo');
         $gru = DB::table('grupos')->get()->pluck('id','nombre');
-
-        //$clase = DB::table('clases')->get();
         $gr = DB::table('grupos')->get();
-        $clase = DB::table('clases')
-          ->join('grupos','grupos.id','=','clases.grupos_id')
-          ->select('clases.*','grupos.codigo as gcodigo')
-          ->get();
+        $clase = DB::table('clases')->get();
+
+
+        //->join('grupos','grupos.id','=','clases.grupos_id')
+        //->select('clases.*','grupos.codigo as gcodigo')
+
 
         return view('clases.create')
             ->with('grupo',$grupo)
@@ -62,15 +62,11 @@ class ClaseController extends Controller
         ]);
         //dd( $request->all() );  
         //return view('clases.create');  
+        
         $grupo = DB::table('grupos')->get()->pluck('id','codigo');
         $gru = DB::table('grupos')->get()->pluck('id','nombre'); 
-
-        //$clase = DB::table('clases')->get();
         $gr = DB::table('grupos')->get();
-        $clase = DB::table('clases')
-          ->join('grupos','grupos.id','=','clases.grupos_id')
-          ->select('clases.*','grupos.codigo as gcodigo')
-          ->get();
+        $clase = DB::table('clases')->get();
 
         return view('clases.create')
             ->with('grupo',$grupo)

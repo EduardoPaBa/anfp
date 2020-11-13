@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grupo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class GrupoController extends Controller
 {
     /**
@@ -25,18 +25,12 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        //
+        
         $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
         $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
-        $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
+        $ifs = DB::table('informefinancieros')->get();
         $empre = DB::table('empresas')->get()->pluck('id','nombre');
-        
-        //$grupo = DB::table('grupos')->get();
-
-        $grupo = DB::table('grupos')
-          ->join('informefinancieros','informefinancieros.id','=','grupos.informefinancieros_id')
-          ->select('grupos.*','informefinancieros.nombre as inombre')
-          ->get();
+        $grupo = DB::table('grupos')->get();
 
         return view('grupos.create')
             ->with('grupo',$grupo)
@@ -44,6 +38,8 @@ class GrupoController extends Controller
             ->with('infi',$infi)
             ->with('ifs',$ifs)
             ->with('empre',$empre);
+            //          ->join('informefinancieros','informefinancieros.id','=','grupos.informefinancieros_id')
+            //->select('grupos.*','informefinancieros.nombre as inombre')
     }
 
     /**
@@ -63,15 +59,12 @@ class GrupoController extends Controller
             
         ]);
         //$grupo = DB::table('grupos')->get();
+        
         $inffin = DB::table('informefinancieros')->get()->pluck('id','nombre');
         $infi = DB::table('informefinancieros')->get()->pluck('id','anio');
         $ifs = DB::table('informefinancieros')->get()->pluck('id','empresas_id');
         $empre = DB::table('empresas')->get()->pluck('id','nombre');
-
-        $grupo = DB::table('grupos')
-          ->join('informefinancieros','informefinancieros.id','=','grupos.informefinancieros_id')
-          ->select('grupos.*','informefinancieros.nombre as inombre')
-          ->get();
+        $grupo = DB::table('grupos')->get();
 
 
         //dd( $request->all() );
