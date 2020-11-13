@@ -5,10 +5,12 @@
 	@section('content')
 
 	<?php
-	$valorCompGrupos="{Grupo grande}";
-	$valorCompClases="{activo}";
+	$valorCompGrupos="{pasivo}";
+	$valorCompClases="{pasivo corriente}";
 	$valorCompCuentas="{cuenta simple}";
 	$valorCompSubCuentas="{grande patas}";
+	$totalActivo="";
+	$y=0;
 	?>
 
 
@@ -39,6 +41,28 @@
 		
 		@if($valorBD == $valorCompClases)
 			<h1>clase encontrada</h1>
+
+
+			@foreach($cuentas as $cu)
+				<?php 
+				//suma de activos
+				$fkClaenCue="{{$cu->clases_id}}";
+				$ClaID="{{$cl->id}}";
+				?>
+				@if($fkClaenCue == $ClaID)
+					<?php
+					$x="{$cu->valor}";
+					$y= $y+$x;
+					?>
+				@endif
+				<?php
+				//suma de activos FIN
+				?>
+			@endforeach
+
+
+
+			<h1>Total pasivo {{$y}}</h1>
 		@endif
 
 		<?php
