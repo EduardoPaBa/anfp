@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('head')
+
+@endsection
+
+
+
+
 @section('botones')
 <a href="{{ route('empresas.create') }}" class="btn btn-primary mr-2">Empresas</a>
 <a href="{{ route('informefinancieros.create') }}" class="btn btn-primary mr-2">Informes Financieros</a>
@@ -23,15 +30,15 @@
 
 
 @section('content')
-<h1 class="text-center mb-5">PAPÁ</h1>
+<h1 class="text-center mb-5">PAPÁ ALIAS CHAFA</h1>
 <div class="col-md-10 mx-auto bg-white p-3">
-	<table class="table">
+	<table class="table" id="table">
 		<thead class="bg-primary text-light">
 			<tr>
-				<th scole="col">Codigo</th>
-				<th scole="col">Nombre</th>
-				<th scole="col">Valor</th>
-				<th scole="col">Acciones</th>
+				<th >Codigo</th>
+				<th >Nombre</th>
+				<th >Valor</th>
+				<th >Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,7 +48,39 @@
 				<td>5120</td>
 				<td></td>
 			</tr>
+			<tr>
+				<td>1.1.10</td>
+				<td>Cuentas por pagar</td>
+				<td>120</td>
+				<td></td>
+			</tr>
 		</tbody>
 	</table>
 </div>
+
+<input type="text" name="codigo" id="codigo">
+@section('estilo')
+<style type="text/css">
+	tr.seleccionado td{
+		background: blue;
+		color: white;
+	}	
+</style>
+
+@endsection
+@section('javascript')
+	<script type="text/javascript">
+	$(function() { // after the page has loaded..
+    	//alert('javascript');
+    	$('#table tr').click(function(event) {
+	    var valor = document.getElementById("codigo");
+	    var fila = event.target.parentNode;
+	    valor.value = fila.children[2].innerHTML
+	    $('#table tr').removeClass('seleccionado');
+	    $(this).addClass('seleccionado');
+	});
+	});
+	</script>
+@endsection
+
 @endsection
