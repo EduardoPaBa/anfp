@@ -26,7 +26,8 @@ class ClaseController extends Controller
     public function create()
     {
         //
-         $grupo = DB::table('grupos')
+        
+ $grupo = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
@@ -55,7 +56,7 @@ class ClaseController extends Controller
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
@@ -120,7 +121,7 @@ class ClaseController extends Controller
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 

@@ -28,10 +28,42 @@ class CuentaController extends Controller
         //
         //DB::table('clases')->get()->pluck('id','codigo')->dd();
         
-        $clase = DB::table('clases')->get()->pluck('id','codigo');
-        $clas = DB::table('clases')->get()->pluck('id','nombre');
-        $cl = DB::table('clases')->get();
-        $cuenta = DB::table('cuentas')->get();
+        $clase = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','codigo');
+        
+        $clas = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','nombre');
+        
+        $cl = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+        
+        $cuenta = DB::table('cuentas')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)
@@ -58,10 +90,42 @@ class CuentaController extends Controller
         ]);
         
 
-        $clase = DB::table('clases')->get()->pluck('id','codigo');
-        $clas = DB::table('clases')->get()->pluck('id','nombre');
-        $cl = DB::table('clases')->get();
-        $cuenta = DB::table('cuentas')->get();
+        $clase = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','codigo');
+        
+        $clas = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','nombre');
+        
+        $cl = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+        
+        $cuenta = DB::table('cuentas')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
         
         return view('cuentas.create')
             ->with('clase',$clase)
