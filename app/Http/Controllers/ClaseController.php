@@ -26,10 +26,38 @@ class ClaseController extends Controller
     public function create()
     {
         //
-        $grupo = DB::table('grupos')->get()->pluck('id','codigo');
-        $gru = DB::table('grupos')->get()->pluck('id','nombre');
-        $gr = DB::table('grupos')->get();
-        $clase = DB::table('clases')->get();
+         $grupo = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','codigo');
+        
+        $gru = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','nombre'); 
+        
+        $gr = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+        
+        $clase = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
 
 
         //->join('grupos','grupos.id','=','clases.grupos_id')
@@ -63,10 +91,39 @@ class ClaseController extends Controller
         //dd( $request->all() );  
         //return view('clases.create');  
         
-        $grupo = DB::table('grupos')->get()->pluck('id','codigo');
-        $gru = DB::table('grupos')->get()->pluck('id','nombre'); 
-        $gr = DB::table('grupos')->get();
-        $clase = DB::table('clases')->get();
+        $grupo = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','codigo');
+        
+        $gru = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get()->pluck('id','nombre'); 
+        
+        $gr = DB::table('grupos')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+        
+        $clase = DB::table('clases')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+
 
         return view('clases.create')
             ->with('grupo',$grupo)
