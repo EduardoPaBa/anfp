@@ -9,7 +9,8 @@
 	$valorCompClases="{pasivo corriente}";
 	$valorCompCuentas="{cuenta simple}";
 	$valorCompSubCuentas="{grande patas}";
-	$totalActivo="";
+	$totalPasivo=0;
+	$totalActivo=0;
 	$y=0;
 	?>
 
@@ -20,10 +21,80 @@
 		<?php
 		$arregloBD="{{$gr->nombre}}";
 		$valorBD=$arregloBD;
+		$grupoID="{$gr->id}";
 		?>
 		
 		@if($valorBD == $valorCompGrupos)
 			<h1>grupo encontrado</h1>
+
+			@foreach($clases as $cl)
+			<?php
+			$grupoFK="$cl->grupos_id";
+			$claseID="{$cl->id}";
+			?>
+			
+			@if($grupoID==$grupoFK)
+
+				@foreach($cuentas as $cu)
+				<?php
+				$claseFK="$cu->clases_id";
+				$cuentaID="{$cu->id}"
+				?>
+
+				@if($claseID==$claseFK)
+					<h1> ff c</h1>
+					<?php
+						$x="{$cu->valor}";							
+					?>
+					x{{$x}}
+					@php
+						$totalPasivo= $totalPasivo+$x;
+					@endphp
+					@foreach($subcuentas as $su)
+						<?php
+							$cuentaFK="{$su->cuentas_id}";
+							//<h1> {{$cuentaFK}} - {{$cuentaID}}</h1>
+						?>
+						
+						
+							@if($cuentaID==$cuentaFK)
+								<h1> ff sc</h1>
+								<?php
+									$y="{$su->valor}";
+								?>
+								y{{$y}}
+								@php
+									$totalPasivo= $totalPasivo+$y;
+								@endphp
+
+
+
+
+							@endif
+							
+							
+							
+							
+
+							
+
+					@endforeach
+					
+					
+
+
+				@endif
+
+				@endforeach
+				
+
+				<h1>Total pasivo {{$totalPasivo}}</h1>
+
+			@endif
+			@endforeach
+
+
+
 		@endif
 
 		<?php
@@ -41,28 +112,6 @@
 		
 		@if($valorBD == $valorCompClases)
 			<h1>clase encontrada</h1>
-
-
-			@foreach($cuentas as $cu)
-				<?php 
-				//suma de activos
-				$fkClaenCue="{{$cu->clases_id}}";
-				$ClaID="{{$cl->id}}";
-				?>
-				@if($fkClaenCue == $ClaID)
-					<?php
-					$x="{$cu->valor}";
-					$y= $y+$x;
-					?>
-				@endif
-				<?php
-				//suma de activos FIN
-				?>
-			@endforeach
-
-
-
-			<h1>Total pasivo {{$y}}</h1>
 		@endif
 
 		<?php
