@@ -63,7 +63,7 @@ class Ratios extends Controller
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas')
+        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
         ->get();
 

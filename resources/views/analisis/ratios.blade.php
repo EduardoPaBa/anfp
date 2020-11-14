@@ -112,7 +112,7 @@ $valorCompSubCuentas="{grande patas}";
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
 		  @endforeach
 		  </select>
@@ -121,7 +121,7 @@ $valorCompSubCuentas="{grande patas}";
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
   		@foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
             @endforeach
   		</select>
