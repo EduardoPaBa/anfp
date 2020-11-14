@@ -24,6 +24,7 @@
 <br>
 <br>
 <a href="{{ route('analisis.balancegeneral') }}" class="btn btn-primary mr-2">Ver Balance General</a>
+<a href="{{ route('analisis.ratios') }}" class="btn btn-primary mr-2">Ratios</a>
 
 @endsection
 

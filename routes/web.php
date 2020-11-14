@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
 	->name('analisis.balancegeneral');
 
+Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
+
 //-------------------SUB CUENTAS
 //Route::get('/subcuentas','SubCuentasController@index');
 	Route::resource('/sub_cuentas', 'App\Http\Controllers\SubCuentaController');
