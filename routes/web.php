@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
 	->name('analisis.balancegeneral');
+Route::get('/estadoresultados',[App\Http\Controllers\esController::class,'index'])
+	->name('analisis.estadoresultados');
 
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
 
