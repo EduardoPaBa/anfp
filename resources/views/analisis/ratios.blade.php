@@ -21,12 +21,20 @@
 @section('content')
 
 <?php
-$valorCompGrupos="{Grupo grande}";
-$valorCompClases="{activo}";
-$valorCompCuentas="{cuenta simple}";
-$valorCompSubCuentas="{grande patas}";
-?>
+	$valorCompGrupos="{pasivo}";
+	$valorCompClases="{pasivo corriente}";
 
+	$valorCompCuentas="{pasivo}";
+	$valorCompCuentas1="{TOTAL ACTIVOS CORRIENTES}";
+	$valorCompCuentas2="{TOTAL PASIVOS CORRIENTES}";
+	$valorCompCuentas3="{Inventarios}";
+	$valorCompCuentas4="{TOTAL ACTIVO}";
+
+	$valorCompSubCuentas="{grande patas}";
+	$totalPasivo=0;
+	$totalActivo=0;
+	$y=0;
+?>
 
 
 @foreach($grupos as $gr)
@@ -109,7 +117,53 @@ $valorCompSubCuentas="{grande patas}";
 		
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas1)
+				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonLiquidez" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
+		<br>
+		<label>Pasivo circulante: </label>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas2)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal-razonLiquidez" class="solo-numero">
+		</div>
+        
+	</div>
+<br>
+
+	<div class="col-sm" id="r">
+		
+		<h5>Razon de efectivo</h5>
+		<label>Efectivo: </label>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
@@ -117,41 +171,40 @@ $valorCompSubCuentas="{grande patas}";
 		  @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
-  		@foreach($ratios as $r)
+		<label>Valores de corto plazo: </label>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_valorCortoPlazo">
+		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
-		<div class="col-6 col-md-4">
-			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
-		</div>
-        
-	</div>
-<br>
-  
-  <input type="hidden" class="input_numerador">
-  <input type="hidden" class="input_denominador">
-
-	<div class="col-sm" id="r">
-		
-		<h5>Razon de efectivo</h5>
-		<label>Efectivo: </label>
-		<input type="text" name="act" class="col-md-4">
-		<br>
-		<label>Valores de corto plazo: </label>
-		<input type="text" name="pas" class="col-md-4">
+		  @endforeach
+		  </select>
 		<br>
 		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
+			@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas2)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonEfectivo" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonEfectivo" class="solo-numero">
 		</div>
 
+		<input type="hidden" class="input_numerador_efectivo">
+  		<input type="hidden" class="input_numerador_valorCortoPlazo">
+  		
 
 	</div>
 
@@ -178,40 +231,70 @@ $valorCompSubCuentas="{grande patas}";
 		
 		<h5>Razon de capital</h5>
 		<label>Activo corriente: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas1)
+				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonCapital" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Pasivo circulante: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
-            </option>
-            @endforeach
-  		</select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas2)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas4)
+				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonCapital" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonCapital" class="solo-numero">
 		</div>
         
 	</div>
+	</div>
+	<br>
+	<br>
+	<div class="text-center" id="boton-razonLiquidez">
+		<input type="button" id="resultados-razonLiquidez" value="Calcular">
+		<input type="button" id="resultados-razonEfectivo" value="Calcular">
 	</div>
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
@@ -719,7 +802,7 @@ $valorCompSubCuentas="{grande patas}";
 
 
 
-	<input type="button" id="resultados" value="Enviar formulario">
+
 </div>
 <div class="col-md-10 mx-auto bg-white p-3">
 	<table class="table" id="tabla">
