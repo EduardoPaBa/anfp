@@ -29,6 +29,11 @@
 	$valorCompCuentas2="{TOTAL PASIVOS CORRIENTES}";
 	$valorCompCuentas3="{Inventarios}";
 	$valorCompCuentas4="{TOTAL ACTIVO}";
+	$valorCompCuentas5="{Cuentas por Cobrar}";
+	$valorCompCuentas6="{Utilidad Bruta}";
+	$valorCompCuentas7="{Utilidad Operativa}";
+
+
 
 	$valorCompSubCuentas="{grande patas}";
 	$totalPasivo=0;
@@ -343,7 +348,6 @@
 				onclick="razonCapital();"
 				onclick="razonEfectivo();"
 				onclick="razonRapida();">
-		<input type="button" id="prueba" value="Calcular">
 	</div>
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
@@ -356,45 +360,76 @@
 		
 		<h5>Razon de Rotacion de Inventario</h5>
 		<label>Costo de ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonInventario">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
 		  @endforeach
 		  </select>
+		  <input type="hidden" id="input_numerador_costosVentas_razonInventario">
 		<br>
 		<label>Inventario Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
-            </option>
-            @endforeach
-  		</select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas4)
+				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonInventario" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonInventario" class="solo-numero">
 		</div>
+
         
 	</div>
 <br>
-  
-  <input type="hidden" class="input_numerador">
-  <input type="hidden" class="input_denominador">
+
 
 	<div class="col-sm" id="r">
 		
 		<h5>Razon de dias de inventario</h5>
 		<label>Inventrario promedio </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas4)
+				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonDiasInventario" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Costo de ventas/365: </label>
-		<input type="text" name="pas" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonDiasInventario">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_costosVentas_razonDiasInventario">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonDiasInventario" class="solo-numero">
 		</div>
 
 
@@ -407,43 +442,73 @@
 		
 		<h5>Razon de rotacion de cuentas por cobrar</h5>
 		<label>Ventas Netas: </label>
-		<input type="text" name="act" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonCxC">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="text" id="input_numerador_ventasNetas_razonCxC">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas5)
+				<input type="text"  value="{{ $cu->valor }}" id="CxC-razonCxC" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonCxC" class="solo-numero">
 		</div>
 	</div>
 	
 	<div class="col-sm" id="rl">
 		
 		<h5>Razon de medio de cobranza</h5>
-		<label>Promedio de CxP comerciales * 365: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		<label>Promedio de CxC comerciales * 365: </label>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas5)
+				<input type="text"  value="{{ $cu->valor }}" id="CxC-razonMedioC" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMedioC">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ventasNetas_razonMedioC">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonMedioC" class="solo-numero">
 		</div>
         
 	</div>
@@ -456,14 +521,28 @@
 		
 		<h5>Razon de rotacion de CxP</h5>
 		<label>Compras: </label>
-		<input type="text" name="act" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonCxP">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_compras_razonCxP">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
-		<input type="text" name="pas" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonCxP">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_denominador_razonCxP">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonCxP" class="solo-numero">
 		</div>
 	</div>
 	
@@ -471,28 +550,28 @@
 		
 		<h5>Periodo de medio de pago</h5>
 		<label>Promedio de CxP Comerciales*365: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonMedioP">
 		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
 		  </select>
+		  <input type="hidden" id="input_denominador_razonMedioP">
 		<br>
 		<label>Compras: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonMedioP">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_compras_razonMedioP">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonMedioP" class="solo-numero">
 		</div>
         
 	</div>
@@ -500,19 +579,42 @@
 
 	<br>
 
+
 	<div class="row">
 		<div class="col-sm" id="r">
 		
 		<h5>Indice de rotacion de activos totales</h5>
 		<label>Ventas Netas: </label>
-		<input type="text" name="act" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonIndiceA">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ventasNetas_razonIndiceA">
 		<br>
 		<label>Activo Total Promedio: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas5)
+				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonIndiceA" class="solo-numero">
 		</div>
 	</div>
 	
@@ -520,28 +622,28 @@
 		
 		<h5>Indice de rotacion de activos fijos</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonActivosF">
 		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
 		  </select>
+		  <input type="hidden" id="input_numerador_ventasNetas_razonActivosF">
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_activoFijo_razonActivosF">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_activoFijo_razonActivosF">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonActivosF" class="solo-numero">
 		</div>
         
 	</div>
@@ -549,19 +651,42 @@
 
 	<br>
 
+
 	<div class="row">
 		<div class="col-sm" id="r">
 		
 		<h5>Indice de Margen Bruto</h5>
 		<label>Utilidad Bruta: </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas6)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadB-razonMargenB" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Ventas: </label>
-		<input type="text" name="pas" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMargenB">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ventasNetas_razonMargenB">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonMargenB" class="solo-numero">
 		</div>
 	</div>
 	
@@ -569,31 +694,53 @@
 		
 		<h5>Indice de Margen Operativo</h5>
 		<label>Utilidad Operativa: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas7)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadO-razonMargenO" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonMargenO">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ventas_razonMargenO">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonMargenO" class="solo-numero">
 		</div>
         
 	</div>
+	</div>
+	
+	<div class="text-center" id="boton-razonActividad">
+		<input type="button" id="resultados-razonActividad" value="Calcular" 
+				onclick="razonInventario();"
+				onclick="razonDiasInventario();"
+				onclick="razonCxC();"
+				onclick="razonMedioC();"
+				onclick="razonCxP();"
+				onclick="razonMedioP();"
+				onclick="razonIndiceA();"
+				onclick="razonActivosF();"
+				onclick="razonMargenB();"
+				onclick="razonMargenO();">
 	</div>
 
 	<br>
