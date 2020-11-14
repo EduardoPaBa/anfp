@@ -5,13 +5,12 @@
 	@section('content')
 
 	<?php
-	$valorCompGrupos="pasivo";
-	$valorCompClases="pasivo corriente";
-	$valorCompClases1="pasivo no corriente";
+	
+	
 	$valorCompCuentas="{cuenta simple}";
 	$valorCompSubCuentas="{grande patas}";
-	$totalPasivoCorriente=0;
-	$totalActivo=0;
+	$totalGrupo=0;
+	$totalclase=0;
 	$y=0;
 	?>
 
@@ -34,6 +33,11 @@
 
 			@if($infiFK==$infiID)
 		
+				<?php
+				$valorCompClases="pasivo corriente";
+				$valorCompClases1="pasivo no corriente";
+				$valorCompGrupos="pasivo";
+				?>
 				@if($valorBD == $valorCompGrupos)
 
 					@foreach($clases as $cl)
@@ -52,10 +56,12 @@
 
 
 
-
+						@php
+						//-------------------------------------------
+						@endphp
 						<?php
-						$arregloBD="{$cl->nombre}";
-						$valorBD=$arregloBD;
+							$arregloBD="{$cl->nombre}";
+							$valorBD=$arregloBD;
 						?>
 						@if($valorBD == $valorCompClases)
 
@@ -70,7 +76,7 @@
 									<?php
 										//---*******aqui almaceno el valor de la cuenta***********----------
 										$x="{$cu->valor}";	
-										$totalPasivoCorriente =$totalPasivoCorriente+$x;
+										$totalGrupo =$totalGrupo+$x;
 									?>
 									
 									@foreach($subcuentas as $su)
@@ -84,24 +90,32 @@
 											<?php
 											//---*******aqui almaceno el valor de la sub cuenta***********----------
 											$y="{$su->valor}";
-											$totalPasivoCorriente =$totalPasivoCorriente+$y;
+											$totalGrupo =$totalGrupo+$y;
 											?>
 											
 										@endif
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases}} = {{$totalPasivoCorriente}}</h1>
+							<h1>Total {{$valorCompClases}} = {{$totalGrupo}}</h1>
+							<?php
+								$valorBD="";
+							?>
+							@php
+								$totalGrupo= 0;
+							@endphp
+
 						@endif
+						@php
+						//-------------------------------------------
+						@endphp
 
-
-
-
-
-
+						@php
+						//-------------------------------------------
+						@endphp
 						<?php
-
-							$totalPasivoCorriente =0;
+							$arregloBD="{$cl->nombre}";
+							$valorBD=$arregloBD;
 						?>
 						@if($valorBD == $valorCompClases1)
 
@@ -116,9 +130,8 @@
 									<?php
 										//---*******aqui almaceno el valor de la cuenta***********----------
 										$x="{$cu->valor}";	
-										$totalPasivoCorriente =$totalPasivoCorriente+$x;
+										$totalGrupo =$totalGrupo+$x;
 									?>
-									
 									
 									@foreach($subcuentas as $su)
 										<?php										
@@ -131,19 +144,25 @@
 											<?php
 											//---*******aqui almaceno el valor de la sub cuenta***********----------
 											$y="{$su->valor}";
-											$totalPasivoCorriente =$totalPasivoCorriente+$y;
+											$totalGrupo =$totalGrupo+$y;
 											?>
-
 											
 										@endif
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases1}} = {{$totalPasivoCorriente}}</h1>
+							<h1>Total {{$valorCompClases1}} = {{$totalGrupo}}</h1>
+							<?php
+								$valorBD="";
+							?>
+							@php
+								$totalGrupo= 0;
+							@endphp
+
 						@endif
-
-
-
+						@php
+						//-------------------------------------------
+						@endphp
 
 
 
@@ -166,7 +185,7 @@
 										$x="{$cu->valor}";							
 									?>
 									@php
-										$totalPasivo= $totalPasivo+$x;
+										$totalclase= $totalclase+$x;
 									@endphp
 									@foreach($subcuentas as $su)
 										<?php										
@@ -181,7 +200,7 @@
 											$y="{$su->valor}";
 											?>
 											@php
-												$totalPasivo= $totalPasivo+$y;
+												$totalclase= $totalclase+$y;
 											@endphp
 										@endif
 									@endforeach
@@ -190,16 +209,220 @@
 							
 						@endif
 					@endforeach
-					<h1>Total {{$valorCompGrupos}} = {{$totalPasivo}}</h1>
+					<h1>Total {{$valorCompGrupos}} = {{$totalclase}}</h1>
+					<?php
+						$valorBD="";
+					?>
+					@php
+						$totalclase= 0;
+					@endphp
+
 				@endif
 
-				<?php
-					$valorBD="";
-				?>
 
-				@php
-					$totalPasivo= 0;
-				@endphp
+
+
+
+
+
+
+
+
+
+				<?php
+				$valorCompClases="activo corriente";
+				$valorCompClases1="activo no corriente";
+				$valorCompGrupos="activo";
+				?>
+				@if($valorBD == $valorCompGrupos)
+
+					@foreach($clases as $cl)
+						<?php
+							$grupoFK="$cl->grupos_id";
+							$claseID="{$cl->id}";
+						?>
+			
+						@if($grupoID==$grupoFK)
+
+
+
+
+
+
+
+
+
+						@php
+						//-------------------------------------------
+						@endphp
+						<?php
+							$arregloBD="{$cl->nombre}";
+							$valorBD=$arregloBD;
+						?>
+						@if($valorBD == $valorCompClases)
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										//---*******aqui almaceno el valor de la cuenta***********----------
+										$x="{$cu->valor}";	
+										$totalGrupo =$totalGrupo+$x;
+									?>
+									
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---*******aqui almaceno el valor de la sub cuenta***********----------
+											$y="{$su->valor}";
+											$totalGrupo =$totalGrupo+$y;
+											?>
+											
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							<h1>Total {{$valorCompClases}} = {{$totalGrupo}}</h1>
+							<?php
+								$valorBD="";
+							?>
+							@php
+								$totalGrupo= 0;
+							@endphp
+
+						@endif
+						@php
+						//-------------------------------------------
+						@endphp
+
+						@php
+						//-------------------------------------------
+						@endphp
+						<?php
+							$arregloBD="{$cl->nombre}";
+							$valorBD=$arregloBD;
+						?>
+						@if($valorBD == $valorCompClases1)
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										//---*******aqui almaceno el valor de la cuenta***********----------
+										$x="{$cu->valor}";	
+										$totalGrupo =$totalGrupo+$x;
+									?>
+									
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---*******aqui almaceno el valor de la sub cuenta***********----------
+											$y="{$su->valor}";
+											$totalGrupo =$totalGrupo+$y;
+											?>
+											
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							<h1>Total {{$valorCompClases1}} = {{$totalGrupo}}</h1>
+							<?php
+								$valorBD="";
+							?>
+							@php
+								$totalGrupo= 0;
+							@endphp
+
+						@endif
+						@php
+						//-------------------------------------------
+						@endphp
+
+
+
+
+
+
+
+
+
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										$x="{$cu->valor}";							
+									?>
+									@php
+										$totalclase= $totalclase+$x;
+									@endphp
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---**aqui almaceno el valor de la sub cuenta****----------
+											$y="{$su->valor}";
+											?>
+											@php
+												$totalclase= $totalclase+$y;
+											@endphp
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							
+						@endif
+					@endforeach
+					<h1>Total {{$valorCompGrupos}} = {{$totalclase}}</h1>
+					<?php
+						$valorBD="";
+					?>
+					@php
+						$totalclase= 0;
+					@endphp
+
+				@endif
+
+
+
+
+
+
+
+
+				
 			@endif
 		@endforeach
 		@php
@@ -378,9 +601,6 @@
 			</tbody>
 		</table>
 	</div>
-
-
-
 
 
 	@endsection
