@@ -5,133 +5,212 @@
 	@section('content')
 
 	<?php
-	$valorCompGrupos="{pasivo}";
-	$valorCompClases="{pasivo corriente}";
+	$valorCompGrupos="pasivo";
+	$valorCompClases="pasivo corriente";
+	$valorCompClases1="pasivo no corriente";
 	$valorCompCuentas="{cuenta simple}";
 	$valorCompSubCuentas="{grande patas}";
-	$totalPasivo=0;
+	$totalPasivoCorriente=0;
 	$totalActivo=0;
 	$y=0;
 	?>
 
+	
+@foreach($infin as $in)
+		<?php
+			$infiID="{$in->id}";
+		?>
+		<h2>balance {{$infiID}}</h2>
+		@php
+			//-------------------------------------------
+		@endphp
+		@foreach($grupos as $gr)
+			<?php
+				$arregloBD="{$gr->nombre}";
+				$valorBD=$arregloBD;
+				$grupoID="{$gr->id}";
+				$infiFK="{$gr->informefinancieros_id}";
+			?>
+
+			@if($infiFK==$infiID)
+		
+				@if($valorBD == $valorCompGrupos)
+
+					@foreach($clases as $cl)
+						<?php
+							$grupoFK="$cl->grupos_id";
+							$claseID="{$cl->id}";
+						?>
+			
+						@if($grupoID==$grupoFK)
+
+
+
+
+
+
+
+
+
+
+						<?php
+						$arregloBD="{$cl->nombre}";
+						$valorBD=$arregloBD;
+						?>
+						@if($valorBD == $valorCompClases)
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										//---*******aqui almaceno el valor de la cuenta***********----------
+										$x="{$cu->valor}";	
+										$totalPasivoCorriente =$totalPasivoCorriente+$x;
+									?>
+									
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---*******aqui almaceno el valor de la sub cuenta***********----------
+											$y="{$su->valor}";
+											$totalPasivoCorriente =$totalPasivoCorriente+$y;
+											?>
+											
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							<h1>Total {{$valorCompClases}} = {{$totalPasivoCorriente}}</h1>
+						@endif
+
+
+
+
+
+
+						<?php
+
+							$totalPasivoCorriente =0;
+						?>
+						@if($valorBD == $valorCompClases1)
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										//---*******aqui almaceno el valor de la cuenta***********----------
+										$x="{$cu->valor}";	
+										$totalPasivoCorriente =$totalPasivoCorriente+$x;
+									?>
+									
+									
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---*******aqui almaceno el valor de la sub cuenta***********----------
+											$y="{$su->valor}";
+											$totalPasivoCorriente =$totalPasivoCorriente+$y;
+											?>
+
+											
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							<h1>Total {{$valorCompClases1}} = {{$totalPasivoCorriente}}</h1>
+						@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+							@foreach($cuentas as $cu)
+								<?php
+									$claseFK="$cu->clases_id";
+									$cuentaID="{$cu->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										$x="{$cu->valor}";							
+									?>
+									@php
+										$totalPasivo= $totalPasivo+$x;
+									@endphp
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---**aqui almaceno el valor de la sub cuenta****----------
+											$y="{$su->valor}";
+											?>
+											@php
+												$totalPasivo= $totalPasivo+$y;
+											@endphp
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							
+						@endif
+					@endforeach
+					<h1>Total {{$valorCompGrupos}} = {{$totalPasivo}}</h1>
+				@endif
+
+				<?php
+					$valorBD="";
+				?>
+
+				@php
+					$totalPasivo= 0;
+				@endphp
+			@endif
+		@endforeach
+		@php
+		//-------------------------------------------
+		@endphp
+	@endforeach
 
 
 	
 
-	@foreach($infin as $in)
 
-		<?php
-		$infiID="{$in->id}";
-		?>
-		<h2>balance {{$infiID}}</h2>
-
-
-		@php
-		//-------------------------------------------
-		@endphp
-		@foreach($grupos as $gr)
-
-		<?php
-		$arregloBD="{{$gr->nombre}}";
-		$valorBD=$arregloBD;
-		$grupoID="{$gr->id}";
-		$infiFK="{$gr->informefinancieros_id}";
-		?>
-		
-
-		@if($infiFK==$infiID)
-		
-		@if($valorBD == $valorCompGrupos)
-			<h1>grupo encontrado</h1>
-
-			@foreach($clases as $cl)
-			<?php
-			$grupoFK="$cl->grupos_id";
-			$claseID="{$cl->id}";
-			?>
-			
-			@if($grupoID==$grupoFK)
-
-				@foreach($cuentas as $cu)
-				<?php
-				$claseFK="$cu->clases_id";
-				$cuentaID="{$cu->id}"
-				?>
-
-				@if($claseID==$claseFK)
-					
-					<?php
-						$x="{$cu->valor}";							
-					?>
-					@php
-						$totalPasivo= $totalPasivo+$x;
-					@endphp
-					@foreach($subcuentas as $su)
-						<?php
-							$cuentaFK="{$su->cuentas_id}";
-							//<h1> {{$cuentaFK}} - {{$cuentaID}}</h1>
-						?>
-						
-						
-							@if($cuentaID==$cuentaFK)
-								
-								<?php
-									$y="{$su->valor}";
-								?>
-								@php
-									$totalPasivo= $totalPasivo+$y;
-								@endphp
-
-
-
-
-							@endif
-							
-							
-							
-							
-
-							
-
-					@endforeach
-					
-					
-
-
-				@endif
-
-				@endforeach
-				
-
-				<h1>Total pasivo {{$totalPasivo}}</h1>
-
-			@endif
-			@endforeach
-
-
-
-		@endif
-
-		<?php
-		$valorBD="";
-		?>
-
-		@php
-			$totalPasivo= 0;
-		@endphp
-		@endif
-
-	@endforeach
-
-		
-
-
-		@php
-		//-------------------------------------------
-		@endphp
-
-
-	@endforeach
 
 
 
@@ -148,7 +227,6 @@
 		?>
 		
 		@if($valorBD == $valorCompClases)
-			
 		@endif
 
 		<?php
