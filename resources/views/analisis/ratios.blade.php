@@ -99,7 +99,7 @@ $valorCompSubCuentas="{grande patas}";
 
 <div class="col-md-10 mx-auto bg-white p-3">
 	<h1 class="text-center">RATIOS</h1>
-
+<!-- ######################## RATIOS DE LIQUIDEZ ############################-->
 	<br>
 	<u><h2>Razones de Liquidez</h2></u>
 
@@ -214,7 +214,7 @@ $valorCompSubCuentas="{grande patas}";
 	</div>
 	</div>
 <br>
-
+<!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
 	<u><h2>Razones de Actividad</h2></u>
 
@@ -222,8 +222,8 @@ $valorCompSubCuentas="{grande patas}";
 
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de liquidez corriente</h5>
-		<label>Activo circulante: </label>
+		<h5>Razon de Rotacion de Inventario</h5>
+		<label>Costo de ventas: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
@@ -232,7 +232,7 @@ $valorCompSubCuentas="{grande patas}";
 		  @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Inventario Promedio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
   		@foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
@@ -253,15 +253,13 @@ $valorCompSubCuentas="{grande patas}";
 
 	<div class="col-sm" id="r">
 		
-		<h5>Razon de efectivo</h5>
-		<label>Efectivo: </label>
+		<h5>Razon de dias de inventario</h5>
+		<label>Inventrario promedio </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Valores de corto plazo: </label>
+		<label>Costo de ventas/365: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -275,15 +273,13 @@ $valorCompSubCuentas="{grande patas}";
 	<div class="row">
 		<div class="col-sm" id="r">
 		
-		<h5>Razon rapida o prueba acida</h5>
-		<label>Activo corriente: </label>
+		<h5>Razon de rotacion de cuentas por cobrar</h5>
+		<label>Ventas Netas: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Inventario: </label>
+		<label>Promedio de CxP comerciales: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -292,8 +288,8 @@ $valorCompSubCuentas="{grande patas}";
 	
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
+		<h5>Razon de medio de cobranza</h5>
+		<label>Promedio de CxP comerciales * 365: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
 		  <option value="">Seleccionar cuenta</option>
 		  @foreach($ratios as $r)
@@ -303,7 +299,7 @@ $valorCompSubCuentas="{grande patas}";
 		            @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Ventas Netas: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
   		<option value="">Seleccionar cuenta</option>
   		@foreach($ratios as $r)
@@ -313,15 +309,6 @@ $valorCompSubCuentas="{grande patas}";
             @endforeach
   		</select>
 		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -335,15 +322,13 @@ $valorCompSubCuentas="{grande patas}";
 	<div class="row">
 		<div class="col-sm" id="r">
 		
-		<h5>Razon rapida o prueba acida</h5>
-		<label>Activo corriente: </label>
+		<h5>Razon de rotacion de CxP</h5>
+		<label>Compras: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Inventario: </label>
+		<label>Promedio de CxP comerciales: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -352,8 +337,8 @@ $valorCompSubCuentas="{grande patas}";
 	
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
+		<h5>Periodo de medio de pago</h5>
+		<label>Promedio de CxP Comerciales*365: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
 		  <option value="">Seleccionar cuenta</option>
 		  @foreach($ratios as $r)
@@ -363,7 +348,7 @@ $valorCompSubCuentas="{grande patas}";
 		            @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Compras: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
   		<option value="">Seleccionar cuenta</option>
   		@foreach($ratios as $r)
@@ -373,15 +358,6 @@ $valorCompSubCuentas="{grande patas}";
             @endforeach
   		</select>
 		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -395,15 +371,13 @@ $valorCompSubCuentas="{grande patas}";
 	<div class="row">
 		<div class="col-sm" id="r">
 		
-		<h5>Razon rapida o prueba acida</h5>
-		<label>Activo corriente: </label>
+		<h5>Indice de rotacion de activos totales</h5>
+		<label>Ventas Netas: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Inventario: </label>
+		<label>Activo Total Promedio: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -412,8 +386,8 @@ $valorCompSubCuentas="{grande patas}";
 	
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
+		<h5>Indice de rotacion de activos fijos</h5>
+		<label>Ventas Netas: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
 		  <option value="">Seleccionar cuenta</option>
 		  @foreach($ratios as $r)
@@ -423,7 +397,7 @@ $valorCompSubCuentas="{grande patas}";
 		            @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Activo Fijo Neto Promedio: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
   		<option value="">Seleccionar cuenta</option>
   		@foreach($ratios as $r)
@@ -433,15 +407,6 @@ $valorCompSubCuentas="{grande patas}";
             @endforeach
   		</select>
 		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -455,15 +420,13 @@ $valorCompSubCuentas="{grande patas}";
 	<div class="row">
 		<div class="col-sm" id="r">
 		
-		<h5>Razon rapida o prueba acida</h5>
-		<label>Activo corriente: </label>
+		<h5>Indice de Margen Bruto</h5>
+		<label>Utilidad Bruta: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Inventario: </label>
+		<label>Ventas: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -472,8 +435,8 @@ $valorCompSubCuentas="{grande patas}";
 	
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
+		<h5>Indice de Margen Operativo</h5>
+		<label>Utilidad Operativa: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
 		  <option value="">Seleccionar cuenta</option>
 		  @foreach($ratios as $r)
@@ -483,7 +446,7 @@ $valorCompSubCuentas="{grande patas}";
 		            @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Ventas: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
   		<option value="">Seleccionar cuenta</option>
   		@foreach($ratios as $r)
@@ -493,15 +456,6 @@ $valorCompSubCuentas="{grande patas}";
             @endforeach
   		</select>
 		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -511,14 +465,16 @@ $valorCompSubCuentas="{grande patas}";
 	</div>
 
 	<br>
-	<u><h2>Razones de Actividad</h2></u>
+
+	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
+	<u><h2>Razones de Rentabilidad</h2></u>
 
 	<div class="row">
 
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de liquidez corriente</h5>
-		<label>Activo circulante: </label>
+		<h5>Rentabilidad Neta del Patrimonio</h5>
+		<label>Utilidad Neta: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
@@ -527,7 +483,7 @@ $valorCompSubCuentas="{grande patas}";
 		  @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Patrimonio Promedio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
   		@foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
@@ -548,11 +504,155 @@ $valorCompSubCuentas="{grande patas}";
 
 	<div class="col-sm" id="r">
 		
-		<h5>Razon de efectivo</h5>
-		<label>Efectivo: </label>
+		<h5>Rentabilidad por Acccion</h5>
+		<label>Uilidad Neta: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Valores de corto plazo: </label>
+		<label>Numero de acciones: </label>
+		<input type="text" name="pas" class="col-md-4">
+		<br>
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal" class="solo-numero">
+		</div>
+
+
+	</div>
+
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm" id="r">
+		
+		<h5>Rentabilidad del Activo</h5>
+		<label>Utilidad Neta: </label>
+		<input type="text" name="act" class="col-md-4">
+		<br>
+		<label>Activo Total Promedio: </label>
+		<input type="text" name="pas" class="col-md-4">
+		<br>
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal" class="solo-numero">
+		</div>
+	</div>
+	
+	<div class="col-sm" id="rl">
+		
+		<h5>Rentabilidad sobre Ventas</h5>
+		<label>Utilidad Neta: </label>
+		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
+		  <option value="">Seleccionar cuenta</option>
+		  @foreach($ratios as $r)
+		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
+		            	{{ $r -> rcuentas }}
+		            </option>
+		            @endforeach
+		  </select>
+		<br>
+		<label>Ventas: </label>
+		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
+  		<option value="">Seleccionar cuenta</option>
+  		@foreach($ratios as $r)
+            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
+            	{{ $r -> rcuentas }}
+            </option>
+            @endforeach
+  		</select>
+		<br>
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal" class="solo-numero">
+		</div>
+        
+	</div>
+	</div>
+
+	<br>
+	<div class="col-sm" id="rl">
+		
+		<h5>Rentabilidad sobre Inversion</h5>
+		<label>Ingresos: </label>
+		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
+		  <option value="">Seleccionar cuenta</option>
+		  @foreach($ratios as $r)
+		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
+		            	{{ $r -> rcuentas }}
+		            </option>
+		            @endforeach
+		  </select>
+		<br>
+		<label>Inversion: </label>
+		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
+  		<option value="">Seleccionar cuenta</option>
+  		@foreach($ratios as $r)
+            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
+            	{{ $r -> rcuentas }}
+            </option>
+            @endforeach
+  		</select>
+		<br>
+		<label>Inversion: </label>
+		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
+		  <option value="">Seleccionar cuenta</option>
+		  @foreach($ratios as $r)
+		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
+		            	{{ $r -> rcuentas }}
+		            </option>
+		            @endforeach
+		  </select>
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal" class="solo-numero">
+		</div>
+        
+	</div>
+
+
+	<br>
+	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
+	<u><h2>Razones de Endeudamiento</h2></u>
+
+	<div class="row">
+
+	<div class="col-sm" id="rl">
+		
+		<h5>Grado de Endeudamiento</h5>
+		<label>Pasivo Total: </label>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            </option>
+		  @endforeach
+		  </select>
+		<br>
+		<label>Activo Total: </label>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
+  		@foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            </option>
+            @endforeach
+  		</select>
+		<div class="col-6 col-md-4">
+			<label>Resultado = </label>
+			<input type="text" id="inputTotal" class="solo-numero">
+		</div>
+        
+	</div>
+<br>
+  
+  <input type="hidden" class="input_numerador">
+  <input type="hidden" class="input_denominador">
+
+	<div class="col-sm" id="r">
+		
+		<h5>Grado de Propiedad</h5>
+		<label>Patrimonio: </label>
+		<input type="text" name="act" class="col-md-4">
+		<br>
+		<label>Activo Total: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
 		<label>Pasivo corriente: </label>
@@ -570,15 +670,13 @@ $valorCompSubCuentas="{grande patas}";
 	<div class="row">
 		<div class="col-sm" id="r">
 		
-		<h5>Razon rapida o prueba acida</h5>
-		<label>Activo corriente: </label>
+		<h5>Razon de Endeudamiento Patrimonial</h5>
+		<label>Pasivo Total: </label>
 		<input type="text" name="act" class="col-md-4">
 		<br>
-		<label>Inventario: </label>
+		<label>Patrimonio Total: </label>
 		<input type="text" name="pas" class="col-md-4">
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -587,8 +685,8 @@ $valorCompSubCuentas="{grande patas}";
 	
 	<div class="col-sm" id="rl">
 		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
+		<h5>Razon de cobertura de Gastos Financieros</h5>
+		<label>Utilidades antes de interes e impuestos: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
 		  <option value="">Seleccionar cuenta</option>
 		  @foreach($ratios as $r)
@@ -598,7 +696,7 @@ $valorCompSubCuentas="{grande patas}";
 		            @endforeach
 		  </select>
 		<br>
-		<label>Pasivo circulante: </label>
+		<label>Gastos Financieros: </label>
 		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
   		<option value="">Seleccionar cuenta</option>
   		@foreach($ratios as $r)
@@ -608,15 +706,6 @@ $valorCompSubCuentas="{grande patas}";
             @endforeach
   		</select>
 		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal" class="solo-numero">
@@ -626,45 +715,6 @@ $valorCompSubCuentas="{grande patas}";
 	</div>
 
 	<br>
-	<div class="col-sm" id="rl">
-		
-		<h5>Razon de capital</h5>
-		<label>Activo corriente: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
-		<br>
-		<label>Pasivo circulante: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
-            </option>
-            @endforeach
-  		</select>
-		<br>
-		<label>Activo totales: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
-		<div class="col-6 col-md-4">
-			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
-		</div>
-        
-	</div>
-
 
 
 
