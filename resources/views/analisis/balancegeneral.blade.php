@@ -16,13 +16,30 @@
 
 
 
-	@foreach($grupos as $gr)
+	
+
+	@foreach($infin as $in)
+
+		<?php
+		$infiID="{$in->id}";
+		?>
+		<h2>balance {{$infiID}}</h2>
+
+
+		@php
+		//-------------------------------------------
+		@endphp
+		@foreach($grupos as $gr)
 
 		<?php
 		$arregloBD="{{$gr->nombre}}";
 		$valorBD=$arregloBD;
 		$grupoID="{$gr->id}";
+		$infiFK="{$gr->informefinancieros_id}";
 		?>
+		
+
+		@if($infiFK==$infiID)
 		
 		@if($valorBD == $valorCompGrupos)
 			<h1>grupo encontrado</h1>
@@ -42,11 +59,10 @@
 				?>
 
 				@if($claseID==$claseFK)
-					<h1> ff c</h1>
+					
 					<?php
 						$x="{$cu->valor}";							
 					?>
-					x{{$x}}
 					@php
 						$totalPasivo= $totalPasivo+$x;
 					@endphp
@@ -58,11 +74,10 @@
 						
 						
 							@if($cuentaID==$cuentaFK)
-								<h1> ff sc</h1>
+								
 								<?php
 									$y="{$su->valor}";
 								?>
-								y{{$y}}
 								@php
 									$totalPasivo= $totalPasivo+$y;
 								@endphp
@@ -101,7 +116,29 @@
 		$valorBD="";
 		?>
 
+		@php
+			$totalPasivo= 0;
+		@endphp
+		@endif
+
 	@endforeach
+
+		
+
+
+		@php
+		//-------------------------------------------
+		@endphp
+
+
+	@endforeach
+
+
+
+
+
+
+
 
 	@foreach($clases as $cl)
 
@@ -111,7 +148,7 @@
 		?>
 		
 		@if($valorBD == $valorCompClases)
-			<h1>clase encontrada</h1>
+			
 		@endif
 
 		<?php
@@ -250,7 +287,7 @@
 						
 						@endif
 						@endforeach
-				@endif
+					@endif
 				@endforeach
 
 

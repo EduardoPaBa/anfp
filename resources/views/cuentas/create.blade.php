@@ -20,11 +20,26 @@
 					 	class="form-control"
 					 	id="clases"
 					 >					 
-					 	@foreach ($clase as $cod => $ii)
-					 	@foreach ($clas as $nom => $iii)
-					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" >{{$cod}} {{$nom}}</option> 
+					 	@foreach ($cl as $c )
+					 	@foreach ($gr as $g)
+					 	@foreach ($if as $i )
+
+					 	<?php
+					 	//$claseFK="{}";
+					 	//	$claseID="{}";
+
+					 	$grupoFK="{$c->grupos_id}";
+					 	$grupoID="{$g->id}";
+
+					 	$infiFK="{$g->informefinancieros_id}";
+					 	$infiID="{$i->id}";
+					 	?>
+					 	
+					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
+					 	<option value="{{$c->id}}" >{{$c->codigo}} {{$c->nombre}} balance:{{$i->nombre}}</option> 
 					 	@endif
+
+					 	@endforeach
 					 	@endforeach
 					 	@endforeach
 					 </select>
@@ -95,7 +110,31 @@
 						$humilde="{{$sc->clases_id}}";
 					?>
 					@if( $grande == $humilde )
-						<td>{{$ch->codigo}}</td>
+						
+
+						@foreach ($gr as $g)
+					 	@foreach ($if as $i )
+
+					 	<?php
+					 	//$claseFK="{}";
+					 	//	$claseID="{}";
+
+					 	$grupoFK="{$ch->grupos_id}";
+					 	$grupoID="{$g->id}";
+
+					 	$infiFK="{$g->informefinancieros_id}";
+					 	$infiID="{$i->id}";
+					 	?>
+					 	
+					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
+						<td>{{$ch->codigo}}  balance:{{$i->nombre}}</td>
+					 	@endif
+
+					 	@endforeach
+					 	@endforeach
+
+
+
 					@endif
 				@endforeach
 					

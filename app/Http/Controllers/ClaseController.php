@@ -27,7 +27,7 @@ class ClaseController extends Controller
     {
         //
         
- $grupo = DB::table('grupos')
+        $grupo = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
@@ -59,6 +59,12 @@ class ClaseController extends Controller
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
+        $if = DB::table('informefinancieros')->orderBy('id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
 
 
         //->join('grupos','grupos.id','=','clases.grupos_id')
@@ -69,7 +75,8 @@ class ClaseController extends Controller
             ->with('grupo',$grupo)
             ->with('gru',$gru)
             ->with('clase',$clase)
-            ->with('gr',$gr);
+            ->with('gr',$gr)
+            ->with('if',$if);
 
     }
 
@@ -108,7 +115,7 @@ class ClaseController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','nombre'); 
         
-        $gr = DB::table('grupos')
+        $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
@@ -125,12 +132,20 @@ class ClaseController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
+        $if = DB::table('informefinancieros')->orderBy('id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
+
 
         return view('clases.create')
             ->with('grupo',$grupo)
             ->with('gru',$gru)
             ->with('clase',$clase)
-            ->with('gr',$gr);
+            ->with('gr',$gr)
+            ->with('if',$if);
     }
 
     /**

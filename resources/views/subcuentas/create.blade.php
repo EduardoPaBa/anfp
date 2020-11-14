@@ -20,11 +20,27 @@
 					 	class="form-control"
 					 	id="cuentas"
 					 >
-					 	@foreach ($cuenta as $cod => $ii)
-					 	@foreach ($cue as $nom => $iii)
-					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" >{{$cod}} {{$nom}}</option> 
+					 	@foreach ($cuenhumilde as $cu)
+					 	@foreach ($cl as $c )
+					 	@foreach ($gr as $g)
+					 	@foreach ($if as $i )
+					 	<?php
+					 	$claseFK="{$cu->clases_id}";
+					 	$claseID="{$c->id}";
+
+					 	$grupoFK="{$c->grupos_id}";
+					 	$grupoID="{$g->id}";
+
+					 	$infiFK="{$g->informefinancieros_id}";
+					 	$infiID="{$i->id}";
+					 	?>
+					 	
+					 	@if($grupoFK==$grupoID && $infiFK==$infiID && $claseFK==$claseID)
+					 	<option value="{{$cu->id}}" >/*CODIGO: {{$cu->codigo}}*\  -  */BALANCE: {{$i->nombre}}\* - /*CUENTA: {{$cu->nombre}}*\  </option> 
 					 	@endif
+					 	
+					 	@endforeach
+					 	@endforeach
 					 	@endforeach
 					 	@endforeach
 					 </select>

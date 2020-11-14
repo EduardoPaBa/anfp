@@ -20,10 +20,21 @@
 					 	class="form-control"
 					 	id="grupos"
 					 >
-					 	@foreach ($grupo as $cod => $ii)
-					 	@foreach ($gru as $nom => $iii)
-					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" >{{$cod}} {{$nom}}</option> 
+					 	@foreach($gr as $g)
+					 	
+					 	@foreach($if as $i)
+
+					 	<?php
+					 	$x="";
+					 	$y="";
+					 	$x="{$g->informefinancieros_id}";
+					 	$y="{$i->id}";
+					 	?>
+					 	x:{{$x}}
+					 	y:{{$y}}
+					 	<h1>fff</h1>
+					 	@if( $x == $y)
+					 	<option value="{{$g->id}}" >{{$g->codigo}} {{$g->nombre}} Balance al que pertenece:{{$g->informefinancieros_id}}</option> 
 					 	@endif
 					 	@endforeach
 					 	@endforeach
@@ -83,10 +94,11 @@
 				@foreach($gr as $ch)
 					<?php 
 						$grande="{{$ch->id}}";
+						$n="{{$ch->informefinancieros_id}}";
 						$humilde="{{$sc->grupos_id}}";
 					?>
 					@if( $grande == $humilde )
-						<td>{{$ch->codigo}}</td>
+						<td>codigo grupo:{{$ch->codigo}}  id grupo:{{$grande}} informe financiero al que pertenece:{{$n}}</td>
 					@endif
 				@endforeach
 
