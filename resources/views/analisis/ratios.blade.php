@@ -214,16 +214,61 @@
 		
 		<h5>Razon rapida o prueba acida</h5>
 		<label>Activo corriente: </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas1)
+				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonRapida" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Inventario: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas3)
+				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonRapida" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas2)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonRapida" class="solo-numero">
 		</div>
 	</div>
 	
@@ -293,8 +338,12 @@
 	<br>
 	<br>
 	<div class="text-center" id="boton-razonLiquidez">
-		<input type="button" id="resultados-razonLiquidez" value="Calcular">
-		<input type="button" id="resultados-razonEfectivo" value="Calcular">
+		<input type="button" id="resultados-razonLiquidez" value="Calcular" 
+				onclick="razonLiquidez();" 
+				onclick="razonCapital();"
+				onclick="razonEfectivo();"
+				onclick="razonRapida();">
+		<input type="button" id="prueba" value="Calcular">
 	</div>
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
