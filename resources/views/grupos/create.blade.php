@@ -19,14 +19,14 @@
 					 	class="form-control"
 					 	id="bg"
 					 >
-					 	@foreach ($inffin as $cod => $ii)
-					 	@foreach ($infi as $nom => $iii)
 					 	
-					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" >{{$cod}} - año:{{$nom}}</option> 
-					 	@endif
+					 	@foreach ($ifs as $i)
 					 	
-					 	@endforeach
+					 	
+					 	<option value="{{$i->id}}" >{{$i->nombre}} - año:{{$i->anio}}</option> 
+					 	
+					 	
+					 	
 					 	@endforeach
 					 </select>
 				</div>
