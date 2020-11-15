@@ -40,6 +40,10 @@
 	$valorCompCuentas13="{TOTAL ACTIVOS NO CORRIENTES}";
 
 
+	$valorEstadoR = "{Costo de Ventas}";
+	$valorEstadoR1 = "{Ingreso}";
+
+
 
 	$valorCompSubCuentas="{grande patas}";
 	$totalPasivo=0;
@@ -118,6 +122,20 @@
 
 <div class="col-md-10 mx-auto bg-white p-3">
 
+<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
+		  @foreach($esre as $r)
+            <option>Ingreso = {{ $r-> ingreso }}</option>
+            <option> Costo de Ventas = {{ $r-> costodeventa }}</option>
+            <option> Gastos de Operacion = {{ $r-> gastodeoperacion }} </option>
+            <option> Gastos de Administracion = {{ $r-> gastodeadministracion }} </option>
+            <option> Gastos de Venta y Mercadeo = {{ $r-> gastodeventaymercadeo }} </option>
+            <option> Gastos Financieros = {{ $r-> gastofinancieros }} </option>
+            <option> Otros ingresos = {{ $r-> otrosingresos }} </option>
+            <option> Reserva legal = {{ $r-> reservalegal }} </option>
+            <option> Impuestos sobre la renta = {{ $r-> impuestosobrelarenta }} </option>
+
+		  @endforeach
+		  </select>
 	<div class="col-sm" id="rl">
 		
 		<h5>Razon de liquidez corriente</h5>
@@ -621,7 +639,7 @@
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad</h2></u>
+	<u><h2>Razones de Actividad 1</h2></u>
 
 	<div class="row">
 
@@ -629,14 +647,9 @@
 		
 		<h5>Razon de Rotacion de Inventario</h5>
 		<label>Costo de ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonInventario">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_costosVentas_razonInventario">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_costosVentas_razonInventario" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<label>Inventario Promedio: </label>
 		@foreach($cuentas as $cu)
@@ -688,21 +701,14 @@
 			@endforeach
 		<br>
 		<label>Costo de ventas/365: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonDiasInventario">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_costosVentas_razonDiasInventario">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_costosVentas_razonDiasInventario" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonDiasInventario" class="solo-numero">
 		</div>
-
-
 	</div>
 
 	</div>
@@ -712,14 +718,10 @@
 		
 		<h5>Razon de rotacion de cuentas por cobrar</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonCxC">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonCxC">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonCxC" value="{{ $r -> eingreso }}">
+        @endforeach
+		<br>
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas as $cu)
@@ -767,14 +769,9 @@
 			@endforeach
 		<br>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMedioC">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonMedioC">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonMedioC" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -791,14 +788,9 @@
 		
 		<h5>Razon de rotacion de CxP</h5>
 		<label>Compras: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonCxP">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_compras_razonCxP">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_compras_razonCxP" value="{{ $r -> egastoV }}">
+        @endforeach
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas as $cu)
@@ -846,14 +838,9 @@
 			@endforeach
 		<br>
 		<label>Compras: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonMedioP">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_compras_razonMedioP">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_compras_razonMedioP" value="{{ $r -> egastoV }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -871,14 +858,9 @@
 		
 		<h5>Indice de rotacion de activos totales</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonIndiceA">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonIndiceA">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonIndiceA" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
 		@foreach($cuentas as $cu)
@@ -908,14 +890,9 @@
 		
 		<h5>Indice de rotacion de activos fijos</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonActivosF">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonActivosF">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonActivosF" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
 		@foreach($cuentas as $cu)
@@ -1041,7 +1018,7 @@
 
 	<!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad</h2></u>
+	<u><h2>Razones de Actividad 2</h2></u>
 
 	<div class="row">
 
@@ -1049,14 +1026,9 @@
 		
 		<h5>Razon de Rotacion de Inventario</h5>
 		<label>Costo de ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonInventario1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_costosVentas_razonInventario1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_costosVentas_razonInventario1" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<label>Inventario Promedio: </label>
 		@foreach($cuentas1 as $cu)
@@ -1107,14 +1079,9 @@
 			@endforeach
 		<br>
 		<label>Costo de ventas/365: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_costosVentas_razonDiasInventario1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_costosVentas_razonDiasInventario1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_costosVentas_razonDiasInventario1" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1131,14 +1098,9 @@
 		
 		<h5>Razon de rotacion de cuentas por cobrar</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonCxC1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonCxC1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonCxC1" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas1 as $cu)
@@ -1186,14 +1148,9 @@
 			@endforeach
 		<br>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMedioC1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonMedioC1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonMedioC1" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1210,14 +1167,9 @@
 		
 		<h5>Razon de rotacion de CxP</h5>
 		<label>Compras: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonCxP1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_compras_razonCxP1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_compras_razonCxP1" value="{{ $r -> egastoV }}">
+        @endforeach
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas1 as $cu)
@@ -1265,14 +1217,9 @@
 			@endforeach
 		<br>
 		<label>Compras: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonMedioP1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_compras_razonMedioP1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_compras_razonMedioP1" value="{{ $r -> egastoV }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1290,14 +1237,9 @@
 		
 		<h5>Indice de rotacion de activos totales</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonIndiceA1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonIndiceA1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonIndiceA1" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
 		@foreach($cuentas1 as $cu)
@@ -1327,14 +1269,9 @@
 		
 		<h5>Indice de rotacion de activos fijos</h5>
 		<label>Ventas Netas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonActivosF1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonActivosF1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonActivosF1" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
 		@foreach($cuentas1 as $cu)

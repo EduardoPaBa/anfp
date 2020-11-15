@@ -175,20 +175,8 @@ var btn = document.querySelector('#resultados-razonLiquidez1');
   $(document).on('click',"#resultados-razonActividad",function(){
 
 function razonInventario(){
-    var numerador12 = 0;
-    $("#input_numerador_costosVentas_razonInventario").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_costosVentas_razonInventario").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_costosVentas_razonInventario").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_costosVentas_razonInventario").val();
     var denominador12 = $("#inventario-razonInventario").val();
   
     var total12 = (numerador12 / denominador12).toFixed(5);
@@ -198,20 +186,9 @@ function razonInventario(){
 }
 
     function razonDiasInventario(){
-    var numerador12 = 0;
-    $("#input_numerador_costosVentas_razonDiasInventario").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
+    
 
-    $("#id_numerador_costosVentas_razonDiasInventario").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_costosVentas_razonDiasInventario").val(numeros12);
-  });
-
+    var numerador12 = $("#id_numerador_costosVentas_razonDiasInventario").val();
     var denominador12 = $("#inventario-razonDiasInventario").val();
   
     var total12 = (denominador12 / (numerador12 / 365)).toFixed(5);
@@ -221,20 +198,8 @@ function razonInventario(){
 }
 
 function razonCxC(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonCxC").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
 
-    $("#id_numerador_ventasNetas_razonCxC").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonCxC").val(numeros12);
-  });
-
+    var numerador12 = $("#id_numerador_ventasNetas_razonCxC").val();
     var denominador12 = $("#CxC-razonCxC").val();
   
     var total12 = (numerador12 / denominador12).toFixed(5);
@@ -244,20 +209,8 @@ function razonCxC(){
 }
 
 function razonMedioC(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonMedioC").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventasNetas_razonMedioC").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonMedioC").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_ventasNetas_razonMedioC").val();
     var denominador12 = $("#CxC-razonMedioC").val();
   
     var total12 = ((denominador12 * 365) / numerador12).toFixed(5);
@@ -267,70 +220,28 @@ function razonMedioC(){
 }
 
 function razonCxP(){
-    var numerador1 = 0;
-    $("#input_numerador_compras_razonCxP").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-  
+      
+    var numerador1 = $("#id_numerador_compras_razonCxP").val();
     var denominador1 = $("#CxP-razonCxP").val();
     var total1 = ((numerador1 ) / denominador1).toFixed(5);
 
-    
     $("#inputTotal-razonCxP").val(total1);
-
-    $("#id_numerador_compras_razonCxP").change(function() {
-    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros = texto.replace(/[^0-9.]/g, '');
-    $("#input_numerador_compras_razonCxP").val(numeros);
-  });
-
-  
 
 }
 
 function razonMedioP(){
-    var numerador1 = 0;
-    $("#input_numerador_compras_razonMedioP").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-  
+
+    var numerador1 = $("#id_numerador_compras_razonMedioP").val();  
     var denominador1 = $("#mCxP-razonCxP").val();
     var total1 = ((denominador1 * 365 ) / numerador1).toFixed(5);
 
-    
-    $("#inputTotal-razonMedioP").val(total1);
-
-    $("#id_numerador_compras_razonMedioP").change(function() {
-    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros = texto.replace(/[^0-9.]/g, '');
-    $("#input_numerador_compras_razonMedioP").val(numeros);
-  });
-
-  
+    $("#inputTotal-razonMedioP").val(total1);  
 
 }
 
 function razonIndiceA(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonIndiceA").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventasNetas_razonIndiceA").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonIndiceA").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_ventasNetas_razonIndiceA").val();
     var denominador12 = $("#activoTotal-razonIndiceA").val();
   
     var total12 = (numerador12 / denominador12).toFixed(5);
@@ -340,20 +251,8 @@ function razonIndiceA(){
 }
 
 function razonActivosF(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonActivosF").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-     $("#id_numerador_ventasNetas_razonActivosF").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonActivosF").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_ventasNetas_razonActivosF").val();
     var denominador12 = $("#activoFijoNeto-razonActivoF").val();
 
     var total12 = (numerador12 / denominador12).toFixed(5);
@@ -429,20 +328,8 @@ var btn1 = document.querySelector('#resultados-razonActividad');
   $(document).on('click',"#resultados-razonActividad1",function(){
 
 function razonInventario1(){
-    var numerador12 = 0;
-    $("#input_numerador_costosVentas_razonInventario1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_costosVentas_razonInventario1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_costosVentas_razonInventario1").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_costosVentas_razonInventario1").val();
     var denominador1 = $("#inventario-razonInventario1").val();
     var denominador2 = $("#inventario-razonInventario").val();
   
@@ -453,20 +340,8 @@ function razonInventario1(){
 }
 
     function razonDiasInventario1(){
-    var numerador12 = 0;
-    $("#input_numerador_costosVentas_razonDiasInventario1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_costosVentas_razonDiasInventario1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_costosVentas_razonDiasInventario1").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_costosVentas_razonDiasInventario1").val();
     var denominador1 = $("#inventario-razonDiasInventario1").val();
     var denominador2 = $("#inventario-razonDiasInventario").val();
   
@@ -478,19 +353,8 @@ function razonInventario1(){
 }
 
 function razonCxC1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonCxC1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventasNetas_razonCxC1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonCxC1").val(numeros12);
-  });
+    
+    var numerador12 = $("#id_numerador_ventasNetas_razonCxC1").val();
 
     var denominador1 = $("#CxC-razonCxC1").val();
     var denominador2 = $("#CxC-razonCxC").val();
@@ -502,20 +366,8 @@ function razonCxC1(){
 }
 
 function razonMedioC1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonMedioC1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventasNetas_razonMedioC1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonMedioC1").val(numeros12);
-  });
-
+    
+    var numerador12 = $("#id_numerador_ventasNetas_razonMedioC1").val();
     var denominador1 = $("#CxC-razonMedioC1").val();
     var denominador2 = $("#CxC-razonMedioC").val();
   
@@ -527,14 +379,7 @@ function razonMedioC1(){
 
 function razonCxP1(){
   
-  var numerador1 = 0;
-    $("#input_numerador_compras_razonCxP1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-    
+    var numerador1 = $("#id_numerador_compras_razonCxP1").val();  
     var denominador1 = $("#CxP-razonCxP1").val();
     var denominador2 = $("#CxP-razonCxP").val();
     //var total1 = ( / numerador1).toFixed(5);
@@ -543,57 +388,20 @@ function razonCxP1(){
     
     $("#inputTotal-razonCxP1").val(total1);
 
-    $("#id_numerador_compras_razonCxP1").change(function() {
-    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros = texto.replace(/[^0-9.]/g, '');
-    $("#input_numerador_compras_razonCxP1").val(numeros);
-  });
-
-  
-
 }
 
 function razonMedioP1(){
-    var numerador1 = 0;
-    $("#input_numerador_compras_razonMedioP1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-  
+    
+    var numerador1 = $("#id_numerador_compras_razonMedioP1").val();
     var denominador1 = $("#mCxP-razonCxP1").val();
     var denominador2 = $("#CxP-razonCxP").val();
     var total1 = ((((parseFloat(denominador1) + parseFloat(denominador2))/2)*365 ) / numerador1).toFixed(5);
-
     
     $("#inputTotal-razonMedioP1").val(total1);
-
-    $("#id_numerador_compras_razonMedioP1").change(function() {
-    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros = texto.replace(/[^0-9.]/g, '');
-    $("#input_numerador_compras_razonMedioP1").val(numeros);
-  });
-
-  
-
 }
 
 function razonIndiceA1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonIndiceA1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventasNetas_razonIndiceA1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonIndiceA1").val(numeros12);
-  });
-
+    var numerador12 = $("#id_numerador_ventasNetas_razonIndiceA1").val();
     var denominador1 = $("#activoTotal-razonIndiceA1").val();
     var denominador2 = $("#activoTotal-razonIndiceA").val();
   
@@ -604,21 +412,9 @@ function razonIndiceA1(){
 }
 
 function razonActivosF1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonActivosF1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-    
-     $("#id_numerador_ventasNetas_razonActivosF1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonActivosF1").val(numeros12);
-  });
 
 
+     var numerador12 = $("#id_numerador_ventasNetas_razonActivosF1").val();
      var denominador1 = $("#activoFijoNeto-razonActivoF1").val();
      var denominador2 = $("#activoFijoNeto-razonActivoF").val();
   
