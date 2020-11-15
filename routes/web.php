@@ -32,6 +32,9 @@ Route::post('/estadoresultados',[App\Http\Controllers\esController::class,'store
 Route::get('/analisishorizontal',[App\Http\Controllers\ahController::class,'index'])
 	->name('analisishorizontal.index');
 
+Route::get('/analisisvertical',[App\Http\Controllers\avController::class,'index'])
+	->name('analisisvertical.index');
+
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
 
 //-------------------SUB CUENTAS
