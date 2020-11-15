@@ -15,11 +15,27 @@
 	?>
 
 	
-@foreach($infin as $in)
+
+
+
+
+
+	@foreach($empresas as $em)
+
+		<?php
+		$emID="{$em->id}";
+		?>
+		<h1>---*- NOMBRE EMPRESA: {{$em->nombre}} -*---</h1>
+		
+		
+	@foreach($infin as $in)
 		<?php
 			$infiID="{$in->id}";
+			$emFK="{$in->empresas_id}";
 		?>
-		<h2>balance {{$infiID}}</h2>
+		@if($emID==$emFK)
+
+		<h2>--* Balance General: {{$in->nombre}} - AÑO: {{$in->anio}} *--</h2>
 		@php
 			//-------------------------------------------
 		@endphp
@@ -109,7 +125,7 @@
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases}} = {{$totalGrupo}}</h1>
+							<h4>Total Clase: {{$valorCompClases}} = {{$totalGrupo}}</h4>
 							<?php
 								$valorBD="";
 							?>
@@ -163,7 +179,7 @@
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases1}} = {{$totalGrupo}}</h1>
+							<h4>Total Clase: {{$valorCompClases1}} = {{$totalGrupo}}</h4>
 							<?php
 								$valorBD="";
 							?>
@@ -221,7 +237,7 @@
 							
 						@endif
 					@endforeach
-					<h1>Total {{$valorCompGrupos}} = {{$totalclase}}</h1>
+					<h2>Total Grupo {{$valorCompGrupos}} = {{$totalclase}}</h2>
 					
 					@php
 						$totalclase= 0;
@@ -294,7 +310,7 @@
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases}} = {{$totalGrupo}}</h1>
+							<h4>Total Clase: {{$valorCompClases}} = {{$totalGrupo}}</h4>
 							<?php
 								$valorBD="";
 							?>
@@ -348,7 +364,7 @@
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases1}} = {{$totalGrupo}}</h1>
+							<h4>Total Clase: {{$valorCompClases1}} = {{$totalGrupo}}</h4>
 							
 							@php
 								$totalGrupo= 0;
@@ -400,7 +416,7 @@
 									@endforeach
 								@endif
 							@endforeach 
-							<h1>Total {{$valorCompClases2}} = {{$totalGrupo}}</h1>
+							<h4>Total Clase: {{$valorCompClases2}} = {{$totalGrupo}}</h4>
 							<?php
 								$valorBD="";
 							?>
@@ -460,7 +476,7 @@
 							
 						@endif
 					@endforeach
-					<h1>Total {{$valorCompGrupos}} = {{$totalclase}}</h1>
+					<h2>Total Grupo {{$valorCompGrupos}} = {{$totalclase}}</h2>
 					<?php
 						$valorBD="";
 					?>
@@ -479,10 +495,16 @@
 			@endif
 		@endforeach
 		@php
-		//-------------------------------------------
+			//-------------------------------------------
 		@endphp
+		<br>
+		<br>
+		@endif
 	@endforeach
 
+	
+
+	@endforeach
 
 	
 

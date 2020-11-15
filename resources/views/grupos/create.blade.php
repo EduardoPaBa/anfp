@@ -82,7 +82,7 @@
 						$humilde="{{$sc->informefinancieros_id}}";
 					@endphp
 					@if( $grande == $humilde )
-						<td>{{$ch->nombre}}</td>
+						<td>{{$ch->nombre}} año: {{$ch->anio}}</td>
 					@endif
 				@endforeach				<td>
 					<a href="{{ route('grupos.edit', ['grupo'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>

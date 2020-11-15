@@ -26,8 +26,11 @@ Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
 	->name('analisis.balancegeneral');
 Route::get('/estadoresultados',[App\Http\Controllers\esController::class,'index'])
 	->name('analisis.estadoresultados');
-	Route::post('/estadoresultados',[App\Http\Controllers\esController::class,'store'])
+Route::post('/estadoresultados',[App\Http\Controllers\esController::class,'store'])
 	->name('estadoresultados.store');
+
+Route::get('/analisishorizontal',[App\Http\Controllers\ahController::class,'index'])
+	->name('analisishorizontal.index');
 
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
 

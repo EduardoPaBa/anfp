@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-class prueba extends Controller
+class ahController extends Controller
 {
     /*
 
@@ -13,7 +13,9 @@ class prueba extends Controller
      */
     public function index()
     {
-        // --- EMPRESAS
+
+
+    	 // --- EMPRESAS
         $empresas = DB::table('empresas')->orderBy('id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('empresas.id','empresas.nombre','empresas.sector')
@@ -21,7 +23,7 @@ class prueba extends Controller
          ->get();
 
         // --- INFORMEFINANCIEROS
-        $infin = DB::table('informefinancieros')->orderBy('nombre')
+        $infin = DB::table('informefinancieros')->orderBy('id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
@@ -71,17 +73,13 @@ class prueba extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
-        //RETORNANDO A LA VISTA
-        return view('analisis.balancegeneral')
-            ->with('clases',$clases)
+
+    	return view('analisis.analisishorizontal')
+    		->with('clases',$clases)
             ->with('cuentas',$cuentas)
             ->with('subcuentas',$subcuentas)
             ->with('grupos',$grupos)
             ->with('infin',$infin)
             ->with('empresas',$empresas);
-        
-        
     }
-
-
 }
