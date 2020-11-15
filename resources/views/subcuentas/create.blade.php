@@ -36,7 +36,7 @@
 					 	?>
 					 	
 					 	@if($grupoFK==$grupoID && $infiFK==$infiID && $claseFK==$claseID)
-					 	<option value="{{$cu->id}}" >/*CODIGO: {{$cu->codigo}}*\  -  */BALANCE: {{$i->nombre}}\* - /*CUENTA: {{$cu->nombre}}*\  </option> 
+					 	<option value="{{$cu->id}}" >{{$cu->codigo}} {{$cu->nombre}} - balance: {{$i->nombre}} anio: {{$i->anio}}</option> 
 					 	@endif
 					 	
 					 	@endforeach
@@ -108,7 +108,30 @@
 						$humilde="{{$sc->cuentas_id}}";
 					@endphp
 					@if( $grande == $humilde )
-						<td>{{$ch->codigo}}</td>
+
+
+						@foreach ($gr as $g)
+						 	@foreach ($if as $i )
+						 		@foreach($cl as $c)
+
+								 	<?php
+								 	$claseFK="{$ch->clases_id}";
+								 	$claseID="{$c->id}";
+
+								 	$grupoFK="{$c->grupos_id}";
+								 	$grupoID="{$g->id}";
+
+								 	$infiFK="{$g->informefinancieros_id}";
+								 	$infiID="{$i->id}";
+								 	?>
+								 	@if($grupoFK==$grupoID && $infiFK==$infiID && $claseFK==$claseID)
+										<td>{{$ch->codigo}} {{$ch->nombre}} - balance: {{$i->nombre}} anio: {{$i->anio}}</td>
+					 				@endif
+					 			@endforeach
+							@endforeach
+						@endforeach
+
+
 					@endif
 				@endforeach
 

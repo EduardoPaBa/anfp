@@ -36,7 +36,7 @@
 					 	?>
 					 	
 					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
-					 	<option value="{{$c->id}}" >{{$c->codigo}} {{$c->nombre}} balance:{{$i->nombre}}</option> 
+					 	<option value="{{$c->id}}" >{{$c->codigo}} {{$c->nombre}} - balance: {{$i->nombre}} anio:{{$i->anio}}</option> 
 					 	@endif
 
 					 	@endforeach
@@ -127,7 +127,7 @@
 					 	?>
 					 	
 					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
-						<td>{{$ch->codigo}}  balance:{{$i->nombre}}</td>
+						<td>{{$ch->codigo}} {{$ch->nombre}} - balance: {{$i->nombre}} anio: {{$i->anio}}</td>
 					 	@endif
 
 					 	@endforeach

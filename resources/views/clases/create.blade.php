@@ -34,7 +34,7 @@
 					 	y:{{$y}}
 					 	<h1>fff</h1>
 					 	@if( $x == $y)
-					 	<option value="{{$g->id}}" >{{$g->codigo}} {{$g->nombre}} Balance al que pertenece:{{$g->informefinancieros_id}}</option> 
+					 	<option value="{{$g->id}}" >{{$g->codigo}} {{$g->nombre}} -- Balance al que pertenece: {{$i->nombre}} {{$i->anio}}</option> 
 					 	@endif
 					 	@endforeach
 					 	@endforeach
@@ -98,7 +98,14 @@
 						$humilde="{{$sc->grupos_id}}";
 					?>
 					@if( $grande == $humilde )
-						<td>codigo grupo:{{$ch->codigo}}  id grupo:{{$grande}} informe financiero al que pertenece:{{$n}}</td>
+						@foreach($if as $i)
+							<?php
+							$p="{{$i->id}}";
+							?>
+							@if($p==$n)
+								<td>codigo grupo:{{$ch->codigo}}  - Balance al que pertenece:{{$i->nombre}}  anio{{$i->anio}}</td>
+							@endif
+						@endforeach
 					@endif
 				@endforeach
 
