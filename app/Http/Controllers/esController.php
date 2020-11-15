@@ -84,6 +84,13 @@ class esController extends Controller
             'estado_resultado.id',
             'estado_resultado.ingreso',
             'estado_resultado.costodeventa',
+            'estado_resultado.gastodeoperacion',
+            'estado_resultado.gastodeadministracion',
+            'estado_resultado.gastodeventaymercadeo',
+            'estado_resultado.gastofinancieros',
+            'estado_resultado.otrosingresos',
+            'estado_resultado.reservalegal',
+            'estado_resultado.impuestosobrelarenta',
             'estado_resultado.informefinancieros_id'
         )
         ->where ('users.id','=', Auth::id())
@@ -183,7 +190,19 @@ class esController extends Controller
         ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('estado_resultado.id','estado_resultado.ingreso','estado_resultado.costodeventa','estado_resultado.informefinancieros_id')
+        ->select(
+            'estado_resultado.id',
+            'estado_resultado.ingreso',
+            'estado_resultado.costodeventa',
+            'estado_resultado.gastodeoperacion',
+            'estado_resultado.gastodeadministracion',
+            'estado_resultado.gastodeventaymercadeo',
+            'estado_resultado.gastofinancieros',
+            'estado_resultado.otrosingresos',
+            'estado_resultado.reservalegal',
+            'estado_resultado.impuestosobrelarenta',
+            'estado_resultado.informefinancieros_id'
+        )
         ->where ('users.id','=', Auth::id())
          ->get();
 
