@@ -32,6 +32,8 @@
 	$valorCompCuentas5="{Cuentas por Cobrar}";
 	$valorCompCuentas6="{Utilidad Bruta}";
 	$valorCompCuentas7="{Utilidad Operativa}";
+	$valorCompCuentas8="{Utilidad Neta}";
+	$valorCompCuentas9="{TOTAL PASIVOS NO CORRIENTES}";
 
 
 
@@ -754,45 +756,68 @@
 		
 		<h5>Rentabilidad Neta del Patrimonio</h5>
 		<label>Utilidad Neta: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas8)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonNetaP" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
+		<br>
+		<label>Patrimonio Promedio: </label>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioP_razonNetaP">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
 		  @endforeach
 		  </select>
-		<br>
-		<label>Patrimonio Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
-            </option>
-            @endforeach
-  		</select>
+		  <input type="hidden" id="input_numerador_patrimonioP_razonNetaP">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonNetaPatr" class="solo-numero">
 		</div>
         
 	</div>
 <br>
   
-  <input type="hidden" class="input_numerador">
-  <input type="hidden" class="input_denominador">
 
 	<div class="col-sm" id="r">
 		
 		<h5>Rentabilidad por Acccion</h5>
 		<label>Uilidad Neta: </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas8)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonAccion" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Numero de acciones: </label>
-		<input type="text" name="pas" class="col-md-4">
+		<input type="text" id="numeroAcciones" class="col-md-4">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonAccion" class="solo-numero">
 		</div>
 
 
@@ -805,14 +830,44 @@
 		
 		<h5>Rentabilidad del Activo</h5>
 		<label>Utilidad Neta: </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas8)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentActivo" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas5)
+				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonActivoTotal" class="solo-numero">
 		</div>
 	</div>
 	
@@ -820,71 +875,81 @@
 		
 		<h5>Rentabilidad sobre Ventas</h5>
 		<label>Utilidad Neta: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas8)
+				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentVentas" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonRentVentas">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ventas_razonRentVentas">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonRentVentas" class="solo-numero">
 		</div>
         
 	</div>
 	</div>
 
 	<br>
+
+
 	<div class="col-sm" id="rl">
 		
 		<h5>Rentabilidad sobre Inversion</h5>
 		<label>Ingresos: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ing_razonInversion">
 		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
-		<br>
-		<label>Inversion: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_ing_razonInversion">
 		<br>
 		<label>Inversion: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion">
 		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
 		  </select>
+		  <input type="hidden" id="input_numerador_inv_razonInversion">
+		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonInversion" class="solo-numero">
 		</div>
         
+	</div>
+
+	<div class="text-center" id="boton-razonRentabilidad">
+		<input type="button" id="resultados-razonRentabilidad" value="Calcular" 
+				onclick="razonNetaPatr();"
+				onclick="razonAccion();"
+				onclick="razonActivoTotal();"
+				onclick="razonRentVentas();"
+				onclick="razonInversion();">
 	</div>
 
 
