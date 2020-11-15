@@ -3,6 +3,14 @@
   $(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
   
+  function razonPromedio(){
+    var numerador = $("#activoCorriente-razonLiquidez2").val();
+    var denominador = $("#activoCorriente-razonLiquidez3").val();
+    var total = (parseFloat(numerador) + parseFloat(denominador))/2;
+    
+    $("#inputTotal-razonLiquidezP").val(total).toFixed(5);
+    }
+
   function razonLiquidez(){
     var numerador = $("#activoCorriente-razonLiquidez").val();
     var denominador = $("#pasivoCorriente-razonLiquidez").val();
@@ -75,6 +83,90 @@ var btn = document.querySelector('#resultados-razonLiquidez');
     btn.addEventListener('click',razonCapital, false);
     btn.addEventListener('click',razonEfectivo, false);
     btn.addEventListener('click',razonRapida, false);
+    btn.addEventListener('click',razonPromedio, false);
+
+  });
+
+//############################# RATIOS 2 ##################################
+  $(document).on('click',"#resultados-razonLiquidez1",function(){
+  //$("body").on("click", "#resultados-razonLiquidez", function() {
+  
+  
+
+  function razonLiquidez1(){
+    var numerador = $("#activoCorriente-razonLiquidez1").val();
+    var denominador = $("#pasivoCorriente-razonLiquidez1").val();
+
+    var total = (numerador / denominador);
+    
+    $("#inputTotal-razonLiquidez1").val(total).toFixed(5);
+    }
+
+//########################################################
+function razonEfectivo1(){
+    var numerador1 = 0;
+    $(".input_numerador_efectivo1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+  var denominador1 = 0;
+    $(".input_numerador_valorCortoPlazo1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador1 += eval($(this).val());
+        }
+      }
+    );
+    //var pc = document.getElementById('pasivoCorriente-razonEfectivo');
+    var pc = $("#pasivoCorriente-razonEfectivo1").val();
+    //console.log(pc);
+    var total1 = ((numerador1 + denominador1) / pc).toFixed(5);
+
+    
+    $("#inputTotal-razonEfectivo1").val(total1);
+
+    $("#id_numerador_efectivo1").change(function() {
+    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros = texto.replace(/[^0-9.]/g, '');
+    $(".input_numerador_efectivo1").val(numeros);
+  });
+
+  $("#id_numerador_valorCortoPlazo1").change(function() {
+    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros1 = texto1.replace(/[^0-9.]/g, '');
+    $(".input_numerador_valorCortoPlazo1").val(numeros1);
+  });
+
+}
+    //#########################################33
+function razonCapital1(){
+    var numerador2 = $("#activoCorriente-razonCapital1").val();
+    var denominador2 = $("#pasivoCorriente-razonCapital1").val();
+    var at = $("#activoTotal-razonCapital1").val();
+    var total2 = ((numerador2 - denominador2) / at).toFixed(5);
+    
+    $("#inputTotal-razonCapital1").val(total2);
+
+    }
+
+function razonRapida1(){
+    var numerador2 = $("#activoCorriente-razonRapida1").val();
+    var denominador2 = $("#pasivoCorriente-razonRapida1").val();
+    var inv = $("#inventario-razonRapida1").val();
+    var total2 = ((numerador2 - inv) / denominador2).toFixed(5);
+    
+    $("#inputTotal-razonRapida1").val(total2);
+
+    }    
+
+var btn = document.querySelector('#resultados-razonLiquidez1');
+
+    btn.addEventListener('click',razonLiquidez1, false);
+    btn.addEventListener('click',razonCapital1, false);
+    btn.addEventListener('click',razonEfectivo1, false);
+    btn.addEventListener('click',razonRapida1, false);
+    //btn.addEventListener('click',razonPromedio, false);
 
   });
 //#########################RATIOS DE ACTIVIDAD###########################################
@@ -121,7 +213,7 @@ function razonInventario(){
 
     var denominador12 = $("#inventario-razonDiasInventario").val();
   
-    var total12 = (denominador12 / (numerador12 * 365)).toFixed(5);
+    var total12 = (denominador12 / (numerador12 / 365)).toFixed(5);
 
     $("#inputTotal-razonDiasInventario").val(total12);    
 
@@ -364,6 +456,293 @@ var btn1 = document.querySelector('#resultados-razonActividad');
 
   });
 
+//#########################RATIOS DE ACTIVIDAD 1 ###########################################
+
+  $(document).on('click',"#resultados-razonActividad1",function(){
+
+function razonInventario1(){
+    var numerador12 = 0;
+    $("#input_numerador_costosVentas_razonInventario1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_costosVentas_razonInventario1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_costosVentas_razonInventario1").val(numeros12);
+  });
+
+    var denominador12 = $("#inventario-razonInventario1").val();
+  
+    var total12 = (numerador12 / denominador12).toFixed(5);
+
+    $("#inputTotal-razonInventario1").val(total12);    
+
+}
+
+    function razonDiasInventario1(){
+    var numerador12 = 0;
+    $("#input_numerador_costosVentas_razonDiasInventario1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_costosVentas_razonDiasInventario1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_costosVentas_razonDiasInventario1").val(numeros12);
+  });
+
+    var denominador12 = $("#inventario-razonDiasInventario1").val();
+  
+    var total12 = (denominador12 / (numerador12 / 365)).toFixed(5);
+
+    $("#inputTotal-razonDiasInventario1").val(total12);    
+
+}
+
+function razonCxC1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventasNetas_razonCxC1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventasNetas_razonCxC1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventasNetas_razonCxC1").val(numeros12);
+  });
+
+    var denominador12 = $("#CxC-razonCxC1").val();
+  
+    var total12 = (numerador12 / denominador12).toFixed(5);
+
+    $("#inputTotal-razonCxC1").val(total12);    
+
+}
+
+function razonMedioC1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventasNetas_razonMedioC1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventasNetas_razonMedioC1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventasNetas_razonMedioC1").val(numeros12);
+  });
+
+    var denominador12 = $("#CxC-razonMedioC1").val();
+  
+    var total12 = ((denominador12 * 365) / numerador12).toFixed(5);
+
+    $("#inputTotal-razonMedioC1").val(total12);    
+
+}
+
+function razonCxP1(){
+    var numerador1 = 0;
+    $("#input_numerador_compras_razonCxP1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+  var denominador1 = 0;
+    $("#input_denominador_razonCxP1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador1 += eval($(this).val());
+        }
+      }
+    );
+
+    var total1 = ((numerador1 ) / denominador1).toFixed(5);
+
+    
+    $("#inputTotal-razonCxP1").val(total1);
+
+    $("#id_numerador_compras_razonCxP1").change(function() {
+    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros = texto.replace(/[^0-9.]/g, '');
+    $("#input_numerador_compras_razonCxP1").val(numeros);
+  });
+
+  $("#id_denominador_razonCxP1").change(function() {
+    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros1 = texto1.replace(/[^0-9.]/g, '');
+    $("#input_denominador_razonCxP1").val(numeros1);
+  });
+
+}
+
+function razonMedioP1(){
+    var numerador1 = 0;
+    $("#input_numerador_compras_razonMedioP1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+  var denominador1 = 0;
+    $("#input_denominador_razonMedioP1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador1 += eval($(this).val());
+        }
+      }
+    );
+
+    var total1 = ((denominador1 * 365 ) / numerador1).toFixed(5);
+
+    
+    $("#inputTotal-razonMedioP1").val(total1);
+
+    $("#id_numerador_compras_razonMedioP1").change(function() {
+    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros = texto.replace(/[^0-9.]/g, '');
+    $("#input_numerador_compras_razonMedioP1").val(numeros);
+  });
+
+  $("#id_denominador_razonMedioP1").change(function() {
+    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros1 = texto1.replace(/[^0-9.]/g, '');
+    $("#input_denominador_razonMedioP1").val(numeros1);
+  });
+
+}
+
+function razonIndiceA1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventasNetas_razonIndiceA1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventasNetas_razonIndiceA1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventasNetas_razonIndiceA1").val(numeros12);
+  });
+
+    var denominador12 = $("#activoTotal-razonIndiceA1").val();
+  
+    var total12 = (numerador12 / denominador12).toFixed(5);
+
+    $("#inputTotal-razonIndiceA1").val(total12);    
+
+}
+
+function razonActivosF1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventasNetas_razonActivosF1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+   
+    var denominador12 = 0;
+    $("#input_numerador_activoFijo_razonActivosF1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador12 += eval($(this).val());
+        }
+      }
+    );
+
+     $("#id_numerador_ventasNetas_razonActivosF1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventasNetas_razonActivosF1").val(numeros12);
+  });
+
+
+    $("#id_numerador_activoFijo_razonActivosF1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_activoFijo_razonActivosF1").val(numeros12);
+  });
+  
+    var total12 = (numerador12 / denominador12).toFixed(5);
+
+    $("#inputTotal-razonActivosF1").val(total12);    
+
+}
+
+function razonMargenB1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventasNetas_razonMargenB1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventasNetas_razonMargenB1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventasNetas_razonMargenB1").val(numeros12);
+  });
+
+    var denominador12 = $("#utilidadB-razonMargenB1").val();
+  
+    var total12 = (denominador12/ numerador12).toFixed(5);
+
+    $("#inputTotal-razonMargenB1").val(total12);    
+
+}
+
+function razonMargenO1(){
+    var numerador12 = 0;
+    $("#input_numerador_ventas_razonMargenO1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventas_razonMargenO1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventas_razonMargenO1").val(numeros12);
+  });
+
+    var denominador12 = $("#utilidadO-razonMargenO1").val();
+  
+    var total12 = (denominador12/ numerador12).toFixed(5);
+
+    $("#inputTotal-razonMargenO1").val(total12);    
+
+}
+
+var btn1 = document.querySelector('#resultados-razonActividad1');
+
+    btn1.addEventListener('click',razonInventario1, false);
+    btn1.addEventListener('click',razonDiasInventario1, false);
+    btn1.addEventListener('click',razonCxC1, false);
+    btn1.addEventListener('click',razonMedioC1, false);
+    btn1.addEventListener('click',razonCxP1, false);
+    btn1.addEventListener('click',razonMedioP1, false);
+    btn1.addEventListener('click',razonIndiceA1, false);
+    btn1.addEventListener('click',razonActivosF1, false);
+    btn1.addEventListener('click',razonMargenB1, false);
+    btn1.addEventListener('click',razonMargenO1, false);
+
+
+  });
+
 //#########################RATIOS DE RENTABILIDAD###########################################
 
 $(document).on('click',"#resultados-razonRentabilidad",function(){
@@ -497,6 +876,139 @@ var btn2 = document.querySelector('#resultados-razonRentabilidad');
 
 });
 
+//#########################RATIOS DE RENTABILIDAD###########################################
+
+$(document).on('click',"#resultados-razonRentabilidad1",function(){
+
+
+function razonNetaPatr1(){
+    var numerador12 = 0;
+    $("#input_numerador_patrimonioP_razonNetaP1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_patrimonioP_razonNetaP1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_patrimonioP_razonNetaP1").val(numeros12);
+  });
+
+    var denominador12 = $("#utilidadN-razonNetaP1").val();
+  
+    var total12 = (denominador12/ numerador12).toFixed(5);
+
+    $("#inputTotal-razonNetaPatr1").val(total12);    
+
+}
+
+function razonAccion1(){
+    
+    var numerador = $("#utilidadN-razonAccion1").val();
+    var denominador = $("#numeroAcciones1").val();
+  
+    var total = (numerador / denominador).toFixed(5);
+
+    $("#inputTotal-razonAccion1").val(total);    
+
+}
+
+function razonActivoTotal1(){
+    
+    var numerador = $("#utilidadN-razonRentActivo1").val();
+    var denominador = $("#activoTotal-razonRentActivo1").val();
+  
+    var total = (numerador / denominador).toFixed(5);
+
+    $("#inputTotal-razonActivoTotal1").val(total);    
+
+}
+
+function razonRentVentas1(){
+    
+    var numerador = $("#utilidadN-razonRentVentas1").val();
+
+    var denominador = 0;
+    $("#input_numerador_ventas_razonRentVentas1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_ventas_razonRentVentas1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ventas_razonRentVentas1").val(numeros12);
+  });
+    
+  
+    var total = (numerador / denominador).toFixed(5);
+
+    $("#inputTotal-razonRentVentas1").val(total);    
+
+}
+
+function razonInversion1(){
+    var numerador12 = 0;
+    $("#input_numerador_ing_razonInversion1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador12 += eval($(this).val());
+        }
+      }
+    );
+   
+    var denominador12 = 0;
+    $("#input_numerador_inv_razonInversion1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        denominador12 += eval($(this).val());
+        }
+      }
+    );
+
+     $("#id_numerador_ing_razonInversion1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_ing_razonInversion1").val(numeros12);
+  });
+
+
+    $("#id_numerador_inv_razonInversion1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_inv_razonInversion1").val(numeros12);
+  });
+  
+    var total12 = ((numerador12 - denominador12)/ denominador12).toFixed(5);
+
+    $("#inputTotal-razonInversion1").val(total12);    
+
+}
+
+
+var btn2 = document.querySelector('#resultados-razonRentabilidad1');
+
+    btn2.addEventListener('click',razonNetaPatr1, false);
+    btn2.addEventListener('click',razonAccion1, false);
+    btn2.addEventListener('click',razonActivoTotal1, false);
+    btn2.addEventListener('click',razonRentVentas1, false);
+    btn2.addEventListener('click',razonInversion1, false);
+
+
+
+
+
+//###############################################
+ // $("body").on("click", "#resultados_razonEfectivo", function() {
+  
+  //});
+
+  
+
+});
+
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
@@ -559,7 +1071,7 @@ function razonEndeudoPatr(){
 
 }
 
-function razonPropiedad(){
+function razonGastosF(){
     
     var numerador1 = 0;
     $("#input_numerador_g_razonGastosF").each(function(index, value) {
@@ -588,6 +1100,100 @@ var btn3 = document.querySelector('#resultados-razonGradoEnd');
     btn3.addEventListener('click',razonPropiedad, false);
     btn3.addEventListener('click',razonEndeudoPatr, false);
     btn3.addEventListener('click',razonGastosF, false);
+
+});
+
+
+//#########################RATIOS DE RENTABILIDAD###########################################
+
+$(document).on('click',"#resultados-razonGradoEnd1",function(){
+
+function razonGradoEnd1(){
+    
+    var numerador = $("#pasivoTotal-razonEndeudo1").val();
+    var denominador = $("#activoTotal-razonEndeudo1").val();
+  
+    var total = (numerador / denominador).toFixed(5);
+
+    $("#inputTotal-razonGradoEnd1").val(total);    
+
+}
+
+function razonPropiedad1(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_patrimonio_razonPropiedad1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_patrimonio_razonPropiedad1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_patrimonio_razonPropiedad1").val(numeros12);
+  });
+    var denominador1 = $("#activoTotal-razonPropiedad1").val();
+  
+    var total1 = (numerador1 / denominador1).toFixed(5);
+
+    $("#inputTotal-razonPropiedad1").val(total1);    
+
+}
+
+function razonEndeudoPatr1(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_patrimonioTotal_razonEndeudoPatr1").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(numeros12);
+  });
+    var denominador1 = $("#pasivoTotal-razonEndeudoPatr1").val();
+  
+    var total1 = (denominador1 / numerador1).toFixed(5);
+
+    $("#inputTotal-razonEndeudoPatr1").val(total1);    
+
+}
+
+function razonGastosF1(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_g_razonGastosF1").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_g_razonGastos1F").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_g_razonGastosF1").val(numeros12);
+  });
+    var denominador1 = $("#cobertura-razonGastosF1").val();
+  
+    var total1 = (denominador1 / numerador1).toFixed(5);
+
+    $("#inputTotal-razonGastosF1").val(total1);    
+
+}
+
+var btn3 = document.querySelector('#resultados-razonGradoEnd1');
+
+    btn3.addEventListener('click',razonGradoEnd1, false);
+    btn3.addEventListener('click',razonPropiedad1, false);
+    btn3.addEventListener('click',razonEndeudoPatr1, false);
+    btn3.addEventListener('click',razonGastosF1, false);
 
 });
 

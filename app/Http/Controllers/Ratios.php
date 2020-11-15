@@ -42,6 +42,21 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','1')
+        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+        ->get();
+
+        // --- CUENTAS
+        $cuentas1 = DB::table('cuentas')->orderBy('codigo')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+        ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','2')
+        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
         ->get();
 
         // --- SUB CUENTAS
@@ -65,15 +80,43 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','1')
+        ->get();
+
+        $ratios1 = DB::table('cuentas')->orderBy('codigo')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+        ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','2')
+        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+        ->get();
+
+        $ratios2 = DB::table('cuentas')->orderBy('codigo')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+        ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','2')
+        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
         ->get();
 
         //RETORNANDO A LA VISTA
         return view('analisis.ratios')
             ->with('clases',$clases)
             ->with('cuentas',$cuentas)
+            ->with('cuentas1',$cuentas1)
             ->with('subcuentas',$subcuentas)
             ->with('grupos',$grupos)
-            ->with('ratios',$ratios);
+            ->with('ratios',$ratios)
+            ->with('ratios1',$ratios1)
+            ->with('ratios2',$ratios2);
         
         
     }
