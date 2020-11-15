@@ -124,7 +124,7 @@
 							$x="{$cu->valor}";
 							$y=($x/$total)*100;
 							?>
-							<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}} ({{$y}}%)  <h5>
+							<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}} ({{$y}}%)  </h5>
 							@foreach($subcuentas as $sc)
 								<?php
 								$cuFK="{$sc->cuentas_id}";
@@ -136,21 +136,18 @@
 										$x="{$sc->valor}";
 										$y=($x/$total)*100;
 										?>
-										<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}} ({{$y}}%)</h6>
+									<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}} ({{$y}}%)</h6>
 
-									@endif
-							@endforeach
-
-						@endif
-
+							@endif
+						@endforeach
+					@endif
 					@endforeach
-
 					
 				@endif
-				<h4> TOTAL CLASE: {{$cl->nombre}} </h4>
+
 				@endforeach
 
-				<h4> TOTAL GRUPO: {{$gr->nombre}} = {{$total}} (100%)</h4>
+				<h4> TOTAL GRUPO: {{$gr->nombre}} = {{$total}} (100%)</h4> <br>
 			@endif
 			<?php	
 				$total=0;

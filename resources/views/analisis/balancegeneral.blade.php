@@ -5,581 +5,80 @@
 	@section('content')
 	<h1 class="text-center mb-5">BALANCE GENERAL</h1>
 
-	<?php
-	
-	
-	$valorCompCuentas="{cuenta simple}";
-	$valorCompSubCuentas="{grande patas}";
-	$totalGrupo=0;
-	$totalclase=0;
-	$y=0;
-	?>
-
-	
-
-
-
-
-
-	@foreach($empresas as $em)
-
-		<?php
-		$emID="{$em->id}";
-		?>
-		<h1>---*- NOMBRE EMPRESA: "{{$em->nombre}}" -*---</h1>
-		
-		
-	@foreach($infin as $in)
-		<?php
-			$infiID="{$in->id}";
-			$emFK="{$in->empresas_id}";
-		?>
-		@if($emID==$emFK)
-
-		<h2>--* Balance General: "{{$in->nombre}}" - Año: {{$in->anio}} *--</h2>
-		@php
-			//-------------------------------------------
-		@endphp
-		@foreach($grupos as $gr)
+		@foreach($empresas as $em)
 			<?php
-				$arregloBD="{$gr->nombre}";
-				$valorBD=$arregloBD;
-				$grupoID="{$gr->id}";
-				$infiFK="{$gr->informefinancieros_id}";
+				$emID="{$em->id}";
 			?>
-
-			@if($infiFK==$infiID)
-		
-				
-
-
-
-
-				
-
-
-
-
-
-
-
- 
-
-
+			<h1>--*-*- EMPRESA: {{$em->nombre}} -*-*--</h1>
+			@foreach($infin as $in)
 				<?php
-				$valorCompGrupos="activo";
-				$valorCompClases="activo corriente";
-				$valorCompClases1="activo no corriente";
-				?>
-				@if($valorBD == $valorCompGrupos)
-
-					@foreach($clases as $cl)
-						<?php
-							$grupoFK="$cl->grupos_id";
-							$claseID="{$cl->id}";
-						?>
-			
-						@if($grupoID==$grupoFK)
-
-
-
-
-
-
-
-
-
-						@php
-						//-------------------------------------------
-						@endphp
-						<?php
-							$arregloBD="{$cl->nombre}";
-							$valorBD=$arregloBD;
-						?>
-						@if($valorBD == $valorCompClases)
-
-							@foreach($cuentas as $cu)
-								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
-								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										//---*******aqui almaceno el valor de la cuenta***********----------
-										$x="{$cu->valor}";	
-										$totalGrupo =$totalGrupo+$x;
-									?>
-									
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---*******aqui almaceno el valor de la sub cuenta***********----------
-											$y="{$su->valor}";
-											$totalGrupo =$totalGrupo+$y;
-											?>
-											
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							<h4>Total Clase: {{$valorCompClases}} = {{$totalGrupo}}</h4>
+					$inID="{$in->id}";
+					$emFK="{$in->empresas_id}";
+				?>				
+				@if($emFK==$emID)
+					<h2>--* BALANCE GENERAL: {{$in->nombre}} - AÑO: {{$in->anio}} *--</h2>
+						@foreach($grupos as $gr)
 							<?php
-								$valorBD="";
-							?>
-							@php
-								$totalGrupo= 0;
-							@endphp
-
-						@endif
-						@php
-						//-------------------------------------------
-						@endphp
-
-						@php
-						//-------------------------------------------
-						@endphp
-						<?php
-							$arregloBD="{$cl->nombre}";
-							$valorBD=$arregloBD;
-						?>
-						@if($valorBD == $valorCompClases1)
-
-							@foreach($cuentas as $cu)
+								$grID="{$gr->id}";
+								$inFK="{$gr->informefinancieros_id}";
+							?>						
+							@if($inFK==$inID)
+								<h3>-GRUPO: {{$gr->nombre}}</h3>
 								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
+									$a=0;
+									$b=0;
 								?>
-
-								@if($claseID==$claseFK)
-					
+								@foreach($clases as $cl)
 									<?php
-										//---*******aqui almaceno el valor de la cuenta***********----------
-										$x="{$cu->valor}";	
-										$totalGrupo =$totalGrupo+$x;
+										$clID="{$cl->id}";
+										$grFK="{$cl->grupos_id}";
 									?>
-									
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
+									@if($grFK==$grID)
+										<h4>--CLASE: {{$cl->nombre}}</h4>
+										@foreach($cuentas as $cu)
 											<?php
-											//---*******aqui almaceno el valor de la sub cuenta***********----------
-											$y="{$su->valor}";
-											$totalGrupo =$totalGrupo+$y;
-											?>
-											
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							<h4>Total Clase: {{$valorCompClases1}} = {{$totalGrupo}}</h4>
-							<?php
-								$valorBD="";
-							?>
-							@php
-								$totalGrupo= 0;
-							@endphp
-
-						@endif
-						@php
-						//-------------------------------------------
-						@endphp
-
-
-
-
-
-
-
-
-
-
-							@foreach($cuentas as $cu)
+												$cuID="{$cu->id}";
+												$clFK="{$cu->clases_id}";
+											?>											
+											@if($clFK==$clID)
+												<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}</h5>
+												<?php
+													
+													$c="{$cu->valor}";
+													$a=$a+$c;
+													$b=$b+$c;
+													
+												?>
+												@foreach($subcuentas as $sc)
+													<?php
+														$cuFK="{$sc->cuentas_id}";
+													?>
+													@if($cuFK==$cuID)
+														<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+														<?php
+															$d="{$sc->valor}";
+															$a=$a+$d;
+															$b=$b+$d;
+														?>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+										<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+										<?php
+											$b=0;
+										?>
+									@endif
+								@endforeach
+								<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
 								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
+									$a=0;
 								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										$x="{$cu->valor}";							
-									?>
-									@php
-										$totalclase= $totalclase+$x;
-									@endphp
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---**aqui almaceno el valor de la sub cuenta****----------
-											$y="{$su->valor}";
-											?>
-											@php
-												$totalclase= $totalclase+$y;
-											@endphp
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							
-						@endif
+							@endif
 					@endforeach
-					<h2>Total Grupo: {{$valorCompGrupos}} = {{$totalclase}}</h2>
-					
-					@php
-						$totalclase= 0;
-					@endphp
-
 				@endif
-
-
-
-
-
-
-
-
-
-				<?php
-				$valorCompGrupos="pasivo";
-				$valorCompClases="pasivo corriente";
-				$valorCompClases1="pasivo no corriente";
-				$valorCompClases2="patrimonio";
-				?>
-				@if($valorBD == $valorCompGrupos)
-
-					@foreach($clases as $cl)
-						<?php
-							$grupoFK="$cl->grupos_id";
-							$claseID="{$cl->id}";
-						?>
-			
-						@if($grupoID==$grupoFK)
-
-
-
-
-
-
-
-
-
-						@php
-						//-------------------------------------------
-						@endphp
-						<?php
-							$arregloBD="{$cl->nombre}";
-							$valorBD=$arregloBD;
-						?>
-						@if($valorBD == $valorCompClases)
-
-							@foreach($cuentas as $cu)
-								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
-								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										//---*******aqui almaceno el valor de la cuenta***********----------
-										$x="{$cu->valor}";	
-										$totalGrupo =$totalGrupo+$x;
-									?>
-									
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---*******aqui almaceno el valor de la sub cuenta***********----------
-											$y="{$su->valor}";
-											$totalGrupo =$totalGrupo+$y;
-											?>
-											
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							<h4>Total Clase: {{$valorCompClases}} = {{$totalGrupo}}</h4>
-							<?php
-								$valorBD="";
-							?>
-							@php
-								$totalGrupo= 0;
-							@endphp
-
-						@endif
-						@php
-						//-------------------------------------------
-						@endphp
-
-						@php
-						//-------------------------------------------
-						@endphp
-						<?php
-							$arregloBD="{$cl->nombre}";
-							$valorBD=$arregloBD;
-						?>
-						@if($valorBD == $valorCompClases1)
-
-							@foreach($cuentas as $cu)
-								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
-								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										//---*******aqui almaceno el valor de la cuenta***********----------
-										$x="{$cu->valor}";	
-										$totalGrupo =$totalGrupo+$x;
-									?>
-									
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---*******aqui almaceno el valor de la sub cuenta***********----------
-											$y="{$su->valor}";
-											$totalGrupo =$totalGrupo+$y;
-											?>
-											
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							<h4>Total Clase: {{$valorCompClases1}} = {{$totalGrupo}}</h4>
-							
-							@php
-								$totalGrupo= 0;
-							@endphp
-
-						@endif
-						@php
-						//-------------------------------------------
-						@endphp
-
-						@php
-						//-------------------------------------------
-						@endphp
-						<?php
-							$arregloBD="{$cl->nombre}";
-							$valorBD=$arregloBD;
-						?>
-						@if($valorBD == $valorCompClases2)
-
-							@foreach($cuentas as $cu)
-								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
-								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										//---*******aqui almaceno el valor de la cuenta***********----------
-										$x="{$cu->valor}";	
-										$totalGrupo =$totalGrupo+$x;
-									?>
-									
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---*******aqui almaceno el valor de la sub cuenta***********----------
-											$y="{$su->valor}";
-											$totalGrupo =$totalGrupo+$y;
-											?>
-											
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							<h4>Total Clase: {{$valorCompClases2}} = {{$totalGrupo}}</h4>
-							<?php
-								$valorBD="";
-							?>
-							@php
-								$totalGrupo= 0;
-							@endphp
-
-						@endif
-						@php
-						//-------------------------------------------
-						@endphp
-
-
-
-
-
-
-
-
-
-
-
-
-							@foreach($cuentas as $cu)
-								<?php
-									$claseFK="$cu->clases_id";
-									$cuentaID="{$cu->id}"
-								?>
-
-								@if($claseID==$claseFK)
-					
-									<?php
-										$x="{$cu->valor}";							
-									?>
-									@php
-										$totalclase= $totalclase+$x;
-									@endphp
-									@foreach($subcuentas as $su)
-										<?php										
-										$cuentaFK="{$su->cuentas_id}";
-										?>
-						
-						
-										@if($cuentaID==$cuentaFK)
-								
-											<?php
-											//---**aqui almaceno el valor de la sub cuenta****----------
-											$y="{$su->valor}";
-											?>
-											@php
-												$totalclase= $totalclase+$y;
-											@endphp
-										@endif
-									@endforeach
-								@endif
-							@endforeach 
-							
-						@endif
-					@endforeach
-					<h2>Total Grupo: {{$valorCompGrupos}} = {{$totalclase}}</h2>
-					<?php
-						$valorBD="";
-					?>
-					@php
-						$totalclase= 0;
-					@endphp
-
-				@endif
-
-
-
-
-
-
-				
-			@endif
+			@endforeach
 		@endforeach
-		@php
-			//-------------------------------------------
-		@endphp
-		<br>
-		<br>
-		@endif
-	@endforeach
-
-	
-
-	@endforeach
-
-	
-
-
-
-
-
-
-
-
-
-
-	@foreach($clases as $cl)
-
-		<?php
-		$arregloBD="{{$cl->nombre}}";
-		$valorBD=$arregloBD;
-		?>
-		
-		@if($valorBD == $valorCompClases)
-		@endif
-
-		<?php
-		$valorBD="";
-		?>
-
-	@endforeach
-
-	@foreach($cuentas as $cu)
-
-		<?php
-		$arregloBD="{{$cu->nombre}}";
-		$valorBD=$arregloBD;
-		?>
-		
-		@if($valorBD == $valorCompCuentas)
-			<h1>cuenta encontrada</h1>
-		@endif
-
-		<?php
-		$valorBD="";
-		?>
-
-	@endforeach
-
-	@foreach($subcuentas as $sc)
-
-		<?php
-		$arregloBD="{{$sc->nombre}}";
-		$valorBD=$arregloBD;
-		?>
-		
-		@if($valorBD == $valorCompSubCuentas)
-			<h1>sub cuenta encontrada</h1>
-		@endif
-
-		<?php
-		$valorBD="";
-		?>
-
-	@endforeach
-
 
 	<div class="col-md-10 mx-auto bg-white p-3">
 		<table class="table" id="table">
