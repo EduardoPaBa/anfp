@@ -78,9 +78,11 @@ class Ratios extends Controller
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
         ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','1')
+        ->where ('cuentas.codigo','=','1.1')
+        //->where ('grupos.nombre','=','Activo')
         ->get();
 
         $ratios1 = DB::table('cuentas')->orderBy('codigo')
@@ -92,7 +94,7 @@ class Ratios extends Controller
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','2')
-        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+        ->where ('cuentas.codigo','=','1.1')
         ->get();
 
         $ratios2 = DB::table('cuentas')->orderBy('codigo')

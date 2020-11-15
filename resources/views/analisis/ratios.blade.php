@@ -200,7 +200,7 @@
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
 		  @endforeach
 		  </select>
