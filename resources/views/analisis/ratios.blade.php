@@ -36,6 +36,8 @@
 	$valorCompCuentas9="{TOTAL PASIVOS NO CORRIENTES}";
 	$valorCompCuentas10="{TOTAL PASIVO}";
 	$valorCompCuentas11="{Utilidad antes de impuesto y reserva legal}";
+	$valorCompCuentas12="{Cuentas por Pagar}";
+	$valorCompCuentas13="{TOTAL ACTIVOS NO CORRIENTES}";
 
 
 
@@ -120,13 +122,13 @@
 		
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		@foreach($ratios as $r)
+		@foreach($ratios2 as $r)
 				<input type="text"  value="{{ $r->valor }}" id="activoCorriente-razonLiquidez2" class="col-md-4">	
 		@endforeach
 		<br>
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		@foreach($ratios1 as $r1)
+		@foreach($ratios3 as $r1)
 				<input type="text"  value="{{ $r1->valor }}" id="activoCorriente-razonLiquidez3" class="col-md-4">	
 		@endforeach
 		<br>
@@ -644,7 +646,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas3)
 				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonInventario" class="col-md-4">	
 				@endif
 
@@ -666,6 +668,7 @@
 	<div class="col-sm" id="r">
 		
 		<h5>Razon de dias de inventario</h5>
+
 		<label>Inventrario promedio </label>
 		@foreach($cuentas as $cu)
 
@@ -674,7 +677,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas3)
 				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonDiasInventario" class="col-md-4">	
 				@endif
 
@@ -716,7 +719,7 @@
             </option>
 		  @endforeach
 		  </select>
-		  <input type="text" id="input_numerador_ventasNetas_razonCxC">
+		  <input type="hidden" id="input_numerador_ventasNetas_razonCxC">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas as $cu)
@@ -798,14 +801,22 @@
 		  <input type="hidden" id="input_numerador_compras_razonCxP">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonCxP">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_denominador_razonCxP">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas12)
+				<input type="text"  value="{{ $cu->valor }}" id="CxP-razonCxP" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -817,14 +828,22 @@
 		
 		<h5>Periodo de medio de pago</h5>
 		<label>Promedio de CxP Comerciales*365: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonMedioP">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_denominador_razonMedioP">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas12)
+				<input type="text"  value="{{ $cu->valor }}" id="mCxP-razonCxP" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Compras: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonMedioP">
@@ -869,7 +888,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas5)
+				@if($valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA" class="col-md-4">	
 				@endif
 
@@ -899,14 +918,22 @@
 		  <input type="hidden" id="input_numerador_ventasNetas_razonActivosF">
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_activoFijo_razonActivosF">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_activoFijo_razonActivosF">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas13)
+				<input type="text"  value="{{ $cu->valor }}" id="activoFijoNeto-razonActivoF" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1039,7 +1066,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas3)
 				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonInventario1" class="col-md-4">	
 				@endif
 
@@ -1069,7 +1096,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas3)
 				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonDiasInventario1" class="col-md-4">	
 				@endif
 
@@ -1111,7 +1138,7 @@
             </option>
 		  @endforeach
 		  </select>
-		  <input type="text" id="input_numerador_ventasNetas_razonCxC1">
+		  <input type="hidden" id="input_numerador_ventasNetas_razonCxC1">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
 		@foreach($cuentas1 as $cu)
@@ -1193,14 +1220,22 @@
 		  <input type="hidden" id="input_numerador_compras_razonCxP1">
 		<br>
 		<label>Promedio de CxP comerciales: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonCxP1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_denominador_razonCxP1">
+		@foreach($cuentas1 as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas12)
+				<input type="text"  value="{{ $cu->valor }}" id="CxP-razonCxP1" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1212,14 +1247,22 @@
 		
 		<h5>Periodo de medio de pago</h5>
 		<label>Promedio de CxP Comerciales*365: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador_razonMedioP1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_denominador_razonMedioP1">
+		@foreach($cuentas1 as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas12)
+				<input type="text"  value="{{ $cu->valor }}" id="mCxP-razonCxP1" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Compras: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_compras_razonMedioP1">
@@ -1264,7 +1307,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas5)
+				@if($valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA1" class="col-md-4">	
 				@endif
 
@@ -1294,14 +1337,22 @@
 		  <input type="hidden" id="input_numerador_ventasNetas_razonActivosF1">
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_activoFijo_razonActivosF1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_activoFijo_razonActivosF1">
+		@foreach($cuentas1 as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas13)
+				<input type="text"  value="{{ $cu->valor }}" id="activoFijoNeto-razonActivoF1" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1515,7 +1566,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas5)
+				@if($valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo" class="col-md-4">	
 				@endif
 
@@ -1725,7 +1776,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas5)
+				@if($valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo1" class="col-md-4">	
 				@endif
 

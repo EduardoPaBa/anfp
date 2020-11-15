@@ -103,8 +103,20 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
+        ->where ('informefinancieros.id','=','1')
+        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
+        ->get();
+
+        $ratios3 = DB::table('cuentas')->orderBy('codigo')
+        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+        ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','2')
-        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
         ->get();
 
         //RETORNANDO A LA VISTA
@@ -116,7 +128,8 @@ class Ratios extends Controller
             ->with('grupos',$grupos)
             ->with('ratios',$ratios)
             ->with('ratios1',$ratios1)
-            ->with('ratios2',$ratios2);
+            ->with('ratios2',$ratios2)
+            ->with('ratios3',$ratios3);
         
         
     }
