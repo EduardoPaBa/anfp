@@ -497,4 +497,98 @@ var btn2 = document.querySelector('#resultados-razonRentabilidad');
 
 });
 
+
+//#########################RATIOS DE RENTABILIDAD###########################################
+
+$(document).on('click',"#resultados-razonGradoEnd",function(){
+
+function razonGradoEnd(){
+    
+    var numerador = $("#pasivoTotal-razonEndeudo").val();
+    var denominador = $("#activoTotal-razonEndeudo").val();
+  
+    var total = (numerador / denominador).toFixed(5);
+
+    $("#inputTotal-razonGradoEnd").val(total);    
+
+}
+
+function razonPropiedad(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_patrimonio_razonPropiedad").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_patrimonio_razonPropiedad").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_patrimonio_razonPropiedad").val(numeros12);
+  });
+    var denominador1 = $("#activoTotal-razonPropiedad").val();
+  
+    var total1 = (numerador1 / denominador1).toFixed(5);
+
+    $("#inputTotal-razonPropiedad").val(total1);    
+
+}
+
+function razonEndeudoPatr(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_patrimonioTotal_razonEndeudoPatr").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_patrimonioTotal_razonEndeudoPatr").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(numeros12);
+  });
+    var denominador1 = $("#pasivoTotal-razonEndeudoPatr").val();
+  
+    var total1 = (denominador1 / numerador1).toFixed(5);
+
+    $("#inputTotal-razonEndeudoPatr").val(total1);    
+
+}
+
+function razonPropiedad(){
+    
+    var numerador1 = 0;
+    $("#input_numerador_g_razonGastosF").each(function(index, value) {
+        if ( $.isNumeric( $(this).val() ) ){
+        numerador1 += eval($(this).val());
+        }
+      }
+    );
+
+    $("#id_numerador_g_razonGastosF").change(function() {
+    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros12 = texto12.replace(/[^0-9.]/g, '');
+    $("#input_numerador_g_razonGastosF").val(numeros12);
+  });
+    var denominador1 = $("#cobertura-razonGastosF").val();
+  
+    var total1 = (denominador1 / numerador1).toFixed(5);
+
+    $("#inputTotal-razonGastosF").val(total1);    
+
+}
+
+var btn3 = document.querySelector('#resultados-razonGradoEnd');
+
+    btn3.addEventListener('click',razonGradoEnd, false);
+    btn3.addEventListener('click',razonPropiedad, false);
+    btn3.addEventListener('click',razonEndeudoPatr, false);
+    btn3.addEventListener('click',razonGastosF, false);
+
+});
+
 //});

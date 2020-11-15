@@ -34,6 +34,8 @@
 	$valorCompCuentas7="{Utilidad Operativa}";
 	$valorCompCuentas8="{Utilidad Neta}";
 	$valorCompCuentas9="{TOTAL PASIVOS NO CORRIENTES}";
+	$valorCompCuentas10="{TOTAL PASIVO}";
+	$valorCompCuentas11="{Utilidad antes de impuesto y reserva legal}";
 
 
 
@@ -963,47 +965,84 @@
 		
 		<h5>Grado de Endeudamiento</h5>
 		<label>Pasivo Total: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
-            </option>
-		  @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas10)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudo" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Activo Total: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_denominador">
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }}
-            </option>
-            @endforeach
-  		</select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas4)
+				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonEndeudo" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonGradoEnd" class="solo-numero">
 		</div>
         
 	</div>
 <br>
-  
-  <input type="hidden" class="input_numerador">
-  <input type="hidden" class="input_denominador">
+
+
 
 	<div class="col-sm" id="r">
 		
 		<h5>Grado de Propiedad</h5>
 		<label>Patrimonio: </label>
-		<input type="text" name="act" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonio_razonPropiedad">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_patrimonio_razonPropiedad">
 		<br>
 		<label>Activo Total: </label>
-		<input type="text" name="pas" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas4)
+				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonPropiedad" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
-		<label>Pasivo corriente: </label>
-		<input type="text" name="pas" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonPropiedad" class="solo-numero">
 		</div>
 
 
@@ -1016,14 +1055,36 @@
 		
 		<h5>Razon de Endeudamiento Patrimonial</h5>
 		<label>Pasivo Total: </label>
-		<input type="text" name="act" class="col-md-4">
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas10)
+				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudoPatr" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Patrimonio Total: </label>
-		<input type="text" name="pas" class="col-md-4">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            </option>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_patrimonioTotal_razonEndeudoPatr">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonEndeudoPatr" class="solo-numero">
 		</div>
 	</div>
 	
@@ -1031,35 +1092,49 @@
 		
 		<h5>Razon de cobertura de Gastos Financieros</h5>
 		<label>Utilidades antes de interes e impuestos: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_numerador">
-		  <option value="">Seleccionar cuenta</option>
-		  @foreach($ratios as $r)
-		            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-		            	{{ $r -> rcuentas }}
-		            </option>
-		            @endforeach
-		  </select>
+		@foreach($cuentas as $cu)
+
+				<?php
+				$arregloBD="{{$cu->nombre}}";
+				$valorBD=$arregloBD;
+				?>
+				
+				@if($valorBD == $valorCompCuentas11)
+				<input type="text"  value="{{ $cu->valor }}" id="cobertura-razonGastosF" class="col-md-4">	
+				@endif
+
+				<?php
+				$valorBD="";
+				?>
+
+			@endforeach
 		<br>
 		<label>Gastos Financieros: </label>
-		<select data-live-search="true" class="selectpicker" name="" id="id_denominador">
-  		<option value="">Seleccionar cuenta</option>
-  		@foreach($ratios as $r)
-            <option data-tokens="" data-precio="{{ $r -> rcuentas }}" value="{{ $r -> rcuentas }}">
-            	{{ $r -> rcuentas }}
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_g_razonGastosF">
+		  @foreach($ratios as $r)
+            <option data-tokens="" data-precio="" value="">
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
-            @endforeach
-  		</select>
+		  @endforeach
+		  </select>
+		  <input type="hidden" id="input_numerador_g_razonGastosF">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal" class="solo-numero">
+			<input type="text" id="inputTotal-razonGastosF" class="solo-numero">
 		</div>
         
 	</div>
 	</div>
 
 	<br>
-
+<div class="text-center" id="boton-razonEndeudamiento">
+		<input type="button" id="resultados-razonGradoEnd" value="Calcular" 
+				onclick="razonGradoEnd();"
+				onclick="razonPropiedad();"
+				onclick="razonEndeudoPatr();"
+				onclick="razonEndeudoGastosF();">
+	</div>
 
 
 
