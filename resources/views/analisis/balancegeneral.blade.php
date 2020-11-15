@@ -25,7 +25,7 @@
 		<?php
 		$emID="{$em->id}";
 		?>
-		<h1>---*- NOMBRE EMPRESA: {{$em->nombre}} -*---</h1>
+		<h1>---*- NOMBRE EMPRESA: "{{$em->nombre}}" -*---</h1>
 		
 		
 	@foreach($infin as $in)
@@ -35,7 +35,7 @@
 		?>
 		@if($emID==$emFK)
 
-		<h2>--* Balance General: {{$in->nombre}} - AÑO: {{$in->anio}} *--</h2>
+		<h2>--* Balance General: "{{$in->nombre}}" - Año: {{$in->anio}} *--</h2>
 		@php
 			//-------------------------------------------
 		@endphp
@@ -237,7 +237,7 @@
 							
 						@endif
 					@endforeach
-					<h2>Total Grupo {{$valorCompGrupos}} = {{$totalclase}}</h2>
+					<h2>Total Grupo: {{$valorCompGrupos}} = {{$totalclase}}</h2>
 					
 					@php
 						$totalclase= 0;
@@ -476,7 +476,7 @@
 							
 						@endif
 					@endforeach
-					<h2>Total Grupo {{$valorCompGrupos}} = {{$totalclase}}</h2>
+					<h2>Total Grupo: {{$valorCompGrupos}} = {{$totalclase}}</h2>
 					<?php
 						$valorBD="";
 					?>

@@ -12,6 +12,7 @@
 		<?php
 			$empID="{$em->id}";
 		?>
+		<h1>Empresa: {{$em->nombre}}</h1>
 		@foreach($infin as $in)
 
 
@@ -27,7 +28,7 @@
 					$infiFK="{$er->informefinancieros_id}";
 				?>
 				@if($infiID==$infiFK) 
-					<h1>Empresa: {{$em->nombre}}</h1>
+					
 					<h2>bg: {{$in->nombre}}  año: {{$in->anio}}</h2>
 					<?php
 					//<h1>er: {{$er->id}} </h1><br>

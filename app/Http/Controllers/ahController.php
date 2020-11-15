@@ -23,7 +23,7 @@ class ahController extends Controller
          ->get();
 
         // --- INFORMEFINANCIEROS
-        $infin = DB::table('informefinancieros')->orderBy('id')
+        $infin = DB::table('informefinancieros')->orderBy('nombre')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
@@ -31,7 +31,7 @@ class ahController extends Controller
          ->get();
 
     	// --- GRUPOS
-        $grupos = DB::table('grupos')->orderBy('codigo')
+        $grupos = DB::table('grupos')->orderBy('nombre')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
