@@ -28,7 +28,36 @@
 				?>
 				@if($infiID==$infiFK) 
 					<h1>bg: {{$in->nombre}}  {{$in->anio}}</h1>
-					<h1>er: {{$er->id}} </h1><br>
+					<?php
+					//<h1>er: {{$er->id}} </h1><br>
+					
+					
+					
+					$co="{$er->costodeventa}";
+					$in="{$er->ingreso}";
+					$t=$in-$co;
+					?>
+					<h5>Utilidad bruta: {{$t}}</h5>
+					<?php
+					$co=$t;
+					$in="{$er->gastodeoperacion}";
+					$t=$co-$in;
+					?>
+					<h5>Utilidad de operación: {{$t}}</h5>
+					<?php
+					$co=$t;
+					$in="{$er->otrosingresos}";
+					$t=$co+$in;
+					?>
+					<h5>Utilidad antes de impuestos y reserva legal: {{$t}}</h5>
+					<?php
+					$co=$t;
+					$in="{$er->reservalegal}";
+					$xx="{$er->impuestosobrelarenta}";
+					$t=$co+$in+$xx;
+					?>
+					<h5>Utilidad neta: {{$t}}</h5>
+
 				@endif
 
 
