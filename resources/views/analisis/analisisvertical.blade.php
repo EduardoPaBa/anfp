@@ -3,6 +3,8 @@
 	<a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
 	@endsection
 	@section('content')
+		<h1 class="text-center mb-5">ANALISIS VERTICAL</h1>
+
 
 
 	@foreach($empresas as $em)
@@ -24,11 +26,24 @@
 			<?php
 			$grID="{$gr->id}";
 			$inFK="{$gr->informefinancieros_id}";
+			$valorBD="{$gr->nombre}";
+			$total=0;
 			?>
 			
 
 			@if($inFK==$inID)
 			<h3>-GRUPO: {{$gr->nombre}}</h3>
+
+
+
+
+
+
+
+
+
+
+
 				@foreach($clases as $cl)
 				<?php
 				$clID="{$cl->id}";
@@ -46,15 +61,95 @@
 					
 
 					@if($clFK==$clID)
-					<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+
+
+				<?php //------------------------------------------------ ?>
+				<?php
+				$valorCompGrupos="activo";
+				$totalclase=0;
+				?>
+				
+
+					@foreach($clases as $cl)
+						<?php
+							$grupoFK="$cl->grupos_id";
+							$claseID="{$cl->id}";
+						?>
+			
+						@if($grID==$grupoFK)
+
+							@foreach($cuentas as $cus)
+								<?php
+									$claseFK="$cus->clases_id";
+									$cuentaID="{$cus->id}"
+								?>
+
+								@if($claseID==$claseFK)
+					
+									<?php
+										$x="{$cus->valor}";							
+									?>
+									@php
+										
+										$totalclase= $totalclase+$x;
+									@endphp
+									@foreach($subcuentas as $su)
+										<?php										
+										$cuentaFK="{$su->cuentas_id}";
+										?>
+						
+						
+										@if($cuentaID==$cuentaFK)
+								
+											<?php
+											//---**aqui almaceno el valor de la sub cuenta****----------
+											$y="{$su->valor}";
+											?>
+											@php
+												$totalclase= $totalclase+$y;
+											@endphp
+										@endif
+									@endforeach
+								@endif
+							@endforeach 
+							
+						@endif
+					@endforeach
+					
+					
+					@php
+					//<h2>Total Grupo: {{$valorCompGrupos}} = {{$totalclase}} (100%)</h2>
+						$total=$totalclase;
+						$totalclase= 0;
+					@endphp
+
+				
+				<?php //------------------------------------------------ ?>
+
+
+				
+					
+					<?php
+					//{{$total}}
+					$x="{$cu->valor}";
+					$y=($x/$total)*100;
+					?>
+					<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}} ({{$y}}%)  <h5>
 						@foreach($subcuentas as $sc)
 						<?php
 						$cuFK="{$sc->cuentas_id}";
 						?>
+
+
 						
 
 						@if($cuFK==$cuID)
-						<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+						<?php
+						//{{$total}}
+						$x="{$sc->valor}";
+						$y=($x/$total)*100;
+						?>
+						<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}} ({{$y}}%)</h6>
 
 						@endif
 						@endforeach
@@ -62,7 +157,18 @@
 					@endforeach
 				@endif
 				@endforeach
+			<h4> TOTAL GRUPO: {{$gr->nombre}} = {{$total}} (100%)</h4>
+
+
+				
+
+
 			@endif
+
+			<?php
+				
+				$total=0;
+				?>
 			@endforeach
 		@endif
 		@endforeach

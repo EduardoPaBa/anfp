@@ -5,6 +5,7 @@
 	
 	@endsection
 	@section('content')
+	<h1 class="text-center mb-5">ESTADO DE RESULTADOS</h1>
 
 
 

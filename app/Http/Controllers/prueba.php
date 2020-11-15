@@ -29,7 +29,7 @@ class prueba extends Controller
          ->get();
 
     	// --- GRUPOS
-        $grupos = DB::table('grupos')->orderBy('codigo')
+        $grupos = DB::table('grupos')->orderBy('nombre')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')
@@ -49,7 +49,7 @@ class prueba extends Controller
         ->get();
 
 		// --- CUENTAS
-        $cuentas = DB::table('cuentas')->orderBy('codigo')
+        $cuentas = DB::table('cuentas')->orderBy('nombre')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')

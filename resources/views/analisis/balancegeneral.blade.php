@@ -3,6 +3,7 @@
 	<a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
 	@endsection
 	@section('content')
+	<h1 class="text-center mb-5">BALANCE GENERAL</h1>
 
 	<?php
 	
@@ -51,6 +52,10 @@
 		
 				
 
+
+
+
+				
 
 
 
@@ -244,6 +249,14 @@
 					@endphp
 
 				@endif
+
+
+
+
+
+
+
+
 
 				<?php
 				$valorCompGrupos="pasivo";
