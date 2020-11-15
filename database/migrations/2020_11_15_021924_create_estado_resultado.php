@@ -15,7 +15,18 @@ class CreateEstadoResultado extends Migration
     {
         Schema::create('estado_resultado', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('ingreso');
+            $table->string('costodeventa');
+            $table->string('gastodeoperacion');
+            $table->string('gastodeadministracion');
+            $table->string('gastodeventaymercadeo');
+            $table->string('gastofinancieros');
+            $table->string('otrosingresos');
+            $table->string('reservalegal');
+            $table->string('impuestosobrelarenta');
+
+
+
             $table->foreignId('informefinancieros_id');
             $table->foreign('informefinancieros_id')->references('id')->on('informefinancieros');
         });

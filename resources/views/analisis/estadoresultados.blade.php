@@ -7,11 +7,45 @@
 	@section('content')
 
 
+
+	@foreach($empresas as $em)
+		<?php
+			$empID="{$em->id}";
+		?>
+		@foreach($infin as $in)
+
+
+		<?php
+			$infiID="{$in->id}";
+			$empFK="{$in->empresas_id}";
+		?>
+		@if($empID==$empFK)
+
+			@foreach($esre as $er)
+				<?php
+					$erID="{$er->id}";
+					$infiFK="{$er->informefinancieros_id}";
+				?>
+				@if($infiID==$infiFK) 
+					<h1>bg: {{$in->nombre}}  {{$in->anio}}</h1>
+					<h1>er: {{$er->id}} </h1><br>
+				@endif
+
+
+				
+
+			@endforeach
+		@endif
+		@endforeach
+	@endforeach
+
+
+
 	<h1 class="text-center mb-5">ESTADO DE RESULTADOS</h1>
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
-			<form method="POST" action="{{ route('grupos.store') }}" novalidate>
+			<form method="POST" action="{{ route('estadoresultados.store') }}" novalidate>
 				@csrf
 				<div class="form-group">
 					 <label for="bg">Balance General al que pertenece</label>
@@ -101,11 +135,11 @@
 					/>
 				</div>
 				<div class="form-group">
-					<label for="impuesto sobre la renta">Impuesto sobre la renta</label>
+					<label for="impuestosobrelarenta">Impuesto sobre la renta</label>
 					<input type="text" 
-						name="impuesto sobre la renta" 
+						name="impuestosobrelarenta" 
 						class="form-control" 
-						id="impuesto sobre la renta"
+						id="impuestosobrelarenta"
 						placeholder="Impuesto sobre la renta"
 					/>
 				</div>
@@ -113,7 +147,7 @@
 
 				<div class="form-group">
 					<input type="submit" class="btn btn-primary" 
-					value="Agregar Grupo">
+					value="Agregar Estado de Resultados">
 				</div>
 
 			</form>

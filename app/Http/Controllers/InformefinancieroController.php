@@ -47,7 +47,9 @@ class InformefinancieroController extends Controller
         ->get()->pluck('id','nombre');
         
         $emp = DB::table('empresas')
-        ->get()->pluck('id','sector');
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
         
         return view('informesfinancieros.create')
             ->with('if',$if)
@@ -89,7 +91,10 @@ class InformefinancieroController extends Controller
         ->where ('users.id','=', Auth::id())
         ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
         ->get()->pluck('id','nombre');
-        $emp = DB::table('empresas')->get()->pluck('id','sector');
+        $emp = DB::table('empresas')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->where ('users.id','=', Auth::id())
+        ->get();
         return view('informesfinancieros.create')
             ->with('if',$if)
             ->with('e',$e) 

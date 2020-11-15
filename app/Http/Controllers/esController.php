@@ -71,6 +71,24 @@ class esController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
+
+
+
+
+        // --- ESTADO DE RESULTADOS -------------------
+        $esre = DB::table('estado_resultado')->orderBy('id')
+        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select(
+            'estado_resultado.id',
+            'estado_resultado.ingreso',
+            'estado_resultado.costodeventa',
+            'estado_resultado.informefinancieros_id'
+        )
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
         //RETORNANDO A LA VISTA
         return view('analisis.estadoresultados')
             ->with('clases',$clases)
@@ -78,7 +96,8 @@ class esController extends Controller
             ->with('subcuentas',$subcuentas)
             ->with('grupos',$grupos)
             ->with('infin',$infin)
-            ->with('empresas',$empresas);
+            ->with('empresas',$empresas)
+            ->with('esre',$esre);
         
         
     }
@@ -86,9 +105,16 @@ class esController extends Controller
     {
         //
           $data=request();
-        DB::table('grupos')->insert([
-            'codigo'=>$data['codigo'],
-            'nombre'=>$data['nombre'],
+        DB::table('estado_resultado')->insert([
+            'ingreso'=>$data['ingreso'],
+            'costodeventa'=>$data['costodeventa'],
+            'gastodeoperacion'=>$data['gastodeoperacion'],
+            'gastodeadministracion'=>$data['gastodeadministracion'],
+            'gastodeventaymercadeo'=>$data['gastodeventaymercadeo'],
+            'gastofinancieros'=>$data['gastofinancieros'],
+            'otrosingresos'=>$data['otrosingresos'],
+            'reservalegal'=>$data['reservalegal'],
+            'impuestosobrelarenta'=>$data['impuestosobrelarenta'],
             'informefinancieros_id'=>$data['bg']
             
         ]);
@@ -152,6 +178,15 @@ class esController extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
+        // --- ESTADO DE RESULTADOS -------------------
+        $esre = DB::table('estado_resultado')->orderBy('id')
+        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('estado_resultado.id','estado_resultado.ingreso','estado_resultado.costodeventa','estado_resultado.informefinancieros_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
         //RETORNANDO A LA VISTA
         return view('analisis.estadoresultados')
             ->with('clases',$clases)
@@ -159,8 +194,8 @@ class esController extends Controller
             ->with('subcuentas',$subcuentas)
             ->with('grupos',$grupos)
             ->with('infin',$infin)
-            ->with('empresas',$empresas);
-
+            ->with('empresas',$empresas)
+            ->with('esre',$esre);
 
 
 

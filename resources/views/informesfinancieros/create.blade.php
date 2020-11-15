@@ -17,12 +17,11 @@
 					 	class="form-control"
 					 	id="empresas"
 					 >
-					 	@foreach ($empresa as $cod => $ii)
-					 	@foreach ($emp as $nom => $iii)
-					 	@if($iii==$ii)
-					 	<option value="{{$ii}}" > {{$iii}} {{$ii}} {{$cod}} - {{$nom}}</option> 
-					 	@endif
-					 	@endforeach
+					 	@foreach ($emp as $em)
+					 	
+					 	
+					 	<option value="{{$em->id}}" > {{$em->id}} {{$em->nombre}} {{$em->sector}} </option> 
+					 	
 					 	@endforeach
 					 </select>
 				</div>
