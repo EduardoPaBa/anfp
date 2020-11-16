@@ -13,7 +13,23 @@ class Ratios extends Controller
      */
     public function index()
     {
-    	// --- GRUPOS
+    	
+        // --- EMPRESAS
+        $empresas = DB::table('empresas')->orderBy('id')
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('empresas.id','empresas.nombre','empresas.sector')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
+          // --- INFORMEFINANCIEROS
+        $infin = DB::table('informefinancieros')->orderBy('nombre')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
+
+        // --- GRUPOS
         $grupos = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
@@ -43,6 +59,7 @@ class Ratios extends Controller
             'estado_resultado.costodeventa as costov',
             'estado_resultado.ingreso as eingreso',
             'estado_resultado.gastodeoperacion as egastoO',
+            'estado_resultado.gastofinancieros as egastoF',
             'estado_resultado.gastodeadministracion as egastoA',
             'estado_resultado.gastodeventaymercadeo as egastoV',
             'estado_resultado.otrosingresos as eotrosI',
@@ -64,6 +81,7 @@ class Ratios extends Controller
             'estado_resultado.costodeventa as costov',
             'estado_resultado.ingreso as eingreso',
             'estado_resultado.gastodeoperacion as egastoO',
+            'estado_resultado.gastofinancieros as egastoF',
             'estado_resultado.gastodeadministracion as egastoA',
             'estado_resultado.gastodeventaymercadeo as egastoV',
             'estado_resultado.otrosingresos as eotrosI',
@@ -127,7 +145,7 @@ class Ratios extends Controller
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
         ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','1')
-        ->where ('clases.codigo','=','1.1')
+        ->where ('cuentas.codigo','=','1.1')
         //->where ('grupos.nombre','=','Activo')
         ->get();
 
@@ -140,7 +158,7 @@ class Ratios extends Controller
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','2')
-        ->where ('clases.codigo','=','1.1')
+        ->where ('cuentas.codigo','=','1.1')
         ->get();
 
 
@@ -153,7 +171,7 @@ class Ratios extends Controller
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
         ->where ('users.id','=', Auth::id())
         ->where ('informefinancieros.id','=','1')
-        ->where ('clases.codigo','=','1.2')
+        ->where ('cuentas.codigo','=','1.2')
         //->where ('grupos.nombre','=','Activo')
         ->get();
 
@@ -166,8 +184,8 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
         ->where ('users.id','=', Auth::id())
-        ->where ('informefinancieros.id','=','1')
-        ->where ('clases.codigo','=','1.1')
+        ->where ('informefinancieros.id','=','2')
+        ->where ('cuentas.codigo','=','1.2')
         //->where ('grupos.nombre','=','Activo')
         ->get();
 
@@ -195,6 +213,8 @@ class Ratios extends Controller
         ->where ('cuentas.nombre','=','TOTAL ACTIVO')
         ->get();
 
+
+
         //RETORNANDO A LA VISTA
         return view('analisis.ratios')
             ->with('esre',$esre)
@@ -204,6 +224,8 @@ class Ratios extends Controller
             ->with('cuentas1',$cuentas1)
             ->with('subcuentas',$subcuentas)
             ->with('grupos',$grupos)
+            ->with('empresas',$empresas)
+            ->with('infin',$infin)
             ->with('ratios',$ratios)
             ->with('ratios1',$ratios1)
             ->with('ratios121',$ratios121)

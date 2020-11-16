@@ -262,20 +262,16 @@ function razonActivosF(){
 }
 
 function razonMargenB(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonMargenB").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
+   
 
-    $("#id_numerador_ventasNetas_razonMargenB").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonMargenB").val(numeros12);
-  });
+/*    var ingreso = $("#id_numerador_ventasNetas_razonMedioC").val();
+    var costosv = $("#id_numerador_costosVentas_razonInventario").val();
 
+    var utilidadB = (ingreso - costosv);
+
+    $("#utilidadB-razonMargenB").val(utilidadB);*/
+
+    var numerador12 = $("#id_numerador_ventasNetas_razonMargenB").val();
     var denominador12 = $("#utilidadB-razonMargenB").val();
   
     var total12 = (denominador12/ numerador12).toFixed(5);
@@ -285,19 +281,8 @@ function razonMargenB(){
 }
 
 function razonMargenO(){
-    var numerador12 = 0;
-    $("#input_numerador_ventas_razonMargenO").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventas_razonMargenO").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventas_razonMargenO").val(numeros12);
-  });
+    
+    var numerador12 = $("#id_numerador_ventas_razonMargenO").val();
 
     var denominador12 = $("#utilidadO-razonMargenO").val();
   
@@ -425,20 +410,16 @@ function razonActivosF1(){
 }
 
 function razonMargenB1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventasNetas_razonMargenB1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
+    
+    /*
+    var ingreso = $("#id_numerador_ventasNetas_razonMedioC").val();
+    var costosv = $("#id_numerador_costosVentas_razonInventario").val();
 
-    $("#id_numerador_ventasNetas_razonMargenB1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventasNetas_razonMargenB1").val(numeros12);
-  });
+    var utilidadB = (ingreso - costosv);
 
+    $("#utilidadB-razonMargenB1").val(utilidadB);*/
+
+    var numerador12 = $("#id_numerador_ventasNetas_razonMargenB1").val();
     var denominador12 = $("#utilidadB-razonMargenB1").val();
   
     var total12 = (denominador12/ numerador12).toFixed(5);
@@ -448,19 +429,7 @@ function razonMargenB1(){
 }
 
 function razonMargenO1(){
-    var numerador12 = 0;
-    $("#input_numerador_ventas_razonMargenO1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_ventas_razonMargenO1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ventas_razonMargenO1").val(numeros12);
-  });
+    var numerador12 = $("#id_numerador_ventas_razonMargenO1").val();
 
     var denominador12 = $("#utilidadO-razonMargenO1").val();
   
@@ -539,7 +508,8 @@ function razonActivoTotal(){
 function razonRentVentas(){
     
     var numerador = $("#utilidadN-razonRentVentas").val();
-
+    var denominador = $("#id_numerador_ventas_razonRentVentas").val();
+/*
     var denominador = 0;
     $("#input_numerador_ventas_razonRentVentas").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -553,6 +523,7 @@ function razonRentVentas(){
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_ventas_razonRentVentas").val(numeros12);
   });
+  */
     
   
     var total = (numerador / denominador).toFixed(5);
@@ -562,13 +533,7 @@ function razonRentVentas(){
 }
 
 function razonInversion(){
-    var numerador12 = 0;
-    $("#input_numerador_ing_razonInversion").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
+    
    
     var denominador12 = 0;
     $("#input_numerador_inv_razonInversion").each(function(index, value) {
@@ -578,18 +543,14 @@ function razonInversion(){
       }
     );
 
-     $("#id_numerador_ing_razonInversion").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ing_razonInversion").val(numeros12);
-  });
-
 
     $("#id_numerador_inv_razonInversion").change(function() {
     var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_inv_razonInversion").val(numeros12);
   });
+
+    var numerador12 = $("#id_numerador_ing_razonInversion").val();
   
     var total12 = ((numerador12 - denominador12)/ denominador12).toFixed(5);
 
@@ -687,7 +648,8 @@ function razonActivoTotal1(){
 function razonRentVentas1(){
     
     var numerador = $("#utilidadN-razonRentVentas1").val();
-
+    var denominador = $("#id_numerador_ventas_razonRentVentas1").val();
+/*
     var denominador = 0;
     $("#input_numerador_ventas_razonRentVentas1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -701,7 +663,7 @@ function razonRentVentas1(){
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_ventas_razonRentVentas1").val(numeros12);
   });
-    
+  */  
   
     var total = (numerador / denominador).toFixed(5);
 
@@ -710,13 +672,7 @@ function razonRentVentas1(){
 }
 
 function razonInversion1(){
-    var numerador12 = 0;
-    $("#input_numerador_ing_razonInversion1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador12 += eval($(this).val());
-        }
-      }
-    );
+    
    
     var denominador12 = 0;
     $("#input_numerador_inv_razonInversion1").each(function(index, value) {
@@ -726,18 +682,15 @@ function razonInversion1(){
       }
     );
 
-     $("#id_numerador_ing_razonInversion1").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_ing_razonInversion1").val(numeros12);
-  });
-
 
     $("#id_numerador_inv_razonInversion1").change(function() {
     var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_inv_razonInversion1").val(numeros12);
   });
+
+    var numerador12 = $("#id_numerador_ing_razonInversion1").val();
+
   
     var total12 = ((numerador12 - denominador12)/ denominador12).toFixed(5);
 
@@ -831,19 +784,7 @@ function razonEndeudoPatr(){
 
 function razonGastosF(){
     
-    var numerador1 = 0;
-    $("#input_numerador_g_razonGastosF").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_g_razonGastosF").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_g_razonGastosF").val(numeros12);
-  });
+    var numerador1 = $("#id_numerador_g_razonGastosF").val();
     var denominador1 = $("#cobertura-razonGastosF").val();
   
     var total1 = (denominador1 / numerador1).toFixed(5);
@@ -925,19 +866,7 @@ function razonEndeudoPatr1(){
 
 function razonGastosF1(){
     
-    var numerador1 = 0;
-    $("#input_numerador_g_razonGastosF1").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_g_razonGastos1F").change(function() {
-    var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros12 = texto12.replace(/[^0-9.]/g, '');
-    $("#input_numerador_g_razonGastosF1").val(numeros12);
-  });
+    var numerador1 = $("#id_numerador_g_razonGastosF1").val();
     var denominador1 = $("#cobertura-razonGastosF1").val();
   
     var total1 = (denominador1 / numerador1).toFixed(5);

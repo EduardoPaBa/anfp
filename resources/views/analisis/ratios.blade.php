@@ -26,9 +26,15 @@
 
 	$valorCompCuentas="{pasivo}";
 	$valorCompCuentas1="{TOTAL ACTIVOS CORRIENTES}";
+	$valorCompCuentasA="{ACTIVOS CORRIENTES}";
+
 	$valorCompCuentas2="{TOTAL PASIVOS CORRIENTES}";
+	$valorCompCuentas2A="{PASIVOS CORRIENTES}";
 	$valorCompCuentas3="{Inventarios}";
+
 	$valorCompCuentas4="{TOTAL ACTIVO}";
+	$valorCompCuentas4A="{Total de los activos}";
+	
 	$valorCompCuentas5="{Cuentas por Cobrar}";
 	$valorCompCuentas6="{Utilidad Bruta}";
 	$valorCompCuentas7="{Utilidad Operativa}";
@@ -176,7 +182,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas1)
+				@if($valorBD == $valorCompCuentas1 || $valorBD == $valorCompCuentasA)
 				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonLiquidez" class="col-md-4">	
 				@endif
 
@@ -194,7 +200,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
 				@endif
 
@@ -240,7 +246,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonEfectivo" class="col-md-4">	
 				@endif
 
@@ -309,7 +315,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida" class="col-md-4">	
 				@endif
 
@@ -353,7 +359,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital" class="col-md-4">	
 				@endif
 
@@ -371,7 +377,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonCapital" class="col-md-4">	
 				@endif
 
@@ -415,7 +421,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas1)
+				@if($valorBD == $valorCompCuentas1 || $valorBD == $valorCompCuentasA)
 				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonLiquidez1" class="col-md-4">	
 				@endif
 
@@ -433,7 +439,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonLiquidez1" class="col-md-4">	
 				@endif
 
@@ -479,7 +485,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonEfectivo1" class="col-md-4">	
 				@endif
 
@@ -548,7 +554,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida1" class="col-md-4">	
 				@endif
 
@@ -592,7 +598,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas2)
+				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital1" class="col-md-4">	
 				@endif
 
@@ -610,7 +616,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonCapital1" class="col-md-4">	
 				@endif
 
@@ -870,7 +876,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA" class="col-md-4">	
 				@endif
 
@@ -928,32 +934,19 @@
 		
 		<h5>Indice de Margen Bruto</h5>
 		<label>Utilidad Bruta: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas6)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadB-razonMargenB" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+	@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadB-razonMargenB" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMargenB">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonMargenB">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonMargenB" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -965,32 +958,21 @@
 		
 		<h5>Indice de Margen Operativo</h5>
 		<label>Utilidad Operativa: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas7)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadO-razonMargenO" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadO-razonMargenO" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonMargenO">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventas_razonMargenO">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventas_razonMargenO" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1249,7 +1231,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA1" class="col-md-4">	
 				@endif
 
@@ -1306,33 +1288,21 @@
 		<div class="col-sm" id="r">
 		
 		<h5>Indice de Margen Bruto</h5>
+		
 		<label>Utilidad Bruta: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas6)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadB-razonMargenB1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadB-razonMargenB1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventasNetas_razonMargenB1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventasNetas_razonMargenB1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventasNetas_razonMargenB1" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1344,32 +1314,21 @@
 		
 		<h5>Indice de Margen Operativo</h5>
 		<label>Utilidad Operativa: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas7)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadO-razonMargenO1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadO-razonMargenO1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonMargenO1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventas_razonMargenO1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventas_razonMargenO1" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1404,26 +1363,22 @@
 		
 		<h5>Rentabilidad Neta del Patrimonio</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonNetaP" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonNetaP" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Patrimonio Promedio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioP_razonNetaP">
-		  @foreach($ratios as $r)
+		  @foreach($ratios121 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -1443,22 +1398,18 @@
 		
 		<h5>Rentabilidad por Acccion</h5>
 		<label>Uilidad Neta: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonAccion" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonAccion" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Numero de acciones: </label>
 		<input type="text" id="numeroAcciones" class="col-md-4">
@@ -1478,22 +1429,18 @@
 		
 		<h5>Rentabilidad del Activo</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentActivo" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentActivo" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
 		@foreach($cuentas as $cu)
@@ -1503,7 +1450,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo" class="col-md-4">	
 				@endif
 
@@ -1523,32 +1470,24 @@
 		
 		<h5>Rentabilidad sobre Ventas</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentVentas" class="col-md-4">	
+        @endforeach
 				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentVentas" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonRentVentas">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventas_razonRentVentas">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ventas_razonRentVentas" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1565,14 +1504,9 @@
 		
 		<h5>Rentabilidad sobre Inversion</h5>
 		<label>Ingresos: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ing_razonInversion">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ing_razonInversion">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_ing_razonInversion" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Inversion: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion">
@@ -1614,26 +1548,22 @@
 		
 		<h5>Rentabilidad Neta del Patrimonio</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonNetaP1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonNetaP1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Patrimonio Promedio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioP_razonNetaP1">
-		  @foreach($ratios1 as $r)
+		  @foreach($ratios122 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -1653,22 +1583,18 @@
 		
 		<h5>Rentabilidad por Acccion</h5>
 		<label>Uilidad Neta: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonAccion1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonAccion1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Numero de acciones: </label>
 		<input type="text" id="numeroAcciones1" class="col-md-4">
@@ -1688,22 +1614,18 @@
 		
 		<h5>Rentabilidad del Activo</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentActivo1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentActivo1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
 		@foreach($cuentas1 as $cu)
@@ -1713,7 +1635,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo1" class="col-md-4">	
 				@endif
 
@@ -1733,32 +1655,23 @@
 		
 		<h5>Rentabilidad sobre Ventas</h5>
 		<label>Utilidad Neta: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas8)
-				<input type="text"  value="{{ $cu->valor }}" id="utilidadN-razonRentVentas1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		?>
+				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentVentas1" class="col-md-4">	
+				@endforeach
 		<br>
 		<label>Ventas: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ventas_razonRentVentas1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ventas_razonRentVentas1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ventas_razonRentVentas1" value="{{ $r -> costov }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1775,14 +1688,9 @@
 		
 		<h5>Rentabilidad sobre Inversion</h5>
 		<label>Ingresos: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_ing_razonInversion1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_ing_razonInversion1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_ing_razonInversion" value="{{ $r -> eingreso }}">
+        @endforeach
 		<br>
 		<label>Inversion: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion1">
@@ -1846,7 +1754,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonEndeudo" class="col-md-4">	
 				@endif
 
@@ -1870,7 +1778,7 @@
 		<h5>Grado de Propiedad</h5>
 		<label>Patrimonio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonio_razonPropiedad">
-		  @foreach($ratios as $r)
+		  @foreach($ratios121 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -1886,7 +1794,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonPropiedad" class="col-md-4">	
 				@endif
 
@@ -1930,7 +1838,7 @@
 		<br>
 		<label>Patrimonio Total: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr">
-		  @foreach($ratios as $r)
+		  @foreach($ratios121 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -1948,32 +1856,26 @@
 		
 		<h5>Razon de cobertura de Gastos Financieros</h5>
 		<label>Utilidades antes de interes e impuestos: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas11)
-				<input type="text"  value="{{ $cu->valor }}" id="cobertura-razonGastosF" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t + $impu + $res;
+		?>
+				<input type="text"  value="{{ $t }}" id="cobertura-razonGastosF" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Gastos Financieros: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_g_razonGastosF">
-		  @foreach($ratios as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_g_razonGastosF">
+		@foreach($esre as $r)
+		<input  name="" id="id_numerador_g_razonGastosF" value="{{ $r -> egastoF }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -2028,7 +1930,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonEndeudo1" class="col-md-4">	
 				@endif
 
@@ -2052,7 +1954,7 @@
 		<h5>Grado de Propiedad</h5>
 		<label>Patrimonio: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonio_razonPropiedad1">
-		  @foreach($ratios1 as $r)
+		  @foreach($ratios122 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -2068,7 +1970,7 @@
 				$valorBD=$arregloBD;
 				?>
 				
-				@if($valorBD == $valorCompCuentas4)
+				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
 				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonPropiedad1" class="col-md-4">	
 				@endif
 
@@ -2109,10 +2011,11 @@
 				?>
 
 			@endforeach
+		
 		<br>
 		<label>Patrimonio Total: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr1">
-		  @foreach($ratios1 as $r)
+		  @foreach($ratios122 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
@@ -2130,32 +2033,26 @@
 		
 		<h5>Razon de cobertura de Gastos Financieros</h5>
 		<label>Utilidades antes de interes e impuestos: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas11)
-				<input type="text"  value="{{ $cu->valor }}" id="cobertura-razonGastosF1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		@foreach($esre1 as $r)
+		<?php
+		$co = "{$r->costov}";
+		$in = "{$r->eingreso}";
+		$t = $in - $co;
+		$gas = "{$r->egastoO}";
+		$t = $t - $gas;
+		$otrosIngresos ="{$r->eotrosI}";
+		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t + $impu + $res;
+		?>
+				<input type="text"  value="{{ $t }}" id="cobertura-razonGastosF1" class="col-md-4">	
+        @endforeach
 		<br>
 		<label>Gastos Financieros: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_g_razonGastosF1">
-		  @foreach($ratios1 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_g_razonGastosF1">
+		@foreach($esre1 as $r)
+		<input  name="" id="id_numerador_g_razonGastosF1" value="{{ $r -> egastoF }}">
+        @endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -2250,6 +2147,114 @@
 				@endforeach
 			</tr>
 			@endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			@foreach($empresas as $em)
+			<?php
+				$emID="{$em->id}";
+			?>
+			<h1>--*-*- EMPRESA: {{$em->nombre}} -*-*--</h1>
+			@foreach($infin as $in)
+				<?php
+					$inID="{$in->id}";
+					$emFK="{$in->empresas_id}";
+				?>				
+				@if($emFK==$emID)
+					<h2>--* BALANCE GENERAL: {{$in->nombre}} - AÑO: {{$in->anio}} *--</h2>
+						@foreach($grupos as $gr)
+							<?php
+								$grID="{$gr->id}";
+								$inFK="{$gr->informefinancieros_id}";
+							?>						
+							@if($inFK==$inID)
+								<h3>-GRUPO: {{$gr->nombre}}</h3>
+								<?php
+									$a=0;
+									$b=0;
+								?>
+								@foreach($clases as $cl)
+									<?php
+										$clID="{$cl->id}";
+										$grFK="{$cl->grupos_id}";
+									?>
+									@if($grFK==$grID)
+										<h4>--CLASE: {{$cl->nombre}}</h4>
+										@foreach($cuentas as $cu)
+											<?php
+												$cuID="{$cu->id}";
+												$clFK="{$cu->clases_id}";
+											?>											
+											@if($clFK==$clID)
+												<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}</h5>
+												<?php
+													
+													$c="{$cu->valor}";
+													$a=$a+$c;
+													$b=$b+$c;
+													
+												?>
+												@foreach($subcuentas as $sc)
+													<?php
+														$cuFK="{$sc->cuentas_id}";
+													?>
+													@if($cuFK==$cuID)
+														<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+														<?php
+															$d="{$sc->valor}";
+															$a=$a+$d;
+															$b=$b+$d;
+														?>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+										<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+										<input type="" name="" id="activoCo" value="{{$b}}">
+										<?php
+											$b=0;
+										?>
+
+									@endif
+								@endforeach
+								<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+								<?php
+									$a=0;
+								?>
+							@endif
+					@endforeach
+				@endif
+			@endforeach
+		@endforeach
 			
 				
 		</tbody>
