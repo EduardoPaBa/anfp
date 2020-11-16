@@ -9,17 +9,99 @@
 				$emID="{$em->id}";
 			?>
 			<h1>EMPRESA: {{$em->nombre}}</h1>
-			@foreach($infin as $in)
+			
 				<?php
-				$inID="{$in->id}";
-				$emFK="{$in->empresas_id}";
+				$inID=1;
+				$emFK=1;
+				$array=[];
+				$arrayb=[];
+				
 				?>				
 				@if($emFK==$emID)
-					<h2>BALANCE GENERAL: {{$in->nombre}} - AÑO: {{$in->anio}}</h2>
+					
+					@foreach($infin as $infss)
+
+						<?php $r="{$infss->id}"; $idBalance=1; ?>
+						
+						@if($r==$idBalance)
+						
+							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>
+							@foreach($grupos as $gr)
+								<?php
+								$grID="{$gr->id}";
+								$inFK="{$gr->informefinancieros_id}";
+								
+								?>						
+								@if($inFK==$inID)
+									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									@foreach($clases as $cl)
+										<?php
+										$clID="{$cl->id}";
+										$grFK="{$cl->grupos_id}";
+										
+										?>
+										@if($grFK==$grID)
+											<h4>--CLASE: {{$cl->nombre}}</h4>
+											@foreach($cuentas as $cu)
+												<?php
+												$cuID="{$cu->id}";
+												$clFK="{$cu->clases_id}";
+												?>											
+												@if($clFK==$clID)
+													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+														<?php $t=0; $t="{$cu->valor}"; array_push ($array,$t ) ?>
+													@foreach($subcuentas as $sc)
+														<?php
+														$cuFK="{$sc->cuentas_id}";
+														
+														?>
+														@if($cuFK==$cuID)
+															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<?php $t=0; $t="{$sc->valor}"; array_push ($array,$t ) ?>
+														@endif
+													@endforeach
+
+												@endif
+											@endforeach
+											
+										@endif
+									@endforeach
+									
+									<?php
+										$arrayb=$array;
+										//$array=[0];
+									?>
+									
+									
+								@endif
+							@endforeach
+						@endif
+					@endforeach
+				@endif
+
+				
+
+
+				<?php
+				$inID=2;
+				$emFK=1;
+				$arrayd=[];
+				$arraye=[];
+				
+				?>				
+				@if($emFK==$emID)
+					@foreach($infin as $infss)
+
+						<?php $r="{$infss->id}"; $idBalance=2; ?>
+						
+						@if($r==$idBalance)
+
+						<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>					
 						@foreach($grupos as $gr)
 							<?php
 							$grID="{$gr->id}";
 							$inFK="{$gr->informefinancieros_id}";
+							
 							?>						
 							@if($inFK==$inID)
 								<h3>-GRUPO: {{$gr->nombre}}</h3>
@@ -27,6 +109,7 @@
 									<?php
 									$clID="{$cl->id}";
 									$grFK="{$cl->grupos_id}";
+									
 									?>
 									@if($grFK==$grID)
 										<h4>--CLASE: {{$cl->nombre}}</h4>
@@ -37,21 +120,69 @@
 											?>											
 											@if($clFK==$clID)
 												<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+													<?php $t=0; $t="{$cu->valor}"; array_push ($arrayd,$t ) ?>
 												@foreach($subcuentas as $sc)
 													<?php
 													$cuFK="{$sc->cuentas_id}";
+													
 													?>
 													@if($cuFK==$cuID)
 														<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+														<?php $t=0; $t="{$sc->valor}"; array_push ($arrayd,$t ) ?>
 													@endif
 												@endforeach
+
 											@endif
 										@endforeach
+										
 									@endif
 								@endforeach
+								
+								<?php
+									$arraye=$arrayd;
+									//$arrayd=[0];
+								?>
+								
+								
 							@endif
+						@endforeach
+
+						@endif
 					@endforeach
+					
 				@endif
-			@endforeach
+				
+
+
+
+
+
+
+
+
+				<h1 class="text-center mb-5">ANALISIS HORIZONTAL</h1>
+				@for($i = 0; $i < count($arrayb); $i++)
+					
+					valores cuentas/subcuentas BG1: {{$arrayb[(int)$i]}} 
+					valores cuentas/subcuentas BG2: {{$arraye[(int)$i]}}
+					<?php
+					
+					(float)$F="{$arrayb[(int)$i]}";
+					(float)$FF="{$arraye[(int)$i]}";
+					$madre =($FF-$F);
+					$total = (($FF-$F)/$F)*100;
+					?>
+					variacion absoluta: {{$madre}} 
+					variacion relativa: {{$total}}%<br>
+				@endfor
+
+				
+
+
+				
+
+
+
+			
 		@endforeach
 	@endsection
