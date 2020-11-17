@@ -221,10 +221,10 @@
 		
 		<h5>Razon de efectivo</h5>
 		<label>Efectivo: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
+		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectiv">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r-> gnombre }} - {{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
             </option>
 		  @endforeach
 		  </select>
@@ -260,8 +260,8 @@
 			<input type="text" id="inputTotal-razonEfectivo" class="solo-numero">
 		</div>
 
-		<input type="hidden" class="input_numerador_efectivo">
-  		<input type="hidden" class="input_numerador_valorCortoPlazo">
+		<input type="text" id="input_numerador_efectiv">
+  		<input type="text" id="input_numerador_valorCortoPlazo">
   		
 
 	</div>
@@ -499,8 +499,8 @@
 			<input type="text" id="inputTotal-razonEfectivo1" class="solo-numero">
 		</div>
 
-		<input type="hidden" class="input_numerador_efectivo1">
-  		<input type="hidden" class="input_numerador_valorCortoPlazo1">
+		<input type="text" class="input_numerador_efectivo1">
+  		<input type="text" class="input_numerador_valorCortoPlazo1">
   		
 
 	</div>
@@ -1689,7 +1689,7 @@
 		<h5>Rentabilidad sobre Inversion</h5>
 		<label>Ingresos: </label>
 		@foreach($esre1 as $r)
-		<input  name="" id="id_numerador_ing_razonInversion" value="{{ $r -> eingreso }}">
+		<input  name="" id="id_numerador_ing_razonInversion1" value="{{ $r -> eingreso }}">
         @endforeach
 		<br>
 		<label>Inversion: </label>
@@ -1700,7 +1700,7 @@
             </option>
 		  @endforeach
 		  </select>
-		  <input type="hidden" id="input_numerador_inv_razonInversion1">
+		  <input type="text" id="input_numerador_inv_razonInversion1">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>

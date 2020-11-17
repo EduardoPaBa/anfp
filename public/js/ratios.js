@@ -1,4 +1,4 @@
-//$(function(){
+$(function(){
       //alert('javascript');
   $(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
@@ -21,39 +21,44 @@
 
 //########################################################
 function razonEfectivo(){
-    var numerador1 = 0;
-    $(".input_numerador_efectivo").each(function(index, value) {
+    var denominador12 = 0;
+    $("#input_numerador_efectiv").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
-        numerador1 += eval($(this).val());
+        denominador12 += eval($(this).val());
         }
       }
     );
+    
+$("#id_numerador_efectiv").change(function() {
+    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros1 = texto1.replace(/[^0-9.]/g, '');
+    $("#input_numerador_efectiv").val(numeros1);
+  });
+
   var denominador1 = 0;
-    $(".input_numerador_valorCortoPlazo").each(function(index, value) {
+    $("#input_numerador_valorCortoPlazo").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
         denominador1 += eval($(this).val());
         }
       }
     );
+
+    $("#id_numerador_valorCortoPlazo").change(function() {
+    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+    var numeros1 = texto1.replace(/[^0-9.]/g, '');
+    $("#input_numerador_valorCortoPlazo").val(numeros1);
+  });
     //var pc = document.getElementById('pasivoCorriente-razonEfectivo');
     var pc = $("#pasivoCorriente-razonEfectivo").val();
     //console.log(pc);
-    var total1 = ((numerador1 + denominador1) / pc).toFixed(5);
+    var total1 = ((denominador12 + denominador1) / pc).toFixed(5);
 
     
     $("#inputTotal-razonEfectivo").val(total1);
 
-    $("#id_numerador_efectivo").change(function() {
-    var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros = texto.replace(/[^0-9.]/g, '');
-    $(".input_numerador_efectivo").val(numeros);
-  });
+    
 
-  $("#id_numerador_valorCortoPlazo").change(function() {
-    var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros1 = texto1.replace(/[^0-9.]/g, '');
-    $(".input_numerador_valorCortoPlazo").val(numeros1);
-  });
+  
 
 }
     //#########################################33
@@ -172,7 +177,7 @@ var btn = document.querySelector('#resultados-razonLiquidez1');
   });
 //#########################RATIOS DE ACTIVIDAD###########################################
 
-  $(document).on('click',"#resultados-razonActividad",function(){
+  //$(document).on('click',"#resultados-razonActividad",function(){
 
 function razonInventario(){
     
@@ -306,11 +311,11 @@ var btn1 = document.querySelector('#resultados-razonActividad');
     btn1.addEventListener('click',razonMargenO, false);
 
 
-  });
+  //});
 
 //#########################RATIOS DE ACTIVIDAD 1 ###########################################
 
-  $(document).on('click',"#resultados-razonActividad1",function(){
+  //$(document).on('click',"#resultados-razonActividad1",function(){
 
 function razonInventario1(){
     
@@ -453,7 +458,7 @@ var btn1 = document.querySelector('#resultados-razonActividad1');
     btn1.addEventListener('click',razonMargenO1, false);
 
 
-  });
+  //});
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
@@ -884,4 +889,4 @@ var btn3 = document.querySelector('#resultados-razonGradoEnd1');
 
 });
 
-//});
+});
