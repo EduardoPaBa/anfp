@@ -8,20 +8,21 @@
 			<?php
 				$emID="{$em->id}";
 			?>
-			<h1>EMPRESA: {{$em->nombre}}</h1>
+			
 			
 				<?php
-				$inID=1;
+				$inID=$empresa1;
 				$emFK=1;
 				$array=[];
 				$arrayb=[];
 				
 				?>				
 				@if($emFK==$emID)
+				<h1>EMPRESA: {{$em->nombre}}</h1>
 					
 					@foreach($infin as $infss)
 
-						<?php $r="{$infss->id}"; $idBalance=1; ?>
+						<?php $r="{$infss->id}"; $idBalance=$empresa1; ?>
 						
 						@if($r==$idBalance)
 						
@@ -83,7 +84,7 @@
 
 
 				<?php
-				$inID=2;
+				$inID=$empresa2;
 				$emFK=1;
 				$arrayd=[];
 				$arraye=[];
@@ -92,7 +93,7 @@
 				@if($emFK==$emID)
 					@foreach($infin as $infss)
 
-						<?php $r="{$infss->id}"; $idBalance=2; ?>
+						<?php $r="{$infss->id}"; $idBalance=$empresa2; ?>
 						
 						@if($r==$idBalance)
 
@@ -175,6 +176,7 @@
 					variacion absoluta: {{$madre}} 
 					variacion relativa: {{$total}}%<br>
 				@endfor
+				@break
 
 				
 

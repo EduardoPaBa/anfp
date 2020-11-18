@@ -34,6 +34,10 @@ Route::get('/analisishorizontal',[App\Http\Controllers\ahController::class,'inde
 
 Route::get('/analisisvertical',[App\Http\Controllers\avController::class,'index'])
 	->name('analisisvertical.index');
+Route::get('/detalle_ah',[App\Http\Controllers\detalleahController::class,'index'])
+	->name('detalleah.index');
+Route::post('/analisishorizontal',[App\Http\Controllers\detalleahController::class,'store'])
+	->name('detalleah.store');
 
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
 
