@@ -264,7 +264,7 @@ class RatioTestController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         //$input = Input::all();
         $x = $request->input("informe1");
         $y = $request->input("informe2");
@@ -358,11 +358,9 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->join ('estado_resultado','informefinancieros.id','=','estado_resultado.informefinancieros_id')
             ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$x)
-            //->where('estado_resultado.id','=','1')
             //->where ('cuentas.nombre','=','TOTAL ACTIVO')
             ->get();
 
@@ -378,6 +376,7 @@ class RatioTestController extends Controller
             ->where ('informefinancieros.id','=',$y)
             //->where ('cuentas.nombre','=','TOTAL ACTIVO')
             ->get();
+
 
         // --- SUB CUENTAS
         $subcuentas = DB::table('sub_cuentas')->orderBy('codigo')
@@ -401,7 +400,7 @@ class RatioTestController extends Controller
             ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$request->input('informe1'))
-            ->where ('cuentas.codigo','=','1.1')
+            //->where ('cuentas.codigo','=','1.1')
             //->where ('grupos.nombre','=','Activo')
             ->get();
 
@@ -414,7 +413,7 @@ class RatioTestController extends Controller
             ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$request->input('informe2'))
-            ->where ('cuentas.codigo','=','1.1')
+            //->where ('cuentas.codigo','=','1.1')
             ->get();
 
 

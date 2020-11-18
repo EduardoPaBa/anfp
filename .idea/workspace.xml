@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Ratios.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Ratios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/analisis/detalleratio.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/analisis/detalleratio.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="Detalle de ratio">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +160,8 @@
       <workItem from="1605566196487" duration="66000" />
       <workItem from="1605570462168" duration="2255000" />
       <workItem from="1605678866115" duration="183000" />
-      <workItem from="1605679064206" duration="4323000" />
+      <workItem from="1605679064206" duration="4716000" />
+      <workItem from="1605736785958" duration="3496000" />
     </task>
     <servers />
   </component>
@@ -173,6 +173,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605681795822" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1605683560657">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605683560657" />
     <state width="1201" height="163" key="GridCell.Tab.0.bottom" timestamp="1605615053292">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -189,9 +193,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1201" height="163" key="GridCell.Tab.0.right/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605615053292" />
-    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605679229159">
+    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605741128918">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605679229159" />
+    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605741128918" />
   </component>
 </project>
