@@ -96,55 +96,55 @@
 						
 						@if($r==$idBalance)
 
-						<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>					
-						@foreach($grupos as $gr)
-							<?php
-							$grID="{$gr->id}";
-							$inFK="{$gr->informefinancieros_id}";
-							
-							?>						
-							@if($inFK==$inID)
-								<h3>-GRUPO: {{$gr->nombre}}</h3>
-								@foreach($clases as $cl)
-									<?php
-									$clID="{$cl->id}";
-									$grFK="{$cl->grupos_id}";
-									
-									?>
-									@if($grFK==$grID)
-										<h4>--CLASE: {{$cl->nombre}}</h4>
-										@foreach($cuentas as $cu)
-											<?php
-											$cuID="{$cu->id}";
-											$clFK="{$cu->clases_id}";
-											?>											
-											@if($clFK==$clID)
-												<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
-													<?php $t=0; $t="{$cu->valor}"; array_push ($arrayd,$t ) ?>
-												@foreach($subcuentas as $sc)
-													<?php
-													$cuFK="{$sc->cuentas_id}";
-													
-													?>
-													@if($cuFK==$cuID)
-														<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
-														<?php $t=0; $t="{$sc->valor}"; array_push ($arrayd,$t ) ?>
-													@endif
-												@endforeach
-
-											@endif
-										@endforeach
-										
-									@endif
-								@endforeach
-								
+							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>					
+							@foreach($grupos as $gr)
 								<?php
-									$arraye=$arrayd;
-									//$arrayd=[0];
-								?>
+								$grID="{$gr->id}";
+								$inFK="{$gr->informefinancieros_id}";
 								
-								
-							@endif
+								?>						
+								@if($inFK==$inID)
+									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									@foreach($clases as $cl)
+										<?php
+										$clID="{$cl->id}";
+										$grFK="{$cl->grupos_id}";
+										
+										?>
+										@if($grFK==$grID)
+											<h4>--CLASE: {{$cl->nombre}}</h4>
+											@foreach($cuentas as $cu)
+												<?php
+												$cuID="{$cu->id}";
+												$clFK="{$cu->clases_id}";
+												?>											
+												@if($clFK==$clID)
+													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+														<?php $t=0; $t="{$cu->valor}"; array_push ($arrayd,$t ) ?>
+													@foreach($subcuentas as $sc)
+														<?php
+														$cuFK="{$sc->cuentas_id}";
+														
+														?>
+														@if($cuFK==$cuID)
+															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<?php $t=0; $t="{$sc->valor}"; array_push ($arrayd,$t ) ?>
+														@endif
+													@endforeach
+
+												@endif
+											@endforeach
+											
+										@endif
+									@endforeach
+									
+									<?php
+										$arraye=$arrayd;
+										//$arrayd=[0];
+									?>
+									
+									
+								@endif
 						@endforeach
 
 						@endif

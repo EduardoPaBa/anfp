@@ -49,6 +49,7 @@ class InformefinancieroController extends Controller
         $emp = DB::table('empresas')
         ->join ('users','empresas.user_id','=','users.id')
         ->where ('users.id','=', Auth::id())
+        ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
         ->get();
         
         return view('informesfinancieros.create')
