@@ -11,18 +11,27 @@
 			
 			
 				<?php
-				$inID=$empresa1;
-				$emFK=1;
+				$inID=$bg1;
+				//$emFK=1;
 				$array=[];
-				$arrayb=[];
+				$arrayb=[];				
+				?>	
+
+				@foreach($infin as $if)
+					<?php $ifPK="{$if->id}" ?>
+					@if($ifPK==$bg1)
+					<?php $emFK="{$if->empresas_id}" ?>
+					@endif
+				@endforeach
+
 				
-				?>				
+
 				@if($emFK==$emID)
-				<h1>EMPRESA: {{$em->nombre}}</h1>
+				<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
 					
 					@foreach($infin as $infss)
 
-						<?php $r="{$infss->id}"; $idBalance=$empresa1; ?>
+						<?php $r="{$infss->id}"; $idBalance=$bg1; ?>
 						
 						@if($r==$idBalance)
 						
@@ -84,16 +93,30 @@
 
 
 				<?php
-				$inID=$empresa2;
-				$emFK=1;
+				$inID=$bg2;
+				//$emFK=1;
 				$arrayd=[];
 				$arraye=[];
 				
-				?>				
+				?>		
+
+
+				@foreach($infin as $if)
+					<?php $ifPK="{$if->id}" ?>
+					@if($ifPK==$bg2)
+					<?php $emFK="{$if->empresas_id}" ?>
+					@endif
+				@endforeach	
+
+				
+
+
+
 				@if($emFK==$emID)
+				<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
 					@foreach($infin as $infss)
 
-						<?php $r="{$infss->id}"; $idBalance=$empresa2; ?>
+						<?php $r="{$infss->id}"; $idBalance=$bg2; ?>
 						
 						@if($r==$idBalance)
 
@@ -151,15 +174,6 @@
 						@endif
 					@endforeach
 					
-				@endif
-				
-
-
-
-
-
-
-
 
 				<h1 class="text-center mb-5">ANALISIS HORIZONTAL</h1>
 				@for($i = 0; $i < count($arrayb); $i++)
@@ -176,7 +190,18 @@
 					variacion absoluta: {{$madre}} 
 					variacion relativa: {{$total}}%<br>
 				@endfor
-				@break
+				@endif
+				
+
+
+
+
+
+
+
+
+				
+				
 
 				
 

@@ -141,8 +141,8 @@ class detalleahController extends Controller
         ->get();
 
         $data=request();
-        $empresa1=$data['bg1'];
-        $empresa2=$data['bg2'];
+        $bg1=$data['bg1'];
+        $bg2=$data['bg2'];
         return view('analisis.analisishorizontal')
         ->with('clases',$clases)
             ->with('cuentas',$cuentas)
@@ -150,8 +150,8 @@ class detalleahController extends Controller
             ->with('grupos',$grupos)
             ->with('infin',$infin)
             ->with('empresas',$empresas)
-            ->with('empresa1',$empresa1)
-            ->with('empresa2',$empresa2)
+            ->with('bg1',$bg1)
+            ->with('bg2',$bg2)
         ;
     }
 }
