@@ -128,51 +128,7 @@
 
 <div class="col-md-10 mx-auto bg-white p-3">
 
-<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
-		  @foreach($esre as $r)
-            <option>Ingreso = {{ $r-> ingreso }}</option>
-            <option> Costo de Ventas = {{ $r-> costodeventa }}</option>
-            <option> Gastos de Operacion = {{ $r-> gastodeoperacion }} </option>
-            <option> Gastos de Administracion = {{ $r-> gastodeadministracion }} </option>
-            <option> Gastos de Venta y Mercadeo = {{ $r-> gastodeventaymercadeo }} </option>
-            <option> Gastos Financieros = {{ $r-> gastofinancieros }} </option>
-            <option> Otros ingresos = {{ $r-> otrosingresos }} </option>
-            <option> Reserva legal = {{ $r-> reservalegal }} </option>
-            <option> Impuestos sobre la renta = {{ $r-> impuestosobrelarenta }} </option>
 
-		  @endforeach
-		  </select>
-	<div class="col-sm" id="rl">
-		
-		<h5>Razon de liquidez corriente</h5>
-		<label>Activo circulante: </label>
-		@foreach($ratios2 as $r)
-				<input type="text"  value="{{ $r->valor }}" id="activoCorriente-razonLiquidez2" class="col-md-4">	
-		@endforeach
-		<br>
-		<h5>Razon de liquidez corriente</h5>
-		<label>Activo circulante: </label>
-		@foreach($ratios3 as $r1)
-				<input type="text"  value="{{ $r1->valor }}" id="activoCorriente-razonLiquidez3" class="col-md-4">	
-		@endforeach
-		<br>
-		<div class="col-6 col-md-4">
-			<label>Resultado = </label>
-			<input type="text" id="inputTotal-razonLiquidezP" class="solo-numero">
-		</div>
-        
-
-
-	</div>
-
-
-	<br>
-	<br>
-	<select id="informe">
-		@foreach($informe as $i)
-		<option>{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>
-		@endforeach
-	</select>
 <br>
 
 	<h1 class="text-center">RATIOS</h1>
