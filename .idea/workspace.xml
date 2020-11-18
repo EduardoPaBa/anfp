@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="Detalle de ratio">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" afterDir="false" />
-    </list>
+    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,6 +129,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1kOKSDg9s8jlChS9BwIWaDqnzAM" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -161,22 +161,34 @@
       <workItem from="1605570462168" duration="2255000" />
       <workItem from="1605678866115" duration="183000" />
       <workItem from="1605679064206" duration="4716000" />
-      <workItem from="1605736785958" duration="3496000" />
+      <workItem from="1605736785958" duration="3608000" />
     </task>
+    <task id="LOCAL-00001" summary="Arreglo join RatioTestController">
+      <created>1605742161116</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605742161116</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Arreglo join RatioTestController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglo join RatioTestController" />
   </component>
   <component name="WindowStateProjectService">
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605681795822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605681795822" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1605683560657">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1605742152964">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605683560657" />
+    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605742152964" />
     <state width="1201" height="163" key="GridCell.Tab.0.bottom" timestamp="1605615053292">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -193,9 +205,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1201" height="163" key="GridCell.Tab.0.right/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605615053292" />
-    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605741128918">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1605742155971">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605741128918" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605742155971" />
+    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605742126050">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605742126050" />
   </component>
 </project>
