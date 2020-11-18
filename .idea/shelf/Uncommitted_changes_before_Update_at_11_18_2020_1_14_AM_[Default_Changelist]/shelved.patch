@@ -1,0 +1,546 @@
+Index: app/Http/Controllers/Ratios.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers;\r\n\r\nuse Illuminate\\Http\\Request;\r\nuse Illuminate\\Support\\Facades\\DB;\r\nuse Illuminate\\Support\\Facades\\Auth;\r\nclass Ratios extends Controller\r\n{\r\n    /*\r\n\r\n * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function index(Request $request)\r\n    {\r\n    \t\r\n        // --- EMPRESAS\r\n        $empresas = DB::table('empresas')->orderBy('id')\r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('empresas.id','empresas.nombre','empresas.sector')\r\n        ->where ('users.id','=', Auth::id())\r\n         ->get();\r\n\r\n          // --- INFORMEFINANCIEROS\r\n        $infin = DB::table('informefinancieros')->orderBy('nombre')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')\r\n        ->where ('users.id','=', Auth::id())\r\n         ->get();\r\n\r\n        // --- GRUPOS\r\n        $grupos = DB::table('grupos')->orderBy('codigo')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')\r\n        ->where ('users.id','=', Auth::id())\r\n         ->get();\r\n\r\n\r\n        // --- CLASES\r\n        $clases = DB::table('clases')->orderBy('codigo')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->get();\r\n\r\n        // --- ESTADO DE RESULTADOS -------------------\r\n        $esre = DB::table('estado_resultado')->orderBy('id')\r\n        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select(\r\n            'estado_resultado.*', \r\n            'estado_resultado.costodeventa as costov',\r\n            'estado_resultado.ingreso as eingreso',\r\n            'estado_resultado.gastodeoperacion as egastoO',\r\n            'estado_resultado.gastofinancieros as egastoF',\r\n            'estado_resultado.gastodeadministracion as egastoA',\r\n            'estado_resultado.gastodeventaymercadeo as egastoV',\r\n            'estado_resultado.otrosingresos as eotrosI',\r\n            'estado_resultado.reservalegal as ereserva',\r\n            'estado_resultado.impuestosobrelarenta as eimpuesto'\r\n        )\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where('estado_resultado.id','=','1')\r\n        ->where('informefinancieros.id','=','1')\r\n         ->get();\r\n\r\n         // --- ESTADO DE RESULTADOS -------------------\r\n        $esre1 = DB::table('estado_resultado')->orderBy('id')\r\n        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')\r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select(\r\n            'estado_resultado.*', \r\n            'estado_resultado.costodeventa as costov',\r\n            'estado_resultado.ingreso as eingreso',\r\n            'estado_resultado.gastodeoperacion as egastoO',\r\n            'estado_resultado.gastofinancieros as egastoF',\r\n            'estado_resultado.gastodeadministracion as egastoA',\r\n            'estado_resultado.gastodeventaymercadeo as egastoV',\r\n            'estado_resultado.otrosingresos as eotrosI',\r\n            'estado_resultado.reservalegal as ereserva',\r\n            'estado_resultado.impuestosobrelarenta as eimpuesto'\r\n        )\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where('estado_resultado.id','=','2')\r\n        ->where('informefinancieros.id','=','2')\r\n         ->get();\r\n\r\n\r\n\r\n\t\t// --- CUENTAS\r\n        $cuentas = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->join ('estado_resultado','informefinancieros.id','=','estado_resultado.informefinancieros_id')\r\n        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','28')\r\n        //->where('estado_resultado.id','=','1')\r\n        //->where ('cuentas.nombre','=','TOTAL ACTIVO')\r\n        ->get();\r\n\r\n        // --- CUENTAS\r\n        $cuentas1 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','2')\r\n        //->where ('cuentas.nombre','=','TOTAL ACTIVO')\r\n        ->get();\r\n\r\n        // --- SUB CUENTAS\r\n        $subcuentas = DB::table('sub_cuentas')->orderBy('codigo')\r\n        ->join ('cuentas','sub_cuentas.cuentas_id','=', 'cuentas.id')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('sub_cuentas.id','sub_cuentas.codigo','sub_cuentas.nombre','sub_cuentas.valor','sub_cuentas.cuentas_id')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->get();\r\n\r\n        $x = $request->input(\"informe1\");\r\n        $y = $request->input(\"informe2\");\r\n        //FILTRO PARA RATIOS\r\n        $ratios = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=',$x)\r\n        ->where ('cuentas.codigo','=','1.1')\r\n        //->where ('grupos.nombre','=','Activo')\r\n        ->get();\r\n\r\n        $ratios1 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=',$y)\r\n        ->where ('cuentas.codigo','=','1.1')\r\n        ->get();\r\n\r\n\r\n         $ratios121 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','1')\r\n        ->where ('cuentas.codigo','=','1.2')\r\n        //->where ('grupos.nombre','=','Activo')\r\n        ->get();\r\n\r\n\r\n         $ratios122 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','2')\r\n        ->where ('cuentas.codigo','=','1.2')\r\n        //->where ('grupos.nombre','=','Activo')\r\n        ->get();\r\n\r\n        $ratios2 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','1')\r\n        ->where ('cuentas.nombre','=','TOTAL ACTIVO')\r\n        ->get();\r\n\r\n        $ratios3 = DB::table('cuentas')->orderBy('codigo')\r\n        ->join ('clases','cuentas.clases_id','=', 'clases.id')\r\n        ->join ('grupos','clases.grupos_id','=', 'grupos.id')\r\n        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')\r\n        ->where ('users.id','=', Auth::id())\r\n        ->where ('informefinancieros.id','=','2')\r\n        ->where ('cuentas.nombre','=','TOTAL ACTIVO')\r\n        ->get();\r\n\r\n\r\n        $informe = DB::table('informefinancieros')->orderBy('nombre')\r\n        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') \r\n        ->join ('users','empresas.user_id','=','users.id')\r\n        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')\r\n        ->where ('users.id','=', Auth::id())\r\n         ->get();\r\n\r\n        //RETORNANDO A LA VISTA\r\n        return view('analisis.ratios')\r\n            ->with('esre',$esre)\r\n            ->with('esre1',$esre1)\r\n            ->with('clases',$clases)\r\n            ->with('cuentas',$cuentas)\r\n            ->with('cuentas1',$cuentas1)\r\n            ->with('subcuentas',$subcuentas)\r\n            ->with('grupos',$grupos)\r\n            ->with('empresas',$empresas)\r\n            ->with('infin',$infin)\r\n            ->with('ratios',$ratios)\r\n            ->with('ratios1',$ratios1)\r\n            ->with('ratios121',$ratios121)\r\n            ->with('ratios122',$ratios122)\r\n            ->with('ratios2',$ratios2)\r\n            ->with('ratios3',$ratios3)\r\n            ->with('informe',$informe);\r\n        \r\n        \r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Http/Controllers/Ratios.php	(revision 2fe3befcbc145f48f3ceb8329aee206cc08c515b)
++++ app/Http/Controllers/Ratios.php	(date 1605682558000)
+@@ -13,236 +13,236 @@
+      */
+     public function index(Request $request)
+     {
+-    	
+-        // --- EMPRESAS
+-        $empresas = DB::table('empresas')->orderBy('id')
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('empresas.id','empresas.nombre','empresas.sector')
+-        ->where ('users.id','=', Auth::id())
+-         ->get();
+-
+-          // --- INFORMEFINANCIEROS
+-        $infin = DB::table('informefinancieros')->orderBy('nombre')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+-        ->where ('users.id','=', Auth::id())
+-         ->get();
+-
+-        // --- GRUPOS
+-        $grupos = DB::table('grupos')->orderBy('codigo')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
+-        ->where ('users.id','=', Auth::id())
+-         ->get();
+-
+-
+-        // --- CLASES
+-        $clases = DB::table('clases')->orderBy('codigo')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
+-        ->where ('users.id','=', Auth::id())
+-        ->get();
+-
+-        // --- ESTADO DE RESULTADOS -------------------
+-        $esre = DB::table('estado_resultado')->orderBy('id')
+-        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select(
+-            'estado_resultado.*', 
+-            'estado_resultado.costodeventa as costov',
+-            'estado_resultado.ingreso as eingreso',
+-            'estado_resultado.gastodeoperacion as egastoO',
+-            'estado_resultado.gastofinancieros as egastoF',
+-            'estado_resultado.gastodeadministracion as egastoA',
+-            'estado_resultado.gastodeventaymercadeo as egastoV',
+-            'estado_resultado.otrosingresos as eotrosI',
+-            'estado_resultado.reservalegal as ereserva',
+-            'estado_resultado.impuestosobrelarenta as eimpuesto'
+-        )
+-        ->where ('users.id','=', Auth::id())
+-        ->where('estado_resultado.id','=','1')
+-        ->where('informefinancieros.id','=','1')
+-         ->get();
+-
+-         // --- ESTADO DE RESULTADOS -------------------
+-        $esre1 = DB::table('estado_resultado')->orderBy('id')
+-        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select(
+-            'estado_resultado.*', 
+-            'estado_resultado.costodeventa as costov',
+-            'estado_resultado.ingreso as eingreso',
+-            'estado_resultado.gastodeoperacion as egastoO',
+-            'estado_resultado.gastofinancieros as egastoF',
+-            'estado_resultado.gastodeadministracion as egastoA',
+-            'estado_resultado.gastodeventaymercadeo as egastoV',
+-            'estado_resultado.otrosingresos as eotrosI',
+-            'estado_resultado.reservalegal as ereserva',
+-            'estado_resultado.impuestosobrelarenta as eimpuesto'
+-        )
+-        ->where ('users.id','=', Auth::id())
+-        ->where('estado_resultado.id','=','2')
+-        ->where('informefinancieros.id','=','2')
+-         ->get();
+-
+-
+-
+-		// --- CUENTAS
+-        $cuentas = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->join ('estado_resultado','informefinancieros.id','=','estado_resultado.informefinancieros_id')
+-        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','28')
+-        //->where('estado_resultado.id','=','1')
+-        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+-        ->get();
+-
+-        // --- CUENTAS
+-        $cuentas1 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','2')
+-        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+-        ->get();
+-
+-        // --- SUB CUENTAS
+-        $subcuentas = DB::table('sub_cuentas')->orderBy('codigo')
+-        ->join ('cuentas','sub_cuentas.cuentas_id','=', 'cuentas.id')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('sub_cuentas.id','sub_cuentas.codigo','sub_cuentas.nombre','sub_cuentas.valor','sub_cuentas.cuentas_id')
+-        ->where ('users.id','=', Auth::id())
+-        ->get();
+-
+-        $x = $request->input("informe1");
+-        $y = $request->input("informe2");
+-        //FILTRO PARA RATIOS
+-        $ratios = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=',$x)
+-        ->where ('cuentas.codigo','=','1.1')
+-        //->where ('grupos.nombre','=','Activo')
+-        ->get();
+-
+-        $ratios1 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=',$y)
+-        ->where ('cuentas.codigo','=','1.1')
+-        ->get();
+-
+-
+-         $ratios121 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','1')
+-        ->where ('cuentas.codigo','=','1.2')
+-        //->where ('grupos.nombre','=','Activo')
+-        ->get();
+-
+-
+-         $ratios122 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','2')
+-        ->where ('cuentas.codigo','=','1.2')
+-        //->where ('grupos.nombre','=','Activo')
+-        ->get();
+-
+-        $ratios2 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','1')
+-        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
+-        ->get();
+-
+-        $ratios3 = DB::table('cuentas')->orderBy('codigo')
+-        ->join ('clases','cuentas.clases_id','=', 'clases.id')
+-        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+-        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+-        ->where ('users.id','=', Auth::id())
+-        ->where ('informefinancieros.id','=','2')
+-        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
+-        ->get();
+-
+-
+-        $informe = DB::table('informefinancieros')->orderBy('nombre')
+-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+-        ->join ('users','empresas.user_id','=','users.id')
+-        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+-        ->where ('users.id','=', Auth::id())
+-         ->get();
+-
+-        //RETORNANDO A LA VISTA
+-        return view('analisis.ratios')
+-            ->with('esre',$esre)
+-            ->with('esre1',$esre1)
+-            ->with('clases',$clases)
+-            ->with('cuentas',$cuentas)
+-            ->with('cuentas1',$cuentas1)
+-            ->with('subcuentas',$subcuentas)
+-            ->with('grupos',$grupos)
+-            ->with('empresas',$empresas)
+-            ->with('infin',$infin)
+-            ->with('ratios',$ratios)
+-            ->with('ratios1',$ratios1)
+-            ->with('ratios121',$ratios121)
+-            ->with('ratios122',$ratios122)
+-            ->with('ratios2',$ratios2)
+-            ->with('ratios3',$ratios3)
+-            ->with('informe',$informe);
+-        
+-        
++//        //dd($request);
++//        // --- EMPRESAS
++//        $empresas = DB::table('empresas')->orderBy('id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('empresas.id','empresas.nombre','empresas.sector')
++//        ->where ('users.id','=', Auth::id())
++//         ->get();
++//        dd($empresas);
++//
++//          // --- INFORMEFINANCIEROS
++//        $infin = DB::table('informefinancieros')->orderBy('nombre')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
++//        ->where ('users.id','=', Auth::id())
++//         ->get();
++//
++//        // --- GRUPOS
++//        $grupos = DB::table('grupos')->orderBy('codigo')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
++//        ->where ('users.id','=', Auth::id())
++//         ->get();
++//
++//
++//        // --- CLASES
++//        $clases = DB::table('clases')->orderBy('codigo')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
++//        ->where ('users.id','=', Auth::id())
++//        ->get();
++//
++//        // --- ESTADO DE RESULTADOS -------------------
++//        $esre = DB::table('estado_resultado')->orderBy('id')
++//        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select(
++//            'estado_resultado.*',
++//            'estado_resultado.costodeventa as costov',
++//            'estado_resultado.ingreso as eingreso',
++//            'estado_resultado.gastodeoperacion as egastoO',
++//            'estado_resultado.gastofinancieros as egastoF',
++//            'estado_resultado.gastodeadministracion as egastoA',
++//            'estado_resultado.gastodeventaymercadeo as egastoV',
++//            'estado_resultado.otrosingresos as eotrosI',
++//            'estado_resultado.reservalegal as ereserva',
++//            'estado_resultado.impuestosobrelarenta as eimpuesto'
++//        )
++//        ->where ('users.id','=', Auth::id())
++//        ->where('estado_resultado.id','=','1')
++//        ->where('informefinancieros.id','=','1')
++//         ->get();
++//
++//         // --- ESTADO DE RESULTADOS -------------------
++//        $esre1 = DB::table('estado_resultado')->orderBy('id')
++//        ->join ('informefinancieros','estado_resultado.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select(
++//            'estado_resultado.*',
++//            'estado_resultado.costodeventa as costov',
++//            'estado_resultado.ingreso as eingreso',
++//            'estado_resultado.gastodeoperacion as egastoO',
++//            'estado_resultado.gastofinancieros as egastoF',
++//            'estado_resultado.gastodeadministracion as egastoA',
++//            'estado_resultado.gastodeventaymercadeo as egastoV',
++//            'estado_resultado.otrosingresos as eotrosI',
++//            'estado_resultado.reservalegal as ereserva',
++//            'estado_resultado.impuestosobrelarenta as eimpuesto'
++//        )
++//        ->where ('users.id','=', Auth::id())
++//        ->where('estado_resultado.id','=','2')
++//        ->where('informefinancieros.id','=','2')
++//         ->get();
++//
++//
++//
++//		// --- CUENTAS
++//        $cuentas = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->join ('estado_resultado','informefinancieros.id','=','estado_resultado.informefinancieros_id')
++//        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','28')
++//        //->where('estado_resultado.id','=','1')
++//        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
++//        ->get();
++//
++//        // --- CUENTAS
++//        $cuentas1 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','2')
++//        //->where ('cuentas.nombre','=','TOTAL ACTIVO')
++//        ->get();
++//
++//        // --- SUB CUENTAS
++//        $subcuentas = DB::table('sub_cuentas')->orderBy('codigo')
++//        ->join ('cuentas','sub_cuentas.cuentas_id','=', 'cuentas.id')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('sub_cuentas.id','sub_cuentas.codigo','sub_cuentas.nombre','sub_cuentas.valor','sub_cuentas.cuentas_id')
++//        ->where ('users.id','=', Auth::id())
++//        ->get();
++////        $request = new Request();
++////        $x = $request->input("informe1");
++////        $y = $request->input("informe2");
++////        dd($x);
++//        //FILTRO PARA RATIOS
++//        $ratios = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=',$x)
++//        ->where ('cuentas.codigo','=','1.1')
++//        //->where ('grupos.nombre','=','Activo')
++//        ->get();
++//
++//        $ratios1 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=',$y)
++//        ->where ('cuentas.codigo','=','1.1')
++//        ->get();
++//
++//
++//         $ratios121 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','1')
++//        ->where ('cuentas.codigo','=','1.2')
++//        //->where ('grupos.nombre','=','Activo')
++//        ->get();
++//
++//
++//         $ratios122 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','2')
++//        ->where ('cuentas.codigo','=','1.2')
++//        //->where ('grupos.nombre','=','Activo')
++//        ->get();
++//
++//        $ratios2 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','1')
++//        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
++//        ->get();
++//
++//        $ratios3 = DB::table('cuentas')->orderBy('codigo')
++//        ->join ('clases','cuentas.clases_id','=', 'clases.id')
++//        ->join ('grupos','clases.grupos_id','=', 'grupos.id')
++//        ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
++//        ->where ('users.id','=', Auth::id())
++//        ->where ('informefinancieros.id','=','2')
++//        ->where ('cuentas.nombre','=','TOTAL ACTIVO')
++//        ->get();
++//
++//
++//        $informe = DB::table('informefinancieros')->orderBy('nombre')
++//        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
++//        ->join ('users','empresas.user_id','=','users.id')
++//        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
++//        ->where ('users.id','=', Auth::id())
++//         ->get();
++//
++//        //RETORNANDO A LA VISTA
++//        return view('analisis.ratios')
++//            ->with('esre',$esre)
++//            ->with('esre1',$esre1)
++//            ->with('clases',$clases)
++//            ->with('cuentas',$cuentas)
++//            ->with('cuentas1',$cuentas1)
++//            ->with('subcuentas',$subcuentas)
++//            ->with('grupos',$grupos)
++//            ->with('empresas',$empresas)
++//            ->with('infin',$infin)
++//            ->with('ratios',$ratios)
++//            ->with('ratios1',$ratios1)
++//            ->with('ratios121',$ratios121)
++//            ->with('ratios122',$ratios122)
++//            ->with('ratios2',$ratios2)
++//            ->with('ratios3',$ratios3)
++//            ->with('informe',$informe);
+     }
+ 
+ 
+Index: resources/views/analisis/detalleratio.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@extends('layouts.app')\r\n\r\n\r\n@section('estilo')\r\n\r\n@endsection\r\n\r\n\r\n@section('javascript')\r\n\r\n@endsection\r\n\r\n\r\n@section('content')\r\n\r\n<form method=\"POST\" action=\"{{ route('ratio.index') }}\" >\r\n@csrf\r\n<h1>DETALLE RATIO</h1>\r\n<h2>Primer Año</h2>\r\n<select class=\"\" id=\"informe1\">\r\n\t@foreach($informe as $i)\r\n\t\t<option>{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>\r\n\t@endforeach\r\n</select>\r\n<br>\r\n<br>\r\n<h2>Segundo Año</h2>\r\n<select id=\"informe2\">\r\n\t@foreach($informe as $i)\r\n\t\t<option>{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>\r\n\t@endforeach\r\n</select>\r\n\r\n<button id=\"submit\">Enviar</button>\r\n</form>\r\n\r\n@endsection\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/analisis/detalleratio.blade.php	(revision 2fe3befcbc145f48f3ceb8329aee206cc08c515b)
++++ resources/views/analisis/detalleratio.blade.php	(date 1605683074000)
+@@ -13,26 +13,26 @@
+ 
+ @section('content')
+ 
+-<form method="POST" action="{{ route('ratio.index') }}" >
+-@csrf
+-<h1>DETALLE RATIO</h1>
+-<h2>Primer Año</h2>
+-<select class="" id="informe1">
+-	@foreach($informe as $i)
+-		<option>{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>
+-	@endforeach
+-</select>
+-<br>
+-<br>
+-<h2>Segundo Año</h2>
+-<select id="informe2">
+-	@foreach($informe as $i)
+-		<option>{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>
+-	@endforeach
+-</select>
++    <form method="POST" action="{{ route('ratiosPrueba.store') }}">
++        @csrf
++        <h1>DETALLE RATIO</h1>
++        <h2>Primer Año</h2>
++        <select class="" id="informe1" name="informe1">
++            @foreach($informe as $i)
++                <option value="{{ $i->id }}">{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>
++            @endforeach
++        </select>
++        <br>
++        <br>
++        <h2>Segundo Año</h2>
++        <select id="informe2" name="informe2">
++            @foreach($informe as $i)
++                <option value="{{ $i->id }}">{{ $i->id }} - {{ $i->nombre }} - {{ $i->anio }}</option>
++            @endforeach
++        </select>
+ 
+-<button id="submit">Enviar</button>
+-</form>
++        <input type="submit" value="Enviar">
++    </form>
+ 
+ @endsection
+ 
+Index: routes/web.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nuse Illuminate\\Support\\Facades\\Route;\r\n\r\n/*\r\n|--------------------------------------------------------------------------\r\n| Web Routes\r\n|--------------------------------------------------------------------------\r\n|\r\n| Here is where you can register web routes for your application. These\r\n| routes are loaded by the RouteServiceProvider within a group which\r\n| contains the \"web\" middleware group. Now create something great!\r\n|\r\n*/\r\n/*\r\nRoute::get('/', function () {\r\n    return view('welcome');\r\n});\r\n*/\r\nRoute::get('/', function () {\r\n    return view('index');\r\n})->name('index');\r\n\r\n\r\nRoute::get('/balancegeneral',[App\\Http\\Controllers\\prueba::class,'index'])\r\n\t->name('analisis.balancegeneral');\r\nRoute::get('/estadoresultados',[App\\Http\\Controllers\\esController::class,'index'])\r\n\t->name('analisis.estadoresultados');\r\nRoute::post('/estadoresultados',[App\\Http\\Controllers\\esController::class,'store'])\r\n\t->name('estadoresultados.store');\r\n\r\nRoute::get('/analisishorizontal',[App\\Http\\Controllers\\ahController::class,'index'])\r\n\t->name('analisishorizontal.index');\r\n\r\nRoute::get('/analisisvertical',[App\\Http\\Controllers\\avController::class,'index'])\r\n\t->name('analisisvertical.index');\r\n\r\nRoute::get('/ratios',[App\\Http\\Controllers\\Ratios::class,'index'])->name('analisis.ratios');\r\nRoute::get('/detalleratio',[App\\Http\\Controllers\\DetalleRatio::class,'index'])->name('analisis.detalleratio');\r\n\r\n//-------------------SUB CUENTAS\r\n//Route::get('/subcuentas','SubCuentasController@index');\r\n\tRoute::resource('/sub_cuentas', 'App\\Http\\Controllers\\SubCuentaController');\r\n//----------------CUENTAS\r\n\tRoute::resource('/cuentas', 'App\\Http\\Controllers\\CuentaController');\r\n\r\n//-------------GRUPO\r\n\t//SE PUEDE MEJORAR ESTAS RUTAS\r\n\t/*\r\n\tRoute::get('/g/create',[App\\Http\\Controllers\\GrupoController::class,'create'])\r\n\t->name('grupos.create');\r\n\tRoute::get('/g/{grupo}/edit',[App\\Http\\Controllers\\GrupoController::class,'edit'])\r\n\t->name('grupos.edit');\r\n\tRoute::put('/g/{grupo}',[App\\Http\\Controllers\\GrupoController::class,'update'])\r\n\t->name('grupos.update');\r\n\tRoute::delete('/g/{grupo}',[App\\Http\\Controllers\\GrupoController::class,'destroy'])\r\n\t->name('grupos.destroy');\r\n\tRoute::post('/g',[App\\Http\\Controllers\\GrupoController::class,'store'])\r\n\t->name('grupos.store');\r\n\t*/\r\n\t//OPTIMIZANDO RUTAS DE CRUD\r\n\tRoute::resource('/grupos', 'App\\Http\\Controllers\\GrupoController');\r\n\r\n//---------------CLASE\r\n\tRoute::resource('/clases', 'App\\Http\\Controllers\\ClaseController');\r\n\t/*\r\n//---------------BALANCES GENERALES (SEPARADOR Y POR AÑOS)\r\n\tRoute::get('/bg/create',[App\\Http\\Controllers\\BalancegeneralController::class,'create'])\r\n\t->name('balancesgenerales.create');\r\n\tRoute::post('/bg',[App\\Http\\Controllers\\BalancegeneralController::class,'store'])\r\n\t->name('balancesgenerales.store');\r\n*/\r\n//---------------INFORMES FINANCIEROS\r\n\tRoute::resource('/informefinancieros', 'App\\Http\\Controllers\\InformefinancieroController');\r\n\r\n//---------------EMPRESA\r\n\tRoute::resource('/empresas', 'App\\Http\\Controllers\\EmpresaController');\r\n\r\n\r\n\r\nAuth::routes();\r\n\r\nRoute::get('/home', [App\\Http\\Controllers\\HomeController::class, 'index'])\r\n\t->name('home');\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- routes/web.php	(revision 2fe3befcbc145f48f3ceb8329aee206cc08c515b)
++++ routes/web.php	(date 1605682514000)
+@@ -82,3 +82,5 @@
+ 
+ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+ 	->name('home');
++
++Route::resource('/ratiosPrueba', 'App\Http\Controllers\RatioTestController');
