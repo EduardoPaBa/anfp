@@ -40,6 +40,7 @@ Route::post('/analisishorizontal',[App\Http\Controllers\detalleahController::cla
 	->name('detalleah.store');
 
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
+Route::get('/detalleratio',[App\Http\Controllers\DetalleRatio::class,'index'])->name('analisis.detalleratio');
 
 //-------------------SUB CUENTAS
 //Route::get('/subcuentas','SubCuentasController@index');

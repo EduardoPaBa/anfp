@@ -11,7 +11,7 @@ class Ratios extends Controller
 
  * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
     	
         // --- EMPRESAS
@@ -105,8 +105,8 @@ class Ratios extends Controller
         ->join ('estado_resultado','informefinancieros.id','=','estado_resultado.informefinancieros_id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
-        ->where ('informefinancieros.id','=','1')
-        ->where('estado_resultado.id','=','1')
+        ->where ('informefinancieros.id','=','28')
+        //->where('estado_resultado.id','=','1')
         //->where ('cuentas.nombre','=','TOTAL ACTIVO')
         ->get();
 
@@ -135,6 +135,8 @@ class Ratios extends Controller
         ->where ('users.id','=', Auth::id())
         ->get();
 
+        $x = $request->input("informe1");
+        $y = $request->input("informe2");
         //FILTRO PARA RATIOS
         $ratios = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
@@ -144,7 +146,7 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
         ->where ('users.id','=', Auth::id())
-        ->where ('informefinancieros.id','=','1')
+        ->where ('informefinancieros.id','=',$x)
         ->where ('cuentas.codigo','=','1.1')
         //->where ('grupos.nombre','=','Activo')
         ->get();
@@ -157,7 +159,7 @@ class Ratios extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
         ->where ('users.id','=', Auth::id())
-        ->where ('informefinancieros.id','=','2')
+        ->where ('informefinancieros.id','=',$y)
         ->where ('cuentas.codigo','=','1.1')
         ->get();
 
@@ -214,6 +216,12 @@ class Ratios extends Controller
         ->get();
 
 
+        $informe = DB::table('informefinancieros')->orderBy('nombre')
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('users','empresas.user_id','=','users.id')
+        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->where ('users.id','=', Auth::id())
+         ->get();
 
         //RETORNANDO A LA VISTA
         return view('analisis.ratios')
@@ -231,7 +239,8 @@ class Ratios extends Controller
             ->with('ratios121',$ratios121)
             ->with('ratios122',$ratios122)
             ->with('ratios2',$ratios2)
-            ->with('ratios3',$ratios3);
+            ->with('ratios3',$ratios3)
+            ->with('informe',$informe);
         
         
     }
