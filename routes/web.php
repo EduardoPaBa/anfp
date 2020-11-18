@@ -36,6 +36,7 @@ Route::get('/analisisvertical',[App\Http\Controllers\avController::class,'index'
 	->name('analisisvertical.index');
 
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
+Route::get('/detalleratio',[App\Http\Controllers\DetalleRatio::class,'index'])->name('analisis.detalleratio');
 
 //-------------------SUB CUENTAS
 //Route::get('/subcuentas','SubCuentasController@index');
