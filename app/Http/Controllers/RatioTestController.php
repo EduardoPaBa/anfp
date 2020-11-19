@@ -18,6 +18,8 @@ class RatioTestController extends Controller
         dd($request);
         $x = $request->input("informe1");
         $y = $request->input("informe2");
+        $bg1=$x;
+        $bg2=$y;
 
 // --- EMPRESAS
         $empresas = DB::table('empresas')->orderBy('id')
@@ -125,6 +127,18 @@ class RatioTestController extends Controller
             ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$y)
+            //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+            ->get();
+            // --- CUENTAS
+        $cuentasss1 = DB::table('cuentas')->orderBy('codigo')
+            ->join ('clases','cuentas.clases_id','=', 'clases.id')
+            ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+            ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+            ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
+            ->join ('users','empresas.user_id','=','users.id')
+            ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+            ->where ('users.id','=', Auth::id())
+            //->where ('informefinancieros.id','=',$y)
             //->where ('cuentas.nombre','=','TOTAL ACTIVO')
             ->get();
 
@@ -243,7 +257,10 @@ class RatioTestController extends Controller
             ->with('ratios122',$ratios122)
             ->with('ratios2',$ratios2)
             ->with('ratios3',$ratios3)
-            ->with('informe',$informe);
+            ->with('informe',$informe)
+            ->with('bg1',$bg1)
+            ->with('bg2',$bg2)
+            ->with('cuentasss1',$cuentasss1);
     }
 
     /**
@@ -264,11 +281,13 @@ class RatioTestController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
 
         //$input = Input::all();
         $x = $request->input("informe1");
         $y = $request->input("informe2");
-
+        $bg1=$x;
+        $bg2=$y;
 
 // --- EMPRESAS
         $empresas = DB::table('empresas')->orderBy('id')
@@ -374,6 +393,18 @@ class RatioTestController extends Controller
             ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$y)
+            //->where ('cuentas.nombre','=','TOTAL ACTIVO')
+            ->get();
+            // --- CUENTAS
+        $cuentasss1 = DB::table('cuentas')->orderBy('codigo')
+            ->join ('clases','cuentas.clases_id','=', 'clases.id')
+            ->join ('grupos','clases.grupos_id','=', 'grupos.id')
+            ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
+            ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
+            ->join ('users','empresas.user_id','=','users.id')
+            ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
+            ->where ('users.id','=', Auth::id())
+            //->where ('informefinancieros.id','=',$y)
             //->where ('cuentas.nombre','=','TOTAL ACTIVO')
             ->get();
 
@@ -493,7 +524,10 @@ class RatioTestController extends Controller
             ->with('ratios122',$ratios122)
             ->with('ratios2',$ratios2)
             ->with('ratios3',$ratios3)
-            ->with('informe',$informe);
+            ->with('informe',$informe)
+            ->with('bg1',$bg1)
+            ->with('bg2',$bg2)
+            ->with('cuentasss1',$cuentasss1);
     }
 
     /**

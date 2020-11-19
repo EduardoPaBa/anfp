@@ -2040,196 +2040,230 @@
 
 
 </div>
-<div class="col-md-10 mx-auto bg-white p-3">
-	<table class="table" id="tabla">
-		<thead class="bg-primary text-light">
-			<tr>
-				<th >Codigo</th>
-				<th >Nombre</th>
-				<th >Valor</th>
-				<th >Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
 
-			@foreach ($subcuentas as $sc)
-				<tr>	
-					<td>{{$sc->codigo}}</td>
-					<td>{{$sc->nombre}}</td>
-					<td>{{$sc->valor}}</td>
-					<td> </td>	
-				</tr>
-			@endforeach
-
-
-
-			@foreach ($grupos as $gr)
-			<tr>		
-				<td>{{$gr->codigo}}</td>
-				<td>{{$gr->nombre}}</td>
-				<td> </td>
-				<td> </td>
-				@foreach ($clases as $cl)
-				@php
-				$x="{{$gr->id}}";
-				$y="{{$cl->grupos_id}}";
-				@endphp
-				@if($x==$y)
-				<tr>	
-					<td>{{$cl->codigo}}</td>
-					<td>{{$cl->nombre}}</td>
-					<td> </td>
-					<td> </td>
-					@foreach ($cuentas as $cu)
-						@php
-						$x="{{$cl->id}}";
-						$y="{{$cu->clases_id}}";
-						@endphp
-						@if($x==$y)
-						<tr>	
-							<td>{{$cu->codigo}}</td>
-							<td>{{$cu->nombre}}</td>
-							<td>{{$cu->valor}}</td>
-							<td> </td>
-							@foreach ($subcuentas as $sc)
-								@php
-								$x="{{$cu->id}}";
-								$y="{{$sc->cuentas_id}}";
-								@endphp
-								@if($x==$y)
-								<tr>	
-									<td>{{$sc->codigo}}</td>
-									<td>{{$sc->nombre}}</td>
-									<td>{{$sc->valor}}</td>
-									<td> </td>	
-								</tr>
-								@endif
-							@endforeach
-						</tr>
-						@endif
-					@endforeach
-				
-				</tr>
-				@endif
-				@endforeach
-			</tr>
-			@endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			@foreach($empresas as $em)
+	@foreach($empresas as $em)
 			<?php
 				$emID="{$em->id}";
 			?>
-			<h1>--*-*- EMPRESA: {{$em->nombre}} -*-*--</h1>
-			@foreach($infin as $in)
+			
+				<?php //--------------- INICIO AÑO 1 ---------------------- ?>
 				<?php
-					$inID="{$in->id}";
-					$emFK="{$in->empresas_id}";
-				?>				
+				$inID=$bg1;
+				//$emFK=1;
+				$array=[];
+				$arrayb=[];				
+				?>	
+
+				@foreach($infin as $if)
+					<?php $ifPK="{$if->id}" ?>
+					@if($ifPK==$bg1)
+					<?php $emFK="{$if->empresas_id}" ?>
+					@endif
+				@endforeach
+
+				
+
 				@if($emFK==$emID)
-					<h2>--* BALANCE GENERAL: {{$in->nombre}} - AÑO: {{$in->anio}} *--</h2>
-						@foreach($grupos as $gr)
-							<?php
+					<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
+					
+					@foreach($infin as $infss)
+
+						<?php $r="{$infss->id}"; $idBalance=$bg1; ?>
+						
+						@if($r==$idBalance)
+						
+							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>
+							@foreach($grupos as $gr)
+								<?php
 								$grID="{$gr->id}";
 								$inFK="{$gr->informefinancieros_id}";
-							?>						
-							@if($inFK==1)
-								<h3>-GRUPO: {{$gr->nombre}}</h3>
-								<?php
+								
+								?>						
+								@if($inFK==$inID)
+									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									<?php
 									$a=0;
 									$b=0;
-								?>
-								@foreach($clases as $cl)
-									<?php
+									?>
+									@foreach($clases as $cl)
+										<?php
 										$clID="{$cl->id}";
 										$grFK="{$cl->grupos_id}";
-									?>
-									@if($grFK==$grID)
-										<h4>--CLASE: {{$cl->nombre}}</h4>
-										@foreach($cuentas as $cu)
-											<?php
+										
+										?>
+										@if($grFK==$grID)
+											<h4>--CLASE: {{$cl->nombre}}</h4>
+											@foreach($cuentas as $cu)
+												<?php
 												$cuID="{$cu->id}";
 												$clFK="{$cu->clases_id}";
-											?>											
-											@if($clFK==$clID)
-												<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}</h5>
-												<?php
+												?>											
+												@if($clFK==$clID)
+													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+														<?php
 													
 													$c="{$cu->valor}";
 													$a=$a+$c;
 													$b=$b+$c;
 													
 												?>
-												@foreach($subcuentas as $sc)
-													<?php
-														$cuFK="{$sc->cuentas_id}";
-													?>
-													@if($cuFK==$cuID)
-														<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+													@foreach($subcuentas as $sc)
 														<?php
+														$cuFK="{$sc->cuentas_id}";
+														?>
+														@if($cuFK==$cuID)
+															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<?php
 															$d="{$sc->valor}";
 															$a=$a+$d;
 															$b=$b+$d;
 														?>
-													@endif
-												@endforeach
-											@endif
-										@endforeach
-										<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
-										<input type="text" name="" id="activoCo" value="{{$b}}">
+														@endif
+													@endforeach
+
+												@endif
+											@endforeach
+											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
 										<?php
 											$b=0;
 										?>
-
-									@endif
-								@endforeach
-								<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+										@endif
+									@endforeach
+									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
 								<?php
 									$a=0;
 								?>
-							@endif
+									
+									
+								@endif
+							@endforeach
+						@endif
 					@endforeach
 				@endif
-			@endforeach
-		@endforeach
-			
+
+				<?php //--------------- FIN AÑO 1 ---------------------- ?>
+
+				<?php //--------------- INICIO AÑO 2 ---------------------- ?>
+				<?php
+				$inID=$bg2;
+				//$emFK=1;
+				$arrayd=[];
+				$arraye=[];
 				
-		</tbody>
-	</table>
-</div>
+				?>		
+
+
+				@foreach($infin as $if)
+					<?php $ifPK="{$if->id}" ?>
+					@if($ifPK==$bg2)
+					<?php $emFK="{$if->empresas_id}" ?>
+					@endif
+				@endforeach	
+
+				
 
 
 
+				@if($emFK==$emID)
+					<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
+					@foreach($infin as $infss)
+
+						<?php $r="{$infss->id}"; $idBalance=$bg2; ?>
+						
+						@if($r==$idBalance)
+
+							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>					
+							@foreach($grupos as $gr)
+								<?php
+								$grID="{$gr->id}";
+								$inFK="{$gr->informefinancieros_id}";
+								
+								?>						
+								@if($inFK==$inID)
+									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									<?php
+									$a=0;
+									$b=0;
+									?>
+									@foreach($clases as $cl)
+										<?php
+										$clID="{$cl->id}";
+										$grFK="{$cl->grupos_id}";
+										
+										?>
+										@if($grFK==$grID)
+											<h4>--CLASE: {{$cl->nombre}}</h4>
+											@foreach($cuentasss1 as $cu)
+												<?php
+												$cuID="{$cu->id}";
+												$clFK="{$cu->clases_id}";
+												?>											
+												@if($clFK==$clID)
+													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+														<?php
+													
+													$c="{$cu->valor}";
+													$a=$a+$c;
+													$b=$b+$c;
+													
+												?>
+														
+													@foreach($subcuentas as $sc)
+														<?php
+														$cuFK="{$sc->cuentas_id}";
+														
+														?>
+														@if($cuFK==$cuID)
+															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<?php
+															$d="{$sc->valor}";
+															$a=$a+$d;
+															$b=$b+$d;
+														?>
+														@endif
+													@endforeach
+
+												@endif
+											@endforeach
+											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+										<?php
+											$b=0;
+										?>
+										@endif
+									@endforeach
+									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+								<?php
+									$a=0;
+								?>
+									
+									
+								@endif
+						@endforeach
+
+						@endif
+					@endforeach
+				@endif
+				
+				<?php //--------------- FIN AÑO 2 ---------------------- ?>
+
+
+
+
+
+
+
+				
+				
+
+				
+
+
+				
+
+
+
+			
+		@endforeach
 
 
 @endsection
