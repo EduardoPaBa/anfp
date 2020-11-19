@@ -24,7 +24,9 @@
 <br>
 <br>
 <a href="{{ route('analisis.balancegeneral') }}" class="btn btn-primary mr-2">Ver Balance General</a>
+<!--
 <a href="{{ route('analisis.ratios') }}" class="btn btn-primary mr-2">Ratios</a>
+-->
 <a href="{{ route('analisis.detalleratio') }}" class="btn btn-primary mr-2">Detalle Ratios</a>
 <a href="{{ route('analisis.estadoresultados') }}" class="btn btn-primary mr-2">Estado de Resultados</a>
 <a href="{{ route('detalleah.index') }}" class="btn btn-primary mr-2">Analisis Horizontal</a>
@@ -33,6 +35,7 @@
 @endsection
 
 @section('content')
+<!--
 <h1 class="text-center mb-5">HUMILDE</h1>
 <div class="col-md-10 mx-auto bg-white p-3">
 	<table class="table" id="table">
@@ -59,7 +62,5 @@
 			</tr>
 		</tbody>
 	</table>
-</div>
-
-<a href=""><input type="text" name="codigo" id="codigo"></a>
+</div>-->
 @endsection
