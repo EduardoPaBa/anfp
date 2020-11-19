@@ -21,7 +21,7 @@ class DetalleRatio extends Controller
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
-         ->get();
+        ->get();
 
     	return view('analisis.detalleratio')
     			->with('informe',$informe);

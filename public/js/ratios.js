@@ -2,6 +2,11 @@ $(function(){
       //alert('javascript');
   $(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
+  
+  function razonPromedio(){
+    var numerador = $("#activoCorriente-razonLiquidez2").val();
+    var denominador = $("#activoCorriente-razonLiquidez3").val();
+    var total = (numerador/ ((parseFloat(numerador) + parseFloat(denominador))/2));
     
     $("#inputTotal-razonLiquidezP").val(total).toFixed(5);
     }

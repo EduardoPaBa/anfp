@@ -323,8 +323,8 @@ class RatioTestController extends Controller
                 'estado_resultado.impuestosobrelarenta as eimpuesto'
             )
             ->where ('users.id','=', Auth::id())
-            ->where('estado_resultado.id','=','1')
-            ->where('informefinancieros.id','=','1')
+            ->where('estado_resultado.informefinancieros_id','=',$x)
+            ->where('informefinancieros.id','=',$x)
             ->get();
 
         // --- ESTADO DE RESULTADOS -------------------
@@ -345,8 +345,8 @@ class RatioTestController extends Controller
                 'estado_resultado.impuestosobrelarenta as eimpuesto'
             )
             ->where ('users.id','=', Auth::id())
-            ->where('estado_resultado.id','=','2')
-            ->where('informefinancieros.id','=','2')
+            ->where('estado_resultado.informefinancieros_id','=',$y)
+            ->where('informefinancieros.id','=',$y)
             ->get();
 
 
