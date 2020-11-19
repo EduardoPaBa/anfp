@@ -220,7 +220,7 @@
 		<h5>Razon rapida o prueba acida</h5>
 		<label>Activo corriente: </label>
 		
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonRapida" class="col-md-4">	
+				<input type="text"  value="" id="activoCorriente-razonRapida" class="col-md-4">	
 				
 		<br>
 		<label>Inventario: </label>
@@ -261,7 +261,7 @@
 		<br>
 		<label>Pasivo circulante: </label>
 		
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital" class="col-md-4">	
+				<input type="text"  value="" id="pasivoCorriente-razonCapital" class="col-md-4">	
 				
 		<br>
 		<label>Activo totales: </label>
@@ -377,7 +377,7 @@
 		<br>
 		<label>Pasivo corriente: </label>
 		
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida1" class="col-md-4">	
+				<input type="text"  value="" id="pasivoCorriente-razonRapida1" class="col-md-4">	
 				
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1093,6 +1093,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonNetaP" class="col-md-4">	
         @endforeach
@@ -1128,6 +1131,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonAccion" class="col-md-4">	
         @endforeach
@@ -1159,6 +1165,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentActivo" class="col-md-4">	
         @endforeach
@@ -1187,6 +1196,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res; 
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentVentas" class="col-md-4">	
         @endforeach
@@ -1265,6 +1277,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonNetaP1" class="col-md-4">	
         @endforeach
@@ -1300,6 +1315,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonAccion1" class="col-md-4">	
         @endforeach
@@ -1331,6 +1349,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentActivo1" class="col-md-4">	
         @endforeach
@@ -1359,6 +1380,9 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
+		$impu = "{$r->eimpuesto}";
+		$res = "{$r->ereserva}";
+		$t = $t - $impu - $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="utilidadN-razonRentVentas1" class="col-md-4">	
 				@endforeach
@@ -1502,9 +1526,6 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
-		$impu = "{$r->eimpuesto}";
-		$res = "{$r->ereserva}";
-		$t = $t + $impu + $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="cobertura-razonGastosF" class="col-md-4">	
         @endforeach
@@ -1618,9 +1639,6 @@
 		$t = $t - $gas;
 		$otrosIngresos ="{$r->eotrosI}";
 		$t = $t + $otrosIngresos; 
-		$impu = "{$r->eimpuesto}";
-		$res = "{$r->ereserva}";
-		$t = $t + $impu + $res;
 		?>
 				<input type="text"  value="{{ $t }}" id="cobertura-razonGastosF1" class="col-md-4">	
         @endforeach
@@ -1673,7 +1691,7 @@
 				
 
 				@if($emFK==$emID)
-					<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
+					<!--<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>-->
 					
 					@foreach($infin as $infss)
 
@@ -1681,7 +1699,7 @@
 						
 						@if($r==$idBalance)
 						
-							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>
+							<!--<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>-->
 							@foreach($grupos as $gr)
 								<?php
 								$grID="{$gr->id}";
@@ -1689,7 +1707,7 @@
 								
 								?>						
 								@if($inFK==$inID)
-									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									<!--<h3>-GRUPO: {{$gr->nombre}}</h3>-->
 									<?php
 									$a=0;
 									$b=0;
@@ -1701,14 +1719,14 @@
 										
 										?>
 										@if($grFK==$grID)
-											<h4>--CLASE: {{$cl->nombre}}</h4>
+											<!--<h4>--CLASE: {{$cl->nombre}}</h4>-->
 											@foreach($cuentas as $cu)
 												<?php
 												$cuID="{$cu->id}";
 												$clFK="{$cu->clases_id}";
 												?>											
 												@if($clFK==$clID)
-													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+													<!--<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>-->
 														<?php
 													
 													$c="{$cu->valor}";
@@ -1721,7 +1739,7 @@
 														$cuFK="{$sc->cuentas_id}";
 														?>
 														@if($cuFK==$cuID)
-															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<!--<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>-->
 															<?php
 															$d="{$sc->valor}";
 															$a=$a+$d;
@@ -1732,38 +1750,38 @@
 
 												@endif
 											@endforeach
-											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
-											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>
+											<!--<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>-->
+											<!--<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>-->
 											@if( $cl->nombre == $valorCompCuentas1AA )
-												<input type="text" id="activosCorrientes" value="{{$b}}">
+												<input type="hidden" id="activosCorrientes" value="{{$b}}">
 											@endif
 											@if( $cl->nombre == $valorCompCuentas2A || $cl->nombre == $valorCompCuentas2AA)
-												<input type="text" id="activosCorrientesNo" value="{{$b}}">
+												<input type="hidden" id="activosCorrientesNo" value="{{$b}}">
 											@endif
-											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>
+											<!--<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>-->
 											@if( $cl->nombre == $valorCompCuentas1B || $cl->nombre == $valorCompCuentas1BB)
-												<input type="text" id="pasivosCorrientes" value="{{$b}}">
+												<input type="hidden" id="pasivosCorrientes" value="{{$b}}">
 											@endif
 											@if( $cl->nombre == $valorCompCuentas2B || $cl->nombre == $valorCompCuentas2BB)
-												<input type="text" id="pasivosCorrientesNo" value="{{$b}}">
+												<input type="hidden" id="pasivosCorrientesNo" value="{{$b}}">
 											@endif
 										<?php
 											$b=0;
 										?>
 										@endif
 									@endforeach
-									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>
+									<!--<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3>--> <br>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas1C  )
-												<input type="text" id="totalActivos" value="{{$a}}">
+												<input type="hidden" id="totalActivos" value="{{$a}}">
 											@endif
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas2C )
-												<input type="text" id="totalPasivos" value="{{$a}}">
+												<input type="hidden" id="totalPasivos" value="{{$a}}">
 											@endif
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas3C )
-												<input type="text" id="totalPatrimonio" value="{{$a}}">
+												<input type="hidden" id="totalPatrimonio" value="{{$a}}">
 											@endif
 								<?php
 									$a=0;
@@ -1800,14 +1818,14 @@
 
 
 				@if($emFK==$emID)
-					<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>
+					<!--<h1>EMPRESA: {{$em->nombre}} - SECTOR: {{$em->sector}}</h1>-->
 					@foreach($infin as $infss)
 
 						<?php $r="{$infss->id}"; $idBalance=$bg2; ?>
 						
 						@if($r==$idBalance)
 
-							<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>					
+							<!--<h2>BALANCE GENERAL: {{$infss->nombre}} - AÑO: {{$infss->anio}}</h2>			-->		
 							@foreach($grupos as $gr)
 								<?php
 								$grID="{$gr->id}";
@@ -1815,7 +1833,7 @@
 								
 								?>						
 								@if($inFK==$inID)
-									<h3>-GRUPO: {{$gr->nombre}}</h3>
+									<!--<h3>-GRUPO: {{$gr->nombre}}</h3>-->
 									<?php
 									$a=0;
 									$b=0;
@@ -1827,14 +1845,14 @@
 										
 										?>
 										@if($grFK==$grID)
-											<h4>--CLASE: {{$cl->nombre}}</h4>
+											<!--<h4>--CLASE: {{$cl->nombre}}</h4>-->
 											@foreach($cuentasss1 as $cu)
 												<?php
 												$cuID="{$cu->id}";
 												$clFK="{$cu->clases_id}";
 												?>											
 												@if($clFK==$clID)
-													<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>
+												<!--	<h5>----CUENTA: {{$cu->nombre}} --- VALOR: {{$cu->valor}}<h5>-->
 														<?php
 													
 													$c="{$cu->valor}";
@@ -1849,7 +1867,7 @@
 														
 														?>
 														@if($cuFK==$cuID)
-															<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>
+															<!--<h6>--------SUB CUENTA: {{$sc->nombre}} --- VALOR: {{$sc->valor}}</h6>-->
 															<?php
 															$d="{$sc->valor}";
 															$a=$a+$d;
@@ -1860,40 +1878,40 @@
 
 												@endif
 											@endforeach
-											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+											<!--<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>-->
 
-											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>
+											<!--<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>-->
 											@if( $cl->nombre == $valorCompCuentas1AA )
-												<input type="text" id="activosCorrientes1" value="{{$b}}">
+												<input type="hidden" id="activosCorrientes1" value="{{$b}}">
 											@endif
 											@if( $cl->nombre == $valorCompCuentas2A || $cl->nombre == $valorCompCuentas2AA)
-												<input type="text" id="activosCorrientesNo1" value="{{$b}}">
+												<input type="hidden" id="activosCorrientesNo1" value="{{$b}}">
 											@endif
-											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>
+											<!--<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>-->
 											@if( $cl->nombre == $valorCompCuentas1B || $cl->nombre == $valorCompCuentas1BB)
-												<input type="text" id="pasivosCorrientes1" value="{{$b}}">
+												<input type="hidden" id="pasivosCorrientes1" value="{{$b}}">
 											@endif
 											@if( $cl->nombre == $valorCompCuentas2B || $cl->nombre == $valorCompCuentas2BB)
-												<input type="text" id="pasivosCorrientesNo1" value="{{$b}}">
+												<input type="hidden" id="pasivosCorrientesNo1" value="{{$b}}">
 											@endif
 										<?php
 											$b=0;
 										?>
 										@endif
 									@endforeach
-									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+									<!--<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3>--> <br>
 
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas1C  )
-												<input type="text" id="totalActivos1" value="{{$a}}">
+												<input type="hidden" id="totalActivos1" value="{{$a}}">
 											@endif
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas2C )
-												<input type="text" id="totalPasivos1" value="{{$a}}">
+												<input type="hidden" id="totalPasivos1" value="{{$a}}">
 											@endif
-									<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>
+									<!--<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>-->
 											@if( $gr->nombre == $valorCompCuentas3C )
-												<input type="text" id="totalPatrimonio1" value="{{$a}}">
+												<input type="hidden" id="totalPatrimonio1" value="{{$a}}">
 											@endif
 								<?php
 									$a=0;
@@ -1908,21 +1926,6 @@
 				@endif
 				
 				<?php //--------------- FIN AÑO 2 ---------------------- ?>
-
-
-
-
-
-
-
-				
-				
-
-				
-
-
-				
-
 
 
 			
