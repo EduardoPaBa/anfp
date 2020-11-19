@@ -66,7 +66,7 @@
 	?>
 	
 	@if($valorBD == $valorCompGrupos)
-		<h1>grupo encontrado</h1>
+		
 	@endif
 
 	<?php
@@ -83,7 +83,7 @@
 	?>
 	
 	@if($valorBD == $valorCompClases)
-		<h1>clase encontrada</h1>
+		
 	@endif
 
 	<?php
@@ -100,7 +100,7 @@
 	?>
 	
 	@if($valorBD == $valorCompCuentas)
-		<h1>cuenta encontrada</h1>
+		
 	@endif
 
 	<?php

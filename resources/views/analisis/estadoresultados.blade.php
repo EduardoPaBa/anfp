@@ -15,59 +15,57 @@
 		?>
 		<h1>Empresa: {{$em->nombre}}</h1>
 		@foreach($infin as $in)
+			<?php
+				$infiID="{$in->id}";
+				$empFK="{$in->empresas_id}";
+			?>
+			@if($empID==$empFK)
 
-
-		<?php
-			$infiID="{$in->id}";
-			$empFK="{$in->empresas_id}";
-		?>
-		@if($empID==$empFK)
-
-			@foreach($esre as $er)
-				<?php
-					$erID="{$er->id}";
-					$infiFK="{$er->informefinancieros_id}";
-				?>
-				@if($infiID==$infiFK) 
-					
-					<h2>bg: {{$in->nombre}}  año: {{$in->anio}}</h2>
+				@foreach($esre as $er)
 					<?php
-					//<h1>er: {{$er->id}} </h1><br>
+						$erID="{$er->id}";
+						$infiFK="{$er->informefinancieros_id}";
+					?>
+					@if($infiID==$infiFK) 
+						
+						<h2>bg: {{$in->nombre}}  año: {{$in->anio}}</h2>
+						<?php
+						//<h1>er: {{$er->id}} </h1><br>
+						
+						
+						
+						$co="{$er->costodeventa}";
+						$in="{$er->ingreso}";
+						$t=$in-$co;
+						?>
+						<h5>Utilidad bruta: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->gastodeoperacion}";
+						$t=$co-$in;
+						?>
+						<h5>Utilidad de operación: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->otrosingresos}";
+						$t=$co+$in;
+						?>
+						<h5>Utilidad antes de impuestos y reserva legal: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->reservalegal}";
+						$xx="{$er->impuestosobrelarenta}";
+						$t=$co+$in+$xx;
+						?>
+						<h5>Utilidad neta: {{$t}}</h5>
+
+					@endif
+
+
 					
-					
-					
-					$co="{$er->costodeventa}";
-					$in="{$er->ingreso}";
-					$t=$in-$co;
-					?>
-					<h5>Utilidad bruta: {{$t}}</h5>
-					<?php
-					$co=$t;
-					$in="{$er->gastodeoperacion}";
-					$t=$co-$in;
-					?>
-					<h5>Utilidad de operación: {{$t}}</h5>
-					<?php
-					$co=$t;
-					$in="{$er->otrosingresos}";
-					$t=$co+$in;
-					?>
-					<h5>Utilidad antes de impuestos y reserva legal: {{$t}}</h5>
-					<?php
-					$co=$t;
-					$in="{$er->reservalegal}";
-					$xx="{$er->impuestosobrelarenta}";
-					$t=$co+$in+$xx;
-					?>
-					<h5>Utilidad neta: {{$t}}</h5>
 
-				@endif
-
-
-				
-
-			@endforeach
-		@endif
+				@endforeach
+			@endif
 		@endforeach
 	@endforeach
 
