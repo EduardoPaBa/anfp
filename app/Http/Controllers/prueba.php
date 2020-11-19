@@ -49,7 +49,7 @@ class prueba extends Controller
         ->get();
 
 		// --- CUENTAS
-        $cuentas = DB::table('cuentas')->orderBy('nombre')
+        $cuentas = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
