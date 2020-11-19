@@ -234,7 +234,7 @@
 						$co=$t;
 						$in="{$er->reservalegal}";
 						$xx="{$er->impuestosobrelarenta}";
-						$t=$co+$in+$xx;
+						$t=$co-$in-$xx;
 						?>
 						<h5>Utilidad neta: {{$t}}</h5>
 					</div>
