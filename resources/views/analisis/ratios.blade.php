@@ -27,13 +27,32 @@
 	$valorCompCuentas="{pasivo}";
 	$valorCompCuentas1="{TOTAL ACTIVOS CORRIENTES}";
 	$valorCompCuentasA="{ACTIVOS CORRIENTES}";
+	//$valorCompCuentasB="ACTIVOS CORRIENTES";
+	//$valorCompCuentas1B="ACTIVOS NO CORRIENTES";
 
 	$valorCompCuentas2="{TOTAL PASIVOS CORRIENTES}";
-	$valorCompCuentas2A="{PASIVOS CORRIENTES}";
+	//$valorCompCuentas2A="{PASIVOS CORRIENTES}";
 	$valorCompCuentas3="{Inventarios}";
 
 	$valorCompCuentas4="{TOTAL ACTIVO}";
 	$valorCompCuentas4A="{Total de los activos}";
+	$valorCompCuentas4B="ACTIVO";
+
+	$valorCompCuentas1A="TOTAL ACTIVOS CORRIENTES";
+	$valorCompCuentas1AA="ACTIVOS CORRIENTES";
+	$valorCompCuentas2A="TOTAL ACTIVOS NO CORRIENTES";
+	$valorCompCuentas2AA="ACTIVOS NO CORRIENTES";
+
+	$valorCompCuentas1B="TOTAL PASIVOS CORRIENTES";
+	$valorCompCuentas1BB="PASIVOS CORRIENTES";
+	$valorCompCuentas2B="TOTAL PASIVOS NO CORRIENTES";
+	$valorCompCuentas2BB="PASIVOS NO CORRIENTES";
+
+	$valorCompCuentas1C="ACTIVO";
+	$valorCompCuentas2C="PASIVO";
+	$valorCompCuentas3C="PATRIMONIO";
+
+
 	
 	$valorCompCuentas5="{Cuentas por Cobrar}";
 	$valorCompCuentas6="{Utilidad Bruta}";
@@ -142,40 +161,14 @@
 		
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas1 || $valorBD == $valorCompCuentasA)
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonLiquidez" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="activoCorriente-razonLiquidez" class="col-md-4">	
+		
 		<br>
 		<label>Pasivo circulante: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
+		
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonLiquidez" class="solo-numero">
@@ -206,22 +199,9 @@
 		  </select>
 		<br>
 		<label>Pasivo corriente: </label>
-			@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonEfectivo" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+			
+				<input type="text"  value="" id="pasivoCorriente-razonEfectivo" class="col-md-4">	
+			
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonEfectivo" class="solo-numero">
@@ -239,22 +219,9 @@
 		
 		<h5>Razon rapida o prueba acida</h5>
 		<label>Activo corriente: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas1)
+		
 				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonRapida" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				
 		<br>
 		<label>Inventario: </label>
 		@foreach($cuentas as $cu)
@@ -265,7 +232,7 @@
 				?>
 				
 				@if($valorBD == $valorCompCuentas3)
-				<input type="text"  value="{{ $cu->valor }}" id="inventario-razonRapida" class="col-md-4">	
+				<input type="text"  value="{{ $cu->valor}}" id="inventario-razonRapida" class="col-md-4">	
 				@endif
 
 				<?php
@@ -275,22 +242,9 @@
 			@endforeach
 		<br>
 		<label>Pasivo corriente: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="pasivoCorriente-razonRapida" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonRapida" class="solo-numero">
@@ -301,58 +255,18 @@
 		
 		<h5>Razon de capital</h5>
 		<label>Activo corriente: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoCorriente-razonCapital" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas1)
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonCapital" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Pasivo circulante: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
+		
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				
 		<br>
 		<label>Activo totales: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonCapital" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="activoTotal-razonCapital" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonCapital" class="solo-numero">
@@ -381,40 +295,14 @@
 		
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoCorriente-razonLiquidez1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas1 || $valorBD == $valorCompCuentasA)
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonLiquidez1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Pasivo circulante: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="pasivoCorriente-razonLiquidez1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonLiquidez1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonLiquidez1" class="solo-numero">
@@ -445,22 +333,9 @@
 		  </select>
 		<br>
 		<label>Pasivo corriente: </label>
-			@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonEfectivo1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+			
+				<input type="text"  value="" id="pasivoCorriente-razonEfectivo1" class="col-md-4">	
+			
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonEfectivo1" class="solo-numero">
@@ -478,22 +353,9 @@
 		
 		<h5>Razon rapida o prueba acida</h5>
 		<label>Activo corriente: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoCorriente-razonRapida1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas1)
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonRapida1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Inventario: </label>
 		@foreach($cuentas1 as $cu)
@@ -514,22 +376,9 @@
 			@endforeach
 		<br>
 		<label>Pasivo corriente: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
+		
 				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonRapida1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonRapida1" class="solo-numero">
@@ -540,58 +389,19 @@
 		
 		<h5>Razon de capital</h5>
 		<label>Activo corriente: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoCorriente-razonCapital1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas1)
-				<input type="text"  value="{{ $cu->valor }}" id="activoCorriente-razonCapital1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Pasivo circulante: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="pasivoCorriente-razonCapital1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas2 || $valorBD == $valorCompCuentas2A)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoCorriente-razonCapital1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<label>Activo totales: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoTotal-razonCapital1" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonCapital1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonCapital1" class="solo-numero">
@@ -836,22 +646,9 @@
         @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
+		
+				<input type="text"  value="" id="activoTotal-razonIndiceA" class="col-md-4">	
 				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -868,22 +665,7 @@
         @endforeach
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas13)
-				<input type="text"  value="{{ $cu->valor }}" id="activoFijoNeto-razonActivoF" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoFijoNeto-razonActivoF" class="col-md-4">	
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1191,22 +973,9 @@
         @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonIndiceA1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="activoTotal-razonIndiceA1" class="col-md-4">	
+		
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1223,22 +992,7 @@
         @endforeach
 		<br>
 		<label>Activo Fijo Neto Promedio: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas13)
-				<input type="text"  value="{{ $cu->valor }}" id="activoFijoNeto-razonActivoF1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoFijoNeto-razonActivoF1" class="col-md-4">	
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1410,22 +1164,9 @@
         @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="activoTotal-razonRentActivo" class="col-md-4">	
+		
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1595,22 +1336,9 @@
         @endforeach
 		<br>
 		<label>Activo Total Promedio: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonRentActivo1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="activoTotal-razonRentActivo1" class="col-md-4">	
+		
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1696,40 +1424,12 @@
 		
 		<h5>Grado de Endeudamiento</h5>
 		<label>Pasivo Total: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas10)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudo" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+		
+				<input type="text"  value="" id="pasivoTotal-razonEndeudo" class="col-md-4">	
+		
 		<br>
 		<label>Activo Total: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonEndeudo" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoTotal-razonEndeudo" class="col-md-4">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonGradoEnd" class="solo-numero">
@@ -1754,22 +1454,7 @@
 		  <input type="hidden" id="input_numerador_patrimonio_razonPropiedad">
 		<br>
 		<label>Activo Total: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonPropiedad" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoTotal-razonPropiedad" class="col-md-4">	
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1786,22 +1471,7 @@
 		
 		<h5>Razon de Endeudamiento Patrimonial</h5>
 		<label>Pasivo Total: </label>
-		@foreach($cuentas as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas10)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudoPatr" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr">
@@ -1872,40 +1542,10 @@
 		
 		<h5>Grado de Endeudamiento</h5>
 		<label>Pasivo Total: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas10)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudo1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="pasivoTotal-razonEndeudo1" class="col-md-4">	
 		<br>
 		<label>Activo Total: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonEndeudo1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoTotal-razonEndeudo1" class="col-md-4">	
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonGradoEnd1" class="solo-numero">
@@ -1930,22 +1570,7 @@
 		  <input type="hidden" id="input_numerador_patrimonio_razonPropiedad1">
 		<br>
 		<label>Activo Total: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas4 || $valorBD == $valorCompCuentas4A)
-				<input type="text"  value="{{ $cu->valor }}" id="activoTotal-razonPropiedad1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
+				<input type="text"  value="" id="activoTotal-razonPropiedad1" class="col-md-4">	
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1962,23 +1587,7 @@
 		
 		<h5>Razon de Endeudamiento Patrimonial</h5>
 		<label>Pasivo Total: </label>
-		@foreach($cuentas1 as $cu)
-
-				<?php
-				$arregloBD="{{$cu->nombre}}";
-				$valorBD=$arregloBD;
-				?>
-				
-				@if($valorBD == $valorCompCuentas10)
-				<input type="text"  value="{{ $cu->valor }}" id="pasivoTotal-razonEndeudoPatr1" class="col-md-4">	
-				@endif
-
-				<?php
-				$valorBD="";
-				?>
-
-			@endforeach
-		
+				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr1" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr1">
@@ -2124,12 +1733,38 @@
 												@endif
 											@endforeach
 											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>
+											@if( $cl->nombre == $valorCompCuentas1AA )
+												<input type="text" id="activosCorrientes" value="{{$b}}">
+											@endif
+											@if( $cl->nombre == $valorCompCuentas2A || $cl->nombre == $valorCompCuentas2AA)
+												<input type="text" id="activosCorrientesNo" value="{{$b}}">
+											@endif
+											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>
+											@if( $cl->nombre == $valorCompCuentas1B || $cl->nombre == $valorCompCuentas1BB)
+												<input type="text" id="pasivosCorrientes" value="{{$b}}">
+											@endif
+											@if( $cl->nombre == $valorCompCuentas2B || $cl->nombre == $valorCompCuentas2BB)
+												<input type="text" id="pasivosCorrientesNo" value="{{$b}}">
+											@endif
 										<?php
 											$b=0;
 										?>
 										@endif
 									@endforeach
 									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas1C  )
+												<input type="text" id="totalActivos" value="{{$a}}">
+											@endif
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas2C )
+												<input type="text" id="totalPasivos" value="{{$a}}">
+											@endif
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas3C )
+												<input type="text" id="totalPatrimonio" value="{{$a}}">
+											@endif
 								<?php
 									$a=0;
 								?>
@@ -2226,12 +1861,40 @@
 												@endif
 											@endforeach
 											<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
+
+											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1AA }}</h2>
+											@if( $cl->nombre == $valorCompCuentas1AA )
+												<input type="text" id="activosCorrientes1" value="{{$b}}">
+											@endif
+											@if( $cl->nombre == $valorCompCuentas2A || $cl->nombre == $valorCompCuentas2AA)
+												<input type="text" id="activosCorrientesNo1" value="{{$b}}">
+											@endif
+											<h2>{{ $cl->nombre }} == {{ $valorCompCuentas1BB }}</h2>
+											@if( $cl->nombre == $valorCompCuentas1B || $cl->nombre == $valorCompCuentas1BB)
+												<input type="text" id="pasivosCorrientes1" value="{{$b}}">
+											@endif
+											@if( $cl->nombre == $valorCompCuentas2B || $cl->nombre == $valorCompCuentas2BB)
+												<input type="text" id="pasivosCorrientesNo1" value="{{$b}}">
+											@endif
 										<?php
 											$b=0;
 										?>
 										@endif
 									@endforeach
 									<h3>-TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br>
+
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas1C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas1C  )
+												<input type="text" id="totalActivos1" value="{{$a}}">
+											@endif
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas2C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas2C )
+												<input type="text" id="totalPasivos1" value="{{$a}}">
+											@endif
+									<h2>{{ $gr->nombre }} {{ $valorCompCuentas3C }}</h2>
+											@if( $gr->nombre == $valorCompCuentas3C )
+												<input type="text" id="totalPatrimonio1" value="{{$a}}">
+											@endif
 								<?php
 									$a=0;
 								?>

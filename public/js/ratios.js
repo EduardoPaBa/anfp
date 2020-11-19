@@ -1,7 +1,85 @@
 $(function(){
       //alert('javascript');
-      var input = $("#activoCo").val();
-      alert(input);
+
+      //########## PRIMER ANIO #####################################
+      var claseActivo = $("#activosCorrientes").val();
+      var claseActivoNo = $("#activosCorrientesNo").val();
+      var grupoActivo = $("#totalActivos").val();
+
+      var clasePasivo = $("#pasivosCorrientes").val();
+      var clasePasivoNo = $("#pasivosCorrientesNo").val();
+      var grupoPasivo = $("#totalPasivos").val();
+
+      var clasePatrimonio = $("#totalPatrimonio").val();
+
+      $("#activoCorriente-razonLiquidez").val(claseActivo);
+      $("#pasivoCorriente-razonLiquidez").val(clasePasivo);
+
+      $("#pasivoCorriente-razonEfectivo").val(clasePasivo);
+
+      $("#activoCorriente-razonRapida").val(claseActivo);
+      $("#pasivoCorriente-razonRapida").val(clasePasivo);
+
+      $("#activoCorriente-razonCapital").val(claseActivo);
+      $("#pasivoCorriente-razonCapital").val(clasePasivo);
+      $("#activoTotal-razonCapital").val(grupoActivo);
+      $("#activoFijoNeto-razonActivoF").val(claseActivoNo);
+      
+
+      $("#activoTotal-razonIndiceA").val(grupoActivo);
+
+      $("#activoTotal-razonRentActivo").val(grupoActivo);
+
+      $("#pasivoTotal-razonEndeudo").val(grupoPasivo);
+      $("#activoTotal-razonEndeudo").val(grupoActivo);
+
+      $("#activoTotal-razonPropiedad").val(grupoActivo);
+      $("#pasivoTotal-razonEndeudoPatr").val(grupoPasivo);
+
+      
+
+      
+
+      
+
+      
+      //########## SEGUNDO ANIO #####################################
+      var claseActivo1 = $("#activosCorrientes1").val();
+      var claseActivoNo1 = $("#activosCorrientesNo1").val();
+      var grupoActivo1 = $("#totalActivos1").val();
+
+      var clasePasivo1 = $("#pasivosCorrientes1").val();
+      var clasePasivoNo1 = $("#pasivosCorrientesNo1").val();
+      var grupoPasivo1 = $("#totalPasivos1").val();
+
+      var clasePatrimonio1 = $("#totalPatrimonio1").val();
+
+      $("#activoCorriente-razonLiquidez1").val(claseActivo1);
+      $("#pasivoCorriente-razonLiquidez1").val(clasePasivo1);
+
+      $("#pasivoCorriente-razonEfectivo1").val(clasePasivo1);
+
+      $("#activoCorriente-razonRapida1").val(claseActivo1);
+      $("#pasivoCorriente-razonRapida1").val(clasePasivo1);
+
+      $("#activoCorriente-razonCapital1").val(claseActivo1);
+      $("#pasivoCorriente-razonCapital1").val(clasePasivo1);
+      $("#activoTotal-razonCapital1").val(grupoActivo1);
+      $("#activoFijoNeto-razonActivoF1").val(claseActivoNo1);
+
+      $("#activoTotal-razonIndiceA1").val(grupoActivo1);
+
+      $("#activoTotal-razonRentActivo1").val(grupoActivo1);
+
+      $("#pasivoTotal-razonEndeudo1").val(grupoPasivo1);
+      $("#activoTotal-razonEndeudo1").val(grupoActivo1);
+
+      $("#activoTotal-razonPropiedad1").val(grupoActivo1);
+      $("#pasivoTotal-razonEndeudoPatr1").val(grupoPasivo1);
+
+      
+
+      //alert(input);
 
   $(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
