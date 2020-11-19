@@ -2163,7 +2163,7 @@
 								$grID="{$gr->id}";
 								$inFK="{$gr->informefinancieros_id}";
 							?>						
-							@if($inFK==$inID)
+							@if($inFK==1)
 								<h3>-GRUPO: {{$gr->nombre}}</h3>
 								<?php
 									$a=0;
@@ -2206,7 +2206,7 @@
 											@endif
 										@endforeach
 										<h4>--TOTAL CLASE: {{$cl->nombre}}  - VALOR= {{$b}}</h4>
-										<input type="" name="" id="activoCo" value="{{$b}}">
+										<input type="text" name="" id="activoCo" value="{{$b}}">
 										<?php
 											$b=0;
 										?>

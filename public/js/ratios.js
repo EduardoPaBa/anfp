@@ -1,5 +1,8 @@
 $(function(){
       //alert('javascript');
+      var input = $("#activoCo").val();
+      alert(input);
+
   $(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
   
