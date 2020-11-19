@@ -192,6 +192,8 @@
 			<?php
 				$infiID="{$in->id}";
 				$empFK="{$in->empresas_id}";
+				$nom="{$in->nombre}";
+				$ani="{$in->anio}";
 			?>
 
 			@if($empID==$empFK)
@@ -203,7 +205,8 @@
 					?>
 					@if($infiID==$infiFK) 
 						<div class="p-3 mb-2 bg-secondary text-white">
-						<h2>BG: {{$in->nombre}}  año: {{$in->anio}}</h2>
+							
+						<h2>BG: {{$nom}}  año: {{$ani}}</h2>
 						<?php
 						//<h1>er: {{$er->id}} </h1><br>
 						
