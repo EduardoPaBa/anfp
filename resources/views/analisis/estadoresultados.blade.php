@@ -5,69 +5,10 @@
 	
 	@endsection
 	@section('content')
-	<h1 class="text-center mb-5">ESTADO DE RESULTADOS</h1>
+	
 
 
 
-	@foreach($empresas as $em)
-		<?php
-			$empID="{$em->id}";
-		?>
-		<h1>Empresa: {{$em->nombre}}</h1>
-		@foreach($infin as $in)
-			<?php
-				$infiID="{$in->id}";
-				$empFK="{$in->empresas_id}";
-			?>
-			@if($empID==$empFK)
-
-				@foreach($esre as $er)
-					<?php
-						$erID="{$er->id}";
-						$infiFK="{$er->informefinancieros_id}";
-					?>
-					@if($infiID==$infiFK) 
-						
-						<h2>bg: {{$in->nombre}}  año: {{$in->anio}}</h2>
-						<?php
-						//<h1>er: {{$er->id}} </h1><br>
-						
-						
-						
-						$co="{$er->costodeventa}";
-						$in="{$er->ingreso}";
-						$t=$in-$co;
-						?>
-						<h5>Utilidad bruta: {{$t}}</h5>
-						<?php
-						$co=$t;
-						$in="{$er->gastodeoperacion}";
-						$t=$co-$in;
-						?>
-						<h5>Utilidad de operación: {{$t}}</h5>
-						<?php
-						$co=$t;
-						$in="{$er->otrosingresos}";
-						$t=$co+$in;
-						?>
-						<h5>Utilidad antes de impuestos y reserva legal: {{$t}}</h5>
-						<?php
-						$co=$t;
-						$in="{$er->reservalegal}";
-						$xx="{$er->impuestosobrelarenta}";
-						$t=$co+$in+$xx;
-						?>
-						<h5>Utilidad neta: {{$t}}</h5>
-
-					@endif
-
-
-					
-
-				@endforeach
-			@endif
-		@endforeach
-	@endforeach
 
 
 
@@ -185,10 +126,126 @@
 	</dir>
 
 
+<div class="col-md-10 mx-auto bg-white p-3">
+	<table class="table">
+		<thead class="bg-primary text-light">
+			<tr>
+				<th scole="col">id</th>
+				<th scole="col">ingreso</th>
+				
+				<th scole="col">costodeventa</th>
+				<th scole="col">gastodeoperacion</th>
+				<th scole="col">gastodeadministracion</th>
+				<th scole="col">gastodeventaymercadeo</th>
+				<th scole="col">gastofinancieros</th>
+				<th scole="col">otrosingresos</th>
+				<th scole="col">reservalegal</th>
+				<th scole="col">impuestosobrelarenta</th>
+				<th scole="col">BG</th>
+				<th scole="col">acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach( $esre as $er )
+			<tr>
+				<td>{{$er->id}}</td>
+				<td>{{$er->ingreso}}</td>
+				<td>{{$er->costodeventa}}</td>
+
+				<td>{{$er->gastodeoperacion}}</td>
+				<td>{{$er->gastodeadministracion}}</td>
+				<td>{{$er->gastodeventaymercadeo}}</td>
+				<td>{{$er->gastofinancieros}}</td>
+				<td>{{$er->otrosingresos}}</td>
+				<td>{{$er->reservalegal}}</td>
+				<td>{{$er->impuestosobrelarenta}}</td>
+
+				
+				@foreach($infin as $if)
+					@if($if->id == $er->informefinancieros_id)
+					<td>{{$if->nombre}} - {{$if->anio}}</td>
+					@endif
+
+				@endforeach
 
 
+				<td>
+					efu
+				</td>
+			</tr> 
+			@endforeach
+		</tbody>
+	</table>
+</div>
 
 
+<h1 class="text-center mb-5">ESTADO DE RESULTADOS</h1>
+
+
+<div class="p-3 mb-2 bg-dark text-white">
+	@foreach($empresas as $em)
+		<?php
+			$empID="{$em->id}";
+		?>
+		<h1>Empresa: {{$em->nombre}}</h1>
+		@foreach($infin as $in)
+			<?php
+				$infiID="{$in->id}";
+				$empFK="{$in->empresas_id}";
+			?>
+
+			@if($empID==$empFK)
+
+				@foreach($esre as $er)
+					<?php
+						$erID="{$er->id}";
+						$infiFK="{$er->informefinancieros_id}";
+					?>
+					@if($infiID==$infiFK) 
+						<div class="p-3 mb-2 bg-secondary text-white">
+						<h2>BG: {{$in->nombre}}  año: {{$in->anio}}</h2>
+						<?php
+						//<h1>er: {{$er->id}} </h1><br>
+						
+						
+						
+						$co="{$er->costodeventa}";
+						$in="{$er->ingreso}";
+						$t=$in-$co;
+						?>
+						<div class="p-3 mb-2 bg-primary text-white">
+						<h5>Utilidad bruta: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->gastodeoperacion}";
+						$t=$co-$in;
+						?>
+						<h5>Utilidad de operación: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->otrosingresos}";
+						$t=$co+$in;
+						?>
+						<h5>Utilidad antes de impuestos y reserva legal: {{$t}}</h5>
+						<?php
+						$co=$t;
+						$in="{$er->reservalegal}";
+						$xx="{$er->impuestosobrelarenta}";
+						$t=$co+$in+$xx;
+						?>
+						<h5>Utilidad neta: {{$t}}</h5>
+					</div>
+					</div>
+					@endif
+
+
+					
+
+				@endforeach
+			@endif
+		@endforeach
+	@endforeach
+</div>
 
 
 	@endsection
