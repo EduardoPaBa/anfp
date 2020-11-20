@@ -4,9 +4,12 @@
 	<link href="{{ asset('css/seleccion.css') }}" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" />
+	<!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endsection
 
 @section('javascript')
+
 	<script src="{{ asset('js/seleccion.js') }}"></script>
 	<script src="{{ asset('js/ratios.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -145,7 +148,7 @@
 
 @endforeach
 
-<div class="col-md-10 mx-auto bg-white p-3">
+<div class="col-md-10 mx-auto p-3">
 
 
 <br>
@@ -161,14 +164,10 @@
 		
 		<h5>Razon de liquidez corriente</h5>
 		<label>Activo circulante: </label>
-		
 				<input type="text"  value="" id="activoCorriente-razonLiquidez" class="col-md-4">	
-		
 		<br>
 		<label>Pasivo circulante: </label>
-		
 				<input type="text"  value="" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
-		
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonLiquidez" class="solo-numero">
@@ -1226,7 +1225,7 @@
         @endforeach
 		<br>
 		<label>Inversion: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion">
+		<select data-live-search="true" class="selectpicker col-md-6" name="" id="id_numerador_inv_razonInversion">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
@@ -1404,7 +1403,7 @@
         @endforeach
 		<br>
 		<label>Inversion: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion1">
+		<select data-live-search="true" class="selectpicker col-md-6" name="" id="id_numerador_inv_razonInversion1">
 		  @foreach($ratios1 as $r)
             <option data-tokens="" data-precio="" value="">
             	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
