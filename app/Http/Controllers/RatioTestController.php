@@ -428,11 +428,11 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$request->input('informe1'))
             //->where ('cuentas.codigo','=','1.1')
-            //->where ('grupos.nombre','=','Activo')
+            ->where ('grupos.nombre','=','Activo')
             ->get();
 
         $ratios1 = DB::table('cuentas')->orderBy('codigo')
@@ -441,10 +441,11 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre','grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$request->input('informe2'))
             //->where ('cuentas.codigo','=','1.1')
+            ->where ('grupos.nombre','=','Activo')
             ->get();
 
 
@@ -454,11 +455,11 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$x)
-            ->where ('cuentas.codigo','=','1.2')
             //->where ('grupos.nombre','=','Activo')
+            //->where ('cuentas.codigo','=','1.2')
             ->get();
 
 
@@ -468,10 +469,10 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$y)
-            ->where ('cuentas.codigo','=','1.2')
+            //->where ('cuentas.codigo','=','1.2')
             //->where ('grupos.nombre','=','Activo')
             ->get();
 
@@ -481,10 +482,11 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$x)
-            ->where ('cuentas.nombre','=','TOTAL ACTIVO')
+            ->where ('grupos.nombre','=','Activo')
+            ->orWhere ('grupos.nombre','=','Pasivo')
             ->get();
 
         $ratios3 = DB::table('cuentas')->orderBy('codigo')
@@ -493,10 +495,11 @@ class RatioTestController extends Controller
             ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
             ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
             ->join ('users','empresas.user_id','=','users.id')
-            ->select('cuentas.*','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre')
+            ->select('cuentas.*','cuentas.codigo as ccodigo','cuentas.nombre as rnombre','cuentas.valor as rcuentas', 'informefinancieros.nombre as inombre', 'grupos.nombre as gnombre', 'clases.nombre as cnombre')
             ->where ('users.id','=', Auth::id())
             ->where ('informefinancieros.id','=',$y)
-            ->where ('cuentas.nombre','=','TOTAL ACTIVO')
+            ->where ('grupos.nombre','=','Activo')
+            ->orWhere ('grupos.nombre','=','Pasivo')
             ->get();
 
 

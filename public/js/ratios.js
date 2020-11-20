@@ -10,7 +10,7 @@ $(function(){
       var clasePasivoNo = $("#pasivosCorrientesNo").val();
       var grupoPasivo = $("#totalPasivos").val();
 
-      var clasePatrimonio = $("#totalPatrimonio").val();
+      var grupoPatrimonio = $("#totalPatrimonio").val();
 
       $("#activoCorriente-razonLiquidez").val(claseActivo);
       $("#pasivoCorriente-razonLiquidez").val(clasePasivo);
@@ -25,7 +25,6 @@ $(function(){
       $("#activoTotal-razonCapital").val(grupoActivo);
       $("#activoFijoNeto-razonActivoF").val(claseActivoNo);
       
-
       $("#activoTotal-razonIndiceA").val(grupoActivo);
 
       $("#activoTotal-razonRentActivo").val(grupoActivo);
@@ -36,10 +35,17 @@ $(function(){
       $("#activoTotal-razonPropiedad").val(grupoActivo);
       $("#pasivoTotal-razonEndeudoPatr").val(grupoPasivo);
 
-      
+      $("#input_numerador_patrimonio_razonPropiedad").val(grupoPatrimonio);
+      $("#input_numerador_patrimonioP_razonNetaP").val(grupoPatrimonio);
 
+      $("#input_pasivoTotal_razonEndeudoPatr").val(grupoPasivo);
+      $("#input_patrimonio_razonEndeudoPatr").val(grupoPatrimonio);
       
-
+      var pasivo = $("#input_pasivoTotal_razonEndeudoPatr").val();
+      var patrimonio = $("#input_patrimonio_razonEndeudoPatr").val();
+      var grupoPasivoPatrimonio = (parseFloat(pasivo) + parseFloat(patrimonio)).toFixed(5);
+      
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(grupoPasivoPatrimonio);
       
 
       
@@ -52,7 +58,7 @@ $(function(){
       var clasePasivoNo1 = $("#pasivosCorrientesNo1").val();
       var grupoPasivo1 = $("#totalPasivos1").val();
 
-      var clasePatrimonio1 = $("#totalPatrimonio1").val();
+      var grupoPatrimonio1 = $("#totalPatrimonio1").val();
 
       $("#activoCorriente-razonLiquidez1").val(claseActivo1);
       $("#pasivoCorriente-razonLiquidez1").val(clasePasivo1);
@@ -76,8 +82,18 @@ $(function(){
 
       $("#activoTotal-razonPropiedad1").val(grupoActivo1);
       $("#pasivoTotal-razonEndeudoPatr1").val(grupoPasivo1);
+      $("#input_numerador_patrimonio_razonPropiedad1").val(grupoPatrimonio1);
+      //$("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPatrimonio1);
+      $("#input_numerador_patrimonioP_razonNetaP1").val(grupoPatrimonio1);
 
+      $("#input_pasivoTotal_razonEndeudoPatr1").val(grupoPasivo1);
+      $("#input_patrimonio_razonEndeudoPatr1").val(grupoPatrimonio1);
       
+      var pasivo1 = $("#input_pasivoTotal_razonEndeudoPatr1").val();
+      var patrimonio1 = $("#input_patrimonio_razonEndeudoPatr1").val();
+      var grupoPasivoPatrimonio1 = (parseFloat(pasivo1) + parseFloat(patrimonio1)).toFixed(5);
+      
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPasivoPatrimonio1);
 
       //alert(input);
 
@@ -542,6 +558,7 @@ $(document).on('click',"#resultados-razonRentabilidad",function(){
 
 
 function razonNetaPatr(){
+  /*
     var numerador12 = 0;
     $("#input_numerador_patrimonioP_razonNetaP").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -554,8 +571,9 @@ function razonNetaPatr(){
     var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonioP_razonNetaP").val(numeros12);
-  });
+  });*/
 
+    var numerador12 = $("#input_numerador_patrimonioP_razonNetaP").val();
     var denominador12 = $("#utilidadN-razonNetaP").val();
   
     var total12 = (denominador12/ numerador12).toFixed(5);
@@ -616,10 +634,10 @@ function razonRentVentas(){
 function razonInversion(){
     
    
-    var denominador12 = 0;
+    var denominador1 = 0;
     $("#input_numerador_inv_razonInversion").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
-        denominador12 += eval($(this).val());
+        denominador1 += eval($(this).val());
         }
       }
     );
@@ -631,11 +649,11 @@ function razonInversion(){
     $("#input_numerador_inv_razonInversion").val(numeros12);
   });
 
-    var numerador12 = $("#id_numerador_ing_razonInversion").val();
+    var numerador1 = $("#id_numerador_ing_razonInversion").val();
   
-    var total12 = ((numerador12 - denominador12)/ denominador12).toFixed(5);
+    var total1 = ((numerador1 - denominador1)/ denominador1).toFixed(5);
 
-    $("#inputTotal-razonInversion").val(total12);    
+    $("#inputTotal-razonInversion").val(total1);
 
 }
 
@@ -667,6 +685,7 @@ $(document).on('click',"#resultados-razonRentabilidad1",function(){
 
 
 function razonNetaPatr1(){
+  /*
     var numerador12 = 0;
     $("#input_numerador_patrimonioP_razonNetaP1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -680,21 +699,9 @@ function razonNetaPatr1(){
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonioP_razonNetaP1").val(numeros12);
   });
-
-    var numerador2 = 0;
-    $("#input_numerador_patrimonioP_razonNetaP").each(function(index, value) {
-        if ( $.isNumeric( $(this).val() ) ){
-        numerador2 += eval($(this).val());
-        }
-      }
-    );
-
-    $("#id_numerador_patrimonioP_razonNetaP").change(function() {
-    var texto2 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
-    var numeros2 = texto2.replace(/[^0-9.]/g, '');
-    $("#input_numerador_patrimonioP_razonNetaP").val(numeros2);
-  });
-
+  */
+    var numerador2 = $("#input_numerador_patrimonioP_razonNetaP").val();
+    var numerador12 = $("#input_numerador_patrimonioP_razonNetaP1").val();
     var denominador12 = $("#utilidadN-razonNetaP1").val();
   
     var total12 = (denominador12/ ((parseFloat(numerador12) + parseFloat(numerador2))/2)).toFixed(5);
@@ -788,19 +795,12 @@ var btn2 = document.querySelector('#resultados-razonRentabilidad1');
     btn2.addEventListener('click',razonRentVentas1, false);
     btn2.addEventListener('click',razonInversion1, false);
 
-
-
-
-
 //###############################################
  // $("body").on("click", "#resultados_razonEfectivo", function() {
   
   //});
 
-  
-
 });
-
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
@@ -818,7 +818,7 @@ function razonGradoEnd(){
 }
 
 function razonPropiedad(){
-    
+/*    
     var numerador1 = 0;
     $("#input_numerador_patrimonio_razonPropiedad").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -832,6 +832,8 @@ function razonPropiedad(){
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonio_razonPropiedad").val(numeros12);
   });
+  */
+    var numerador1 = $("#input_numerador_patrimonio_razonPropiedad").val();
     var denominador1 = $("#activoTotal-razonPropiedad").val();
   
     var total1 = (numerador1 / denominador1).toFixed(5);
@@ -841,7 +843,7 @@ function razonPropiedad(){
 }
 
 function razonEndeudoPatr(){
-    
+    /*
     var numerador1 = 0;
     $("#input_numerador_patrimonioTotal_razonEndeudoPatr").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -854,7 +856,8 @@ function razonEndeudoPatr(){
     var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(numeros12);
-  });
+  });*/
+    var numerador1 = $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val();
     var denominador1 = $("#pasivoTotal-razonEndeudoPatr").val();
   
     var total1 = (denominador1 / numerador1).toFixed(5);
@@ -900,7 +903,7 @@ function razonGradoEnd1(){
 }
 
 function razonPropiedad1(){
-    
+    /*
     var numerador1 = 0;
     $("#input_numerador_patrimonio_razonPropiedad1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -914,6 +917,8 @@ function razonPropiedad1(){
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonio_razonPropiedad1").val(numeros12);
   });
+  */
+    var numerador1 = $("#input_numerador_patrimonio_razonPropiedad1").val();
     var denominador1 = $("#activoTotal-razonPropiedad1").val();
   
     var total1 = (numerador1 / denominador1).toFixed(5);
@@ -923,7 +928,7 @@ function razonPropiedad1(){
 }
 
 function razonEndeudoPatr1(){
-    
+    /*
     var numerador1 = 0;
     $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
@@ -936,7 +941,8 @@ function razonEndeudoPatr1(){
     var texto12 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros12 = texto12.replace(/[^0-9.]/g, '');
     $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(numeros12);
-  });
+  });*/
+    var numerador1 = $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val();
     var denominador1 = $("#pasivoTotal-razonEndeudoPatr1").val();
   
     var total1 = (denominador1 / numerador1).toFixed(5);

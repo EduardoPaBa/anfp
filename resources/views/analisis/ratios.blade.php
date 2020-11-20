@@ -70,7 +70,7 @@
 
 
 
-	$valorCompSubCuentas="{grande patas}";
+	$valorCompSubCuentas="{}";
 	$totalPasivo=0;
 	$totalActivo=0;
 	$y=0;
@@ -184,16 +184,16 @@
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r-> gnombre }} - {{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+      			{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
 		<br>
 		<label>Valores de corto plazo: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_valorCortoPlazo">
-		  @foreach($ratios as $r)
+		  @foreach($ratios2 as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
@@ -277,7 +277,7 @@
 	<br>
 	<br>
 	<div class="text-center" id="boton-razonLiquidez">
-		<input type="button" id="resultados-razonLiquidez" value="Calcular" 
+		<input class="btn btn-primary" type="button" id="resultados-razonLiquidez" value="Calcular" 
 				onclick="razonLiquidez();" 
 				onclick="razonCapital();"
 				onclick="razonEfectivo();"
@@ -318,16 +318,16 @@
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_efectivo1">
 		  @foreach($ratios1 as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
 		<br>
 		<label>Valores de corto plazo: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_valorCortoPlazo1">
-		  @foreach($ratios1 as $r)
+		  @foreach($ratios3 as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
@@ -412,7 +412,7 @@
 	<br>
 	<br>
 	<div class="text-center" id="boton-razonLiquidez1">
-		<input type="button" id="resultados-razonLiquidez1" value="Calcular" 
+		<input class="btn btn-primary" type="button" id="resultados-razonLiquidez1" value="Calcular" 
 				onclick="razonLiquidez1();" 
 				onclick="razonCapital1();"
 				onclick="razonEfectivo1();"
@@ -732,7 +732,9 @@
 	</div>
 	
 	<div class="text-center" id="boton-razonActividad">
-		<input type="button" id="resultados-razonActividad" value="Calcular" 
+		<br>
+		<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonActividad" value="Calcular" 
 				onclick="razonInventario();"
 				onclick="razonDiasInventario();"
 				onclick="razonCxC();"
@@ -1060,7 +1062,9 @@
 	</div>
 	
 	<div class="text-center" id="boton-razonActividad1">
-		<input type="button" id="resultados-razonActividad1" value="Calcular" 
+		<br>
+		<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonActividad1" value="Calcular" 
 				onclick="razonInventario1();"
 				onclick="razonDiasInventario1();"
 				onclick="razonCxC1();"
@@ -1101,14 +1105,7 @@
         @endforeach
 		<br>
 		<label>Patrimonio Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioP_razonNetaP">
-		  @foreach($ratios121 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonioP_razonNetaP">
+		  <input type="text" id="input_numerador_patrimonioP_razonNetaP">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonNetaPatr" class="solo-numero">
@@ -1232,7 +1229,7 @@
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion">
 		  @foreach($ratios as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
@@ -1246,7 +1243,9 @@
 	</div>
 
 	<div class="text-center" id="boton-razonRentabilidad">
-		<input type="button" id="resultados-razonRentabilidad" value="Calcular" 
+		<br>
+		<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonRentabilidad" value="Calcular" 
 				onclick="razonNetaPatr();"
 				onclick="razonAccion();"
 				onclick="razonActivoTotal();"
@@ -1285,14 +1284,7 @@
         @endforeach
 		<br>
 		<label>Patrimonio Promedio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioP_razonNetaP1">
-		  @foreach($ratios122 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonioP_razonNetaP1">
+		  <input type="text" id="input_numerador_patrimonioP_razonNetaP1">
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
 			<input type="text" id="inputTotal-razonNetaPatr1" class="solo-numero">
@@ -1408,14 +1400,14 @@
 		<h5>Rentabilidad sobre Inversion</h5>
 		<label>Ingresos: </label>
 		@foreach($esre1 as $r)
-		<input  name="" id="id_numerador_ing_razonInversion" value="{{ $r -> eingreso }}">
+		<input  name="" id="id_numerador_ing_razonInversion1" value="{{ $r -> eingreso }}">
         @endforeach
 		<br>
 		<label>Inversion: </label>
 		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_inv_razonInversion1">
 		  @foreach($ratios1 as $r)
             <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
+            	{{ $r-> gnombre }} - {{ $r->cnombre }} - Cuenta: {{ $r -> rnombre }} = {{ $r -> rcuentas }}
             </option>
 		  @endforeach
 		  </select>
@@ -1429,7 +1421,9 @@
 	</div>
 
 	<div class="text-center" id="boton-razonRentabilidad1">
-		<input type="button" id="resultados-razonRentabilidad1" value="Calcular" 
+		<br>
+		<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonRentabilidad1" value="Calcular" 
 				onclick="razonNetaPatr1();"
 				onclick="razonAccion1();"
 				onclick="razonActivoTotal1();"
@@ -1468,14 +1462,7 @@
 		
 		<h5>Grado de Propiedad</h5>
 		<label>Patrimonio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonio_razonPropiedad">
-		  @foreach($ratios121 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonio_razonPropiedad">
+		  <input type="text" id="input_numerador_patrimonio_razonPropiedad">
 		<br>
 		<label>Activo Total: </label>
 				<input type="text"  value="" id="activoTotal-razonPropiedad" class="col-md-4">	
@@ -1498,14 +1485,9 @@
 				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr">
-		  @foreach($ratios121 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonioTotal_razonEndeudoPatr">
+		  <input type="hidden" id="input_pasivoTotal_razonEndeudoPatr">
+		  <input type="hidden" id="input_patrimonio_razonEndeudoPatr">
+		  <input type="text" id="input_numerador_patrimonioTotal_razonEndeudoPatr">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1545,7 +1527,9 @@
 
 	<br>
 <div class="text-center" id="boton-razonEndeudamiento">
-		<input type="button" id="resultados-razonGradoEnd" value="Calcular" 
+	<br>
+	<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonGradoEnd" value="Calcular" 
 				onclick="razonGradoEnd();"
 				onclick="razonPropiedad();"
 				onclick="razonEndeudoPatr();"
@@ -1581,14 +1565,7 @@
 		
 		<h5>Grado de Propiedad</h5>
 		<label>Patrimonio: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonio_razonPropiedad1">
-		  @foreach($ratios122 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonio_razonPropiedad1">
+		  <input type="text" id="input_numerador_patrimonio_razonPropiedad1">
 		<br>
 		<label>Activo Total: </label>
 				<input type="text"  value="" id="activoTotal-razonPropiedad1" class="col-md-4">	
@@ -1611,14 +1588,9 @@
 				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr1" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
-		<select data-live-search="true" class="selectpicker col-md-8" name="" id="id_numerador_patrimonioTotal_razonEndeudoPatr1">
-		  @foreach($ratios122 as $r)
-            <option data-tokens="" data-precio="" value="">
-            	{{ $r -> rnombre }} = {{ $r -> rcuentas }} , {{ $r -> inombre}}
-            </option>
-		  @endforeach
-		  </select>
-		  <input type="hidden" id="input_numerador_patrimonioTotal_razonEndeudoPatr1">
+		  <input type="hidden" id="input_pasivoTotal_razonEndeudoPatr1">
+		  <input type="hidden" id="input_patrimonio_razonEndeudoPatr1">
+		  <input type="text" id="input_numerador_patrimonioTotal_razonEndeudoPatr1">
 		<br>
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
@@ -1658,7 +1630,9 @@
 
 	<br>
 <div class="text-center" id="boton-razonEndeudamiento1">
-		<input type="button" id="resultados-razonGradoEnd1" value="Calcular" 
+	<br>
+	<br>
+		<input class="btn btn-primary" type="button" id="resultados-razonGradoEnd1" value="Calcular" 
 				onclick="razonGradoEnd1();"
 				onclick="razonPropiedad1();"
 				onclick="razonEndeudoPatr1();"
