@@ -153,7 +153,7 @@
 	<h1 class="text-center">RATIOS</h1>
 <!-- ######################## RATIOS DE LIQUIDEZ ############################-->
 	<br>
-	<u><h2>Razones de Liquidez</h2></u>
+	<u><h2>Razones de Liquidez - Primer año</h2></u>
 
 	<div class="row">
 
@@ -287,7 +287,7 @@
 <br>
 
 <br>
-	<u><h2>Razones de Liquidez</h2></u>
+	<u><h2>Razones de Liquidez - Segundo año</h2></u>
 
 	<div class="row">
 
@@ -422,7 +422,7 @@
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad 1</h2></u>
+	<u><h2>Razones de Actividad - Primer año</h2></u>
 
 	<div class="row">
 
@@ -751,7 +751,7 @@
 
 	<!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad 2</h2></u>
+	<u><h2>Razones de Actividad - Segundo año</h2></u>
 
 	<div class="row">
 
@@ -1080,7 +1080,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad</h2></u>
+	<u><h2>Razones de Rentabilidad - Primer año</h2></u>
 
 	<div class="row">
 
@@ -1259,7 +1259,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad</h2></u>
+	<u><h2>Razones de Rentabilidad - Segundo año</h2></u>
 
 	<div class="row">
 
@@ -1434,7 +1434,7 @@
 
 	<br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento</h2></u>
+	<u><h2>Razones de Endeudamiento - Primer año</h2></u>
 
 	<div class="row">
 
@@ -1485,8 +1485,6 @@
 				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
-		  <input type="hidden" id="input_pasivoTotal_razonEndeudoPatr">
-		  <input type="hidden" id="input_patrimonio_razonEndeudoPatr">
 		  <input type="text" id="input_numerador_patrimonioTotal_razonEndeudoPatr">
 		<br>
 		<div class="col-6 col-md-4">
@@ -1539,7 +1537,7 @@
 
 <br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento</h2></u>
+	<u><h2>Razones de Endeudamiento - Segundo año</h2></u>
 
 	<div class="row">
 
@@ -1588,8 +1586,6 @@
 				<input type="text"  value="" id="pasivoTotal-razonEndeudoPatr1" class="col-md-4">	
 		<br>
 		<label>Patrimonio Total: </label>
-		  <input type="hidden" id="input_pasivoTotal_razonEndeudoPatr1">
-		  <input type="hidden" id="input_patrimonio_razonEndeudoPatr1">
 		  <input type="text" id="input_numerador_patrimonioTotal_razonEndeudoPatr1">
 		<br>
 		<div class="col-6 col-md-4">

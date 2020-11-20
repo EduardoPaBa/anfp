@@ -38,17 +38,18 @@ $(function(){
       $("#input_numerador_patrimonio_razonPropiedad").val(grupoPatrimonio);
       $("#input_numerador_patrimonioP_razonNetaP").val(grupoPatrimonio);
 
-      $("#input_pasivoTotal_razonEndeudoPatr").val(grupoPasivo);
+      /*$("#input_pasivoTotal_razonEndeudoPatr").val(grupoPasivo);
       $("#input_patrimonio_razonEndeudoPatr").val(grupoPatrimonio);
       
       var pasivo = $("#input_pasivoTotal_razonEndeudoPatr").val();
       var patrimonio = $("#input_patrimonio_razonEndeudoPatr").val();
       var grupoPasivoPatrimonio = (parseFloat(pasivo) + parseFloat(patrimonio)).toFixed(5);
       
-      $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(grupoPasivoPatrimonio);
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(grupoPasivoPatrimonio);*/
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr").val(grupoPatrimonio);
       
 
-      
+
       //########## SEGUNDO ANIO #####################################
       var claseActivo1 = $("#activosCorrientes1").val();
       var claseActivoNo1 = $("#activosCorrientesNo1").val();
@@ -86,14 +87,15 @@ $(function(){
       //$("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPatrimonio1);
       $("#input_numerador_patrimonioP_razonNetaP1").val(grupoPatrimonio1);
 
-      $("#input_pasivoTotal_razonEndeudoPatr1").val(grupoPasivo1);
+      /*$("#input_pasivoTotal_razonEndeudoPatr1").val(grupoPasivo1);
       $("#input_patrimonio_razonEndeudoPatr1").val(grupoPatrimonio1);
       
       var pasivo1 = $("#input_pasivoTotal_razonEndeudoPatr1").val();
       var patrimonio1 = $("#input_patrimonio_razonEndeudoPatr1").val();
       var grupoPasivoPatrimonio1 = (parseFloat(pasivo1) + parseFloat(patrimonio1)).toFixed(5);
       
-      $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPasivoPatrimonio1);
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPasivoPatrimonio1);*/
+      $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPatrimonio1);
 
       //alert(input);
 
