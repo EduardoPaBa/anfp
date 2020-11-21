@@ -5,6 +5,11 @@
 	@section('content')
 	<h1 class="text-center mb-5">BALANCE GENERAL</h1>
 	<div class="p-3 mb-2 bg-dark text-white">
+		<?php
+								
+			$tactivo=0;
+			$tpasipatri=0;
+		?>
 		@foreach($empresas as $em)
 			<?php
 				$emID="{$em->id}";
@@ -29,6 +34,7 @@
 								<?php
 									$a=0;
 									$b=0;
+									
 								?>
 								@foreach($clases as $cl)
 									<?php
@@ -77,13 +83,37 @@
 								
 								@endforeach
 								<h3>TOTAL GRUPO: {{$gr->nombre}} - VALOR= {{$a}}</h3> <br> <br>
+								@if($gr->nombre=="Activo" ||$gr->nombre=="ACTIVO"||$gr->nombre=="activo")
+								
+									<?php
+										$tactivo= $tactivo + $a;
+									?>
+								@endif
+								@if($gr->nombre=="Pasivo" ||$gr->nombre=="PASIVO"||$gr->nombre=="pasivo" || $gr->nombre=="Patrimonio" ||$gr->nombre=="PATRIMONIO"||$gr->nombre=="patrimonio")
+								
+									<?php
+										$tpasipatri= $tpasipatri + $a;
+									?>
+								@endif
+								
 								<?php
 									$a=0;
 								?>
 								</div>
+
 							@endif
+
 						
 					@endforeach
+					<div class="p-3 mb-2 bg-warning text-dark">
+					<h3>TOTAL ACTIVO= {{$tactivo}}</h3>
+					<h3>TOTAL PASIVO + PATRIMONIO= {{$tpasipatri}}</h3>
+					<?php
+						$tactivo=0;
+						$tpasipatri=0;
+					?>
+					</div>
+
 				@endif
 			@endforeach
 		@endforeach
