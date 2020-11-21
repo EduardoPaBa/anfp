@@ -29,7 +29,7 @@ class prueba extends Controller
          ->get();
 
     	// --- GRUPOS
-        $grupos = DB::table('grupos')->orderBy('nombre')
+        $grupos = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
         ->join ('users','empresas.user_id','=','users.id')

@@ -11,7 +11,7 @@
 @section('javascript')
 
 	<script src="{{ asset('js/seleccion.js') }}"></script>
-	<script src="{{ asset('js/ratios.js') }}"></script>
+	<script src="{{ asset('js/ratiosconclu.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
@@ -170,7 +170,7 @@
 				<input type="text"  value="" id="pasivoCorriente-razonLiquidez" class="col-md-4">	
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal-razonLiquidez" class="solo-numero">
+			<input type="text" id="inputTotal-razonLiquidez" name="RL1" class="solo-numero">
 		</div>
         
 	</div>
@@ -304,7 +304,7 @@
 				
 		<div class="col-6 col-md-4">
 			<label>Resultado = </label>
-			<input type="text" id="inputTotal-razonLiquidez1" class="solo-numero">
+			<input type="text" id="inputTotal-razonLiquidez1" name="RL2" class="solo-numero">
 		</div>
         
 	</div>
@@ -410,6 +410,16 @@
 	</div>
 	<br>
 	<br>
+	<div><input id="ttrl" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttre" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrr" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrc" input type="text"  value=""  class="col-md-4"></div>
+	
+	
+	
+	
+
+
 	<div class="text-center" id="boton-razonLiquidez1">
 		<input class="btn btn-primary" type="button" id="resultados-razonLiquidez1" value="Calcular" 
 				onclick="razonLiquidez1();" 
@@ -417,7 +427,14 @@
 				onclick="razonEfectivo1();"
 				onclick="razonRapida1();"
 				onclick="razonPromedio1();">
+		<input class="btn btn-primary" type="button" id="concuRLiq" value="Conclusión" 
+				onclick="totalRL();"
+				onclick="totalRE();" 
+				onclick="totalRR();"
+				onclick="totalRC();"
+				>
 	</div>
+
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
@@ -1059,6 +1076,18 @@
         
 	</div>
 	</div>
+	<div><input id="ttrin" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttdin" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrrcc" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrmc" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrcp" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttpmp" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrat" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttraf" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttmb" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttmo" input type="text"  value=""  class="col-md-4"></div>
+
+
 	
 	<div class="text-center" id="boton-razonActividad1">
 		<br>
@@ -1074,6 +1103,19 @@
 				onclick="razonActivosF1();"
 				onclick="razonMargenB1();"
 				onclick="razonMargenO1();">
+		<input class="btn btn-primary" type="button" id="concuRAct" value="Conclusión" 
+				onclick="totalIN();"
+				onclick="totalDIN();" 
+				onclick="totalRRCC();"
+				onclick="totalRMC();"
+				onclick="totalRCP();"
+				onclick="totalPMP();"
+				onclick="totalRAT();"
+				onclick="totalRAF();"
+				onclick="totalMB();"
+				onclick="totalMO();"
+				
+				>
 	</div>
 
 	<br>
@@ -1419,6 +1461,14 @@
         
 	</div>
 
+
+	<div><input id="ttnp" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttra" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrda" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrv" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrsi" input type="text"  value=""  class="col-md-4"></div>
+
+
 	<div class="text-center" id="boton-razonRentabilidad1">
 		<br>
 		<br>
@@ -1428,6 +1478,12 @@
 				onclick="razonActivoTotal1();"
 				onclick="razonRentVentas1();"
 				onclick="razonInversion1();">
+		<input class="btn btn-primary" type="button" id="concuRRen" value="Conclusión" 
+				onclick="totalNP();"
+				onclick="totalRA();" 
+				onclick="totalRDA();" 
+				onclick="totalRSI();" 
+				>
 	</div>
 
 
@@ -1624,14 +1680,32 @@
 	</div>
 
 	<br>
-<div class="text-center" id="boton-razonEndeudamiento1">
+	<div><input id="ttge" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttgp" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttrep" input type="text"  value=""  class="col-md-4"></div>
+	<div><input id="ttcgf" input type="text"  value=""  class="col-md-4"></div>
+	
+
+	<div class="text-center" id="boton-razonEndeudamiento1">
 	<br>
 	<br>
+
+	
+
+
 		<input class="btn btn-primary" type="button" id="resultados-razonGradoEnd1" value="Calcular" 
 				onclick="razonGradoEnd1();"
 				onclick="razonPropiedad1();"
 				onclick="razonEndeudoPatr1();"
 				onclick="razonEndeudoGastosF1();">
+		<input class="btn btn-primary" type="button" id="concuREdn" value="Conclusión" 
+				onclick="totalGE();"
+				onclick="totalGP();"
+				onclick="totalREP();" 
+				onclick="totalCGF();" 
+		>
+
+
 	</div>
 
 
