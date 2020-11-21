@@ -42,6 +42,10 @@ Route::post('/analisishorizontal',[App\Http\Controllers\detalleahController::cla
 Route::get('/ratios',[App\Http\Controllers\Ratios::class,'index'])->name('analisis.ratios');
 Route::get('/detalleratio',[App\Http\Controllers\DetalleRatio::class,'index'])->name('analisis.detalleratio');
 
+Route::get('/detalleConclusion',[App\Http\Controllers\detalleConclusion::class,'index'])->name('analisis.detalleConclusion');
+
+Route::resource('/ratiosConclusion', 'App\Http\Controllers\RatiosConclusionController');
+
 //-------------------SUB CUENTAS
 //Route::get('/subcuentas','SubCuentasController@index');
 	Route::resource('/sub_cuentas', 'App\Http\Controllers\SubCuentaController');

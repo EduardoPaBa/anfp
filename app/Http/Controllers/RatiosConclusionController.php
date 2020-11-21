@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ratiosConclusion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class RatioTestController extends Controller
+class RatiosConclusionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -241,7 +242,7 @@ class RatioTestController extends Controller
             ->get();
 
         //RETORNANDO A LA VISTA
-        return view('analisis.ratios')
+        return view('analisis.ratiosConclusion')
             ->with('esre',$esre)
             ->with('esre1',$esre1)
             ->with('clases',$clases)
@@ -511,7 +512,7 @@ class RatioTestController extends Controller
             ->get();
 
         //RETORNANDO A LA VISTA
-        return view('analisis.ratios')
+        return view('analisis.ratiosConclusion')
             ->with('esre',$esre)
             ->with('esre1',$esre1)
             ->with('clases',$clases)
@@ -536,10 +537,10 @@ class RatioTestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  \App\Models\ratiosConclusion  $ratiosConclusion
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ratiosConclusion $ratiosConclusion)
     {
         //
     }
@@ -547,10 +548,10 @@ class RatioTestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  \App\Models\ratiosConclusion  $ratiosConclusion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ratiosConclusion $ratiosConclusion)
     {
         //
     }
@@ -558,11 +559,11 @@ class RatioTestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\ratiosConclusion  $ratiosConclusion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ratiosConclusion $ratiosConclusion)
     {
         //
     }
@@ -570,10 +571,10 @@ class RatioTestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  \App\Models\ratiosConclusion  $ratiosConclusion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ratiosConclusion $ratiosConclusion)
     {
         //
     }

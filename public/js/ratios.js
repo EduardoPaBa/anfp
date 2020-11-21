@@ -205,14 +205,14 @@ var btn = document.querySelector('#resultados-razonLiquidez');
 //########################################################
 function razonEfectivo1(){
     var numerador1 = 0;
-    $(".input_numerador_efectivo1").each(function(index, value) {
+    $("#input_numerador_efectivo1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
         numerador1 += eval($(this).val());
         }
       }
     );
   var denominador1 = 0;
-    $(".input_numerador_valorCortoPlazo1").each(function(index, value) {
+    $("#input_numerador_valorCortoPlazo1").each(function(index, value) {
         if ( $.isNumeric( $(this).val() ) ){
         denominador1 += eval($(this).val());
         }
@@ -229,13 +229,13 @@ function razonEfectivo1(){
     $("#id_numerador_efectivo1").change(function() {
     var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros = texto.replace(/[^0-9.]/g, '');
-    $(".input_numerador_efectivo1").val(numeros);
+    $("#input_numerador_efectivo1").val(numeros);
   });
 
   $("#id_numerador_valorCortoPlazo1").change(function() {
     var texto1 = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
     var numeros1 = texto1.replace(/[^0-9.]/g, '');
-    $(".input_numerador_valorCortoPlazo1").val(numeros1);
+    $("#input_numerador_valorCortoPlazo1").val(numeros1);
   });
 
 }
