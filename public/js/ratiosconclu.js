@@ -98,7 +98,9 @@ $(function(){
       $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPatrimonio1);
 
       //alert(input);
-
+      var buenale=", tu empresa esta bien";
+      var malale=", tu empresa necesita ajuste financiero";
+      var zero="primero debe de presionar el boton calcular";
   $(document).on('click',"#concuRLiq",function(){
       var vcRL=1;
     function totalRL(){
@@ -109,13 +111,13 @@ $(function(){
       //alert(totalls);
       if (totalls<vcRL ) {
         //alert("efe bru");
-        $("#ttrl").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrl").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrl").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrl").val(zero).toFixed(5);
       }
       else{
-        $("#ttrl").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrl").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalRE(){
@@ -126,13 +128,13 @@ $(function(){
       //alert(totalls);
       if (totalls<vcRL ) {
         //alert("efe bru");
-        $("#ttre").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttre").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttre").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttre").val(zero).toFixed(5);
       }
       else{
-        $("#ttre").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttre").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalRR(){
@@ -143,13 +145,13 @@ $(function(){
      // alert(totalls);
      if (totalls<vcRL ) {
         //alert("efe bru");
-        $("#ttrr").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrr").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrr").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrr").val(zero).toFixed(5);
       }
       else{
-        $("#ttrr").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrr").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalRC(){
@@ -160,13 +162,13 @@ $(function(){
       //alert(totalls);
       if (totalls<vcRL ) {
         //alert("efe bru");
-        $("#ttrc").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrc").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrc").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrc").val(zero).toFixed(5);
       }
       else{
-        $("#ttrc").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrc").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     //inputTotal-razonCapital1
@@ -191,13 +193,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA ) {
         //alert("efe bru");
-        $("#ttrin").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrin").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrin").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrin").val(zero).toFixed(5);
       }
       else{
-        $("#ttrin").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrin").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     //inputTotal-razonDiasInventario1
@@ -209,13 +211,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA ) {
         //alert("efe bru");
-        $("#ttdin").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttdin").val("el ratio promedio es: "+totalls+malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttdin").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttdin").val(zero).toFixed(5);
       }
       else{
-        $("#ttdin").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttdin").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
      function totalRRCC(){
@@ -226,13 +228,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA  ) {
         //alert("efe bru");
-        $("#ttrrcc").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrrcc").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrrcc").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrrcc").val(zero).toFixed(5);
       }
       else{
-        $("#ttrrcc").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrrcc").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalRMC(){
@@ -243,13 +245,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA ) {
         //alert("efe bru");
-        $("#ttrmc").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrmc").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrmc").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrmc").val(zero).toFixed(5);
       }
       else{
-        $("#ttrmc").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrmc").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     //inputTotal-razonCxP
@@ -261,13 +263,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA ) {
         //alert("efe bru");
-        $("#ttrcp").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrcp").val("el ratio promedio es: "+totalls+malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrcp").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrcp").val(zero).toFixed(5);
       }
       else{
-        $("#ttrcp").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrcp").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     //inputTotal-razonMedioP
@@ -279,13 +281,13 @@ $(document).on('click',"#concuRAct",function(){
       //alert(totalls);
       if (totalls<vcRA ) {
         //alert("efe bru");
-        $("#ttpmp").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttpmp").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttpmp").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttpmp").val(zero).toFixed(5);
       }
       else{
-        $("#ttpmp").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttpmp").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -300,13 +302,13 @@ function totalRAT(){
       //alert(totalls);
       if (totalls<vcRA  ) {
         //alert("efe bru");
-        $("#ttrat").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrat").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrat").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrat").val(zero).toFixed(5);
       }
       else{
-        $("#ttrat").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrat").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -319,13 +321,13 @@ function totalRAF(){
       //alert(totalls);
       if (totalls<vcRA  ) {
         //alert("efe bru");
-        $("#ttraf").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttraf").val("el ratio promedio es: "+totalls+malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttraf").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttraf").val(zero).toFixed(5);
       }
       else{
-        $("#ttraf").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttraf").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     //inputTotal-razonMargenB
@@ -337,13 +339,13 @@ function totalRAF(){
       //alert(totalls);
       if (totalls<vcRA  ) {
         //alert("efe bru");
-        $("#ttmb").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttmb").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttmb").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttmb").val(zero).toFixed(5);
       }
       else{
-        $("#ttmb").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttmb").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -356,13 +358,13 @@ function totalRAF(){
       //alert(totalls);
       if (totalls<vcRA  ) {
         //alert("efe bru");
-        $("#ttmo").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttmo").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttmo").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttmo").val(zero).toFixed(5);
       }
       else{
-        $("#ttmo").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttmo").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -391,13 +393,13 @@ $(document).on('click',"#concuRRen",function(){
       //alert(totalls);
       if (totalls<vcREN ) {
         //alert("efe bru");
-        $("#ttnp").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttnp").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttnp").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttnp").val(zero).toFixed(5);
       }
       else{
-        $("#ttnp").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttnp").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -410,13 +412,13 @@ $(document).on('click',"#concuRRen",function(){
       //alert(totalls);
       if (totalls<vcREN  ) {
         //alert("efe bru");
-        $("#ttra").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttra").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttra").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttra").val(zero).toFixed(5);
       }
       else{
-        $("#ttra").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttra").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -428,13 +430,13 @@ $(document).on('click',"#concuRRen",function(){
       //alert(totalls);
       if (totalls<vcREN ) {
         //alert("efe bru");
-        $("#ttrda").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrda").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrda").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrda").val(zero).toFixed(5);
       }
       else{
-        $("#ttrda").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrda").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
      function totalRV(){
@@ -445,13 +447,13 @@ $(document).on('click',"#concuRRen",function(){
       //alert(totalls);
       if (totalls<vcREN  ) {
         //alert("efe bru");
-        $("#ttrv").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrv").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrv").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrv").val(zero).toFixed(5);
       }
       else{
-        $("#ttrv").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrv").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalRSI(){
@@ -462,13 +464,13 @@ $(document).on('click',"#concuRRen",function(){
       //alert(totalls);
       if (totalls<vcREN  ) {
         //alert("efe bru");
-        $("#ttrsi").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrsi").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrsi").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrsi").val(zero).toFixed(5);
       }
       else{
-        $("#ttrsi").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrsi").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
 
@@ -495,13 +497,13 @@ $(document).on('click',"#concuREdn",function(){
       //alert(totalls);
       if (totalls<vcRE  ) {
         //alert("efe bru");
-        $("#ttge").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttge").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttge").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttge").val(zero).toFixed(5);
       }
       else{
-        $("#ttge").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttge").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalGP(){
@@ -512,13 +514,13 @@ $(document).on('click',"#concuREdn",function(){
       //alert(totalls);
       if (totalls<vcRE ) {
         //alert("efe bru");
-        $("#ttgp").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttgp").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttgp").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttgp").val(zero).toFixed(5);
       }
       else{
-        $("#ttgp").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttgp").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalREP(){
@@ -529,13 +531,13 @@ $(document).on('click',"#concuREdn",function(){
       //alert(totalls);
       if (totalls<vcRE ) {
         //alert("efe bru");
-        $("#ttrep").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttrep").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttrep").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttrep").val(zero).toFixed(5);
       }
       else{
-        $("#ttrep").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttrep").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
     }
     function totalCGF(){
@@ -545,13 +547,13 @@ $(document).on('click',"#concuREdn",function(){
       //alert(totalls);
       if (totalls<vcRE) {
         
-        $("#ttcgf").val("el ratio promedio es: "+totalls+ ", tu empresa necesita ajuste financiero").toFixed(5);
+        $("#ttcgf").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
       }
-      if(totalls==""){
-        $("#ttcgf").val("primero debe de presionar el boton calcular").toFixed(5);
+      if(isNaN(totalls)){
+        $("#ttcgf").val(zero).toFixed(5);
       }
       else{
-        $("#ttcgf").val("el ratio promedio es: "+totalls+", tu empresa esta bien").toFixed(5);
+        $("#ttcgf").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
       }
       
       //alert(totalls);
