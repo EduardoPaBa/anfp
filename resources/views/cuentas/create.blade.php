@@ -142,7 +142,7 @@
 				<td>
 					<a href="{{ route('cuentas.edit', ['cuenta'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				
-					<form action="{{ route('cuentas.destroy', ['cuenta'=>$sc->id]) }}" method="POST">
+					<form action="{{ route('cuentas.destroy', ['cuenta'=>$sc->id]) }}" method="POST" id="miFormulario">
 						@csrf
 						@method('DELETE')
 						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
@@ -153,7 +153,8 @@
 		</tbody>
 	</table>
 </div>
+@endsection
 
-
-
+@section('javascript')
+		<script src="{{ asset('js/Eliminar.js') }}"></script>
 @endsection

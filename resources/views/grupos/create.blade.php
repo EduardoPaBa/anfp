@@ -3,6 +3,9 @@
 @section('botones')
 <a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
 @endsection
+@section('javascript')
+		<script src="{{ asset('js/Eliminar.js') }}"></script>
+@endsection
 
 
 @section('content')
@@ -87,7 +90,7 @@
 				@endforeach				<td>
 					<a href="{{ route('grupos.edit', ['grupo'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				
-					<form action="{{ route('grupos.destroy', ['grupo'=>$sc->id]) }}" method="POST">
+					<form action="{{ route('grupos.destroy', ['grupo'=>$sc->id]) }}" method="POST" id="miFormulario">
 						@csrf
 						@method('DELETE')
 						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">

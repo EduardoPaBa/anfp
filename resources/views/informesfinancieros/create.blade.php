@@ -2,6 +2,9 @@
 @section('botones')
 <a href="{{ route('index') }}" class="btn btn-primary mr-2">Volver</a>
 @endsection
+@section('javascript')
+		<script src="{{ asset('js/Eliminar.js') }}"></script>
+@endsection
 @section('content')
 	<h1 class="text-center mb-5">Crear Blance General</h1>
 
@@ -87,7 +90,7 @@
 				<td>
 					<a href="{{ route('informefinancieros.edit', ['informefinanciero'=>$inf->id]) }}"class="btn btn-primary mr-2">Editar</a>
 				
-					<form action="{{ route('informefinancieros.destroy', ['informefinanciero'=>$inf->id]) }}" method="POST">
+					<form action="{{ route('informefinancieros.destroy', ['informefinanciero'=>$inf->id]) }}" method="POST" id="miFormulario">
 						@csrf
 						@method('DELETE')
 						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
