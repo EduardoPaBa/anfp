@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.all.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sweetalert/sweetalert2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/empresas/eliminarEmpresa.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/DetalleRatioFormValidation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatioTestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/analisis/detalleratio.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/analisis/detalleratio.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +172,7 @@
       <workItem from="1605736785958" duration="3608000" />
       <workItem from="1605742821768" duration="672000" />
       <workItem from="1606211944638" duration="5320000" />
-      <workItem from="1606236248178" duration="4479000" />
+      <workItem from="1606236248178" duration="5801000" />
     </task>
     <task id="LOCAL-00001" summary="Arreglo join RatioTestController">
       <created>1605742161116</created>
@@ -198,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606216767419</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Validacion de dependencias al momento de eliminar una empresa">
+      <created>1606240859948</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606240859948</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,17 +204,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Arreglo join RatioTestController" />
     <MESSAGE value="Validación en empresa, informes financieros, grupo, clase, cuenta y subcuenta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Validación en empresa, informes financieros, grupo, clase, cuenta y subcuenta" />
+    <MESSAGE value="Validacion de dependencias al momento de eliminar una empresa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validacion de dependencias al momento de eliminar una empresa" />
   </component>
   <component name="WindowStateProjectService">
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605681795822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605681795822" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1606216760313">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1606240856037">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606216760313" />
+    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606240856037" />
     <state width="1201" height="163" key="GridCell.Tab.0.bottom" timestamp="1605615053292">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -234,10 +232,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1201" height="163" key="GridCell.Tab.0.right/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605615053292" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606216771275">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606240900632">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606216771275" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606240900632" />
     <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605742126050">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
