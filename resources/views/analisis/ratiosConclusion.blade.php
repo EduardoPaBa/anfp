@@ -427,12 +427,15 @@
 				onclick="razonEfectivo1();"
 				onclick="razonRapida1();"
 				onclick="razonPromedio1();">
+		<input id="valComRL" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RLiq">
 		<input class="btn btn-primary" type="button" id="concuRLiq" value="Conclusión" 
 				onclick="totalRL();"
 				onclick="totalRE();" 
 				onclick="totalRR();"
 				onclick="totalRC();"
 				>
+
+		
 	</div>
 
 <br>
@@ -1103,6 +1106,7 @@
 				onclick="razonActivosF1();"
 				onclick="razonMargenB1();"
 				onclick="razonMargenO1();">
+		<input id="valComRA" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RAct">
 		<input class="btn btn-primary" type="button" id="concuRAct" value="Conclusión" 
 				onclick="totalIN();"
 				onclick="totalDIN();" 
@@ -1478,6 +1482,7 @@
 				onclick="razonActivoTotal1();"
 				onclick="razonRentVentas1();"
 				onclick="razonInversion1();">
+		<input id="valComRR" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RRen">
 		<input class="btn btn-primary" type="button" id="concuRRen" value="Conclusión" 
 				onclick="totalNP();"
 				onclick="totalRA();" 
@@ -1698,6 +1703,7 @@
 				onclick="razonPropiedad1();"
 				onclick="razonEndeudoPatr1();"
 				onclick="razonEndeudoGastosF1();">
+		<input id="valComRE" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo REnd">
 		<input class="btn btn-primary" type="button" id="concuREdn" value="Conclusión" 
 				onclick="totalGE();"
 				onclick="totalGP();"
