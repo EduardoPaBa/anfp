@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GrupoFormValidation;
 use App\Models\Grupo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,23 +26,23 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        
+
          $inffin = DB::table('informefinancieros')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
-        ->where ('users.id','=', Auth::id()) 
+        ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','nombre');
 
         $infi = DB::table('informefinancieros')
-         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','anio');
 
         $ifs = DB::table('informefinancieros')
-         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -52,7 +53,7 @@ class GrupoController extends Controller
 
         $grupo = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
@@ -75,7 +76,7 @@ class GrupoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GrupoFormValidation $request)
     {
         //
           $data=request();
@@ -83,26 +84,26 @@ class GrupoController extends Controller
             'codigo'=>$data['codigo'],
             'nombre'=>$data['nombre'],
             'informefinancieros_id'=>$data['bg']
-            
+
         ]);
         //$grupo = DB::table('grupos')->get();
-        
+
         $inffin = DB::table('informefinancieros')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
-        ->where ('users.id','=', Auth::id()) 
+        ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','nombre');
 
         $infi = DB::table('informefinancieros')
-         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','anio');
 
         $ifs = DB::table('informefinancieros')
-         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -113,7 +114,7 @@ class GrupoController extends Controller
 
         $grupo = DB::table('grupos')->orderBy('codigo')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
@@ -126,7 +127,7 @@ class GrupoController extends Controller
         ->with('inffin',$inffin)
         ->with('infi',$infi)
         ->with('ifs',$ifs)
-        ->with('empre',$empre);  
+        ->with('empre',$empre);
 
     }
 
@@ -165,21 +166,15 @@ class GrupoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
-     public function update(Request $request, Grupo $grupo) {
 
-        $request->validate([
-            'codigo' => 'required',
-            'nombre' => 'required',
-        ]);
-        
+     public function update(GrupoFormValidation $request, Grupo $grupo) {
         $grupo->codigo = $request->codigo;
         $grupo->nombre = $request->nombre;
         //$grupo->informefinancieros_id = $request->informefinancieros_id;
         $grupo->save();
-        //$grupo = Grupo::find($id)->update($request->all()); 
-        return redirect()->route('grupos.create', $grupo); 
-    } 
+        //$grupo = Grupo::find($id)->update($request->all());
+        return redirect()->route('grupos.create', $grupo);
+    }
 
     /**
      * Remove the specified resource from storage.

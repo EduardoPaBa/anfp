@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClaseFormValidation;
 use App\Models\Clase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,41 +27,41 @@ class ClaseController extends Controller
     public function create()
     {
         //
-        
+
         $grupo = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $gru = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
-        ->get()->pluck('id','nombre'); 
-        
+        ->get()->pluck('id','nombre');
+
         $gr = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $clase = DB::table('clases')->orderBy('codigo')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -86,7 +87,7 @@ class ClaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClaseFormValidation $request)
     {
         //
         $data=request();
@@ -94,46 +95,46 @@ class ClaseController extends Controller
             'codigo'=>$data['codigo'],
             'nombre'=>$data['nombre'],
             'grupos_id'=>$data['grupos']
-            
+
         ]);
-        //dd( $request->all() );  
-        //return view('clases.create');  
-        
+        //dd( $request->all() );
+        //return view('clases.create');
+
         $grupo = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $gru = DB::table('grupos')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
-        ->get()->pluck('id','nombre'); 
-        
+        ->get()->pluck('id','nombre');
+
         $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $clase = DB::table('clases')->orderBy('codigo')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -178,19 +179,11 @@ class ClaseController extends Controller
      * @param  \App\Models\Clase  $clase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clase $clase)
+    public function update(ClaseFormValidation $request, Clase $clase)
     {
-        //
-        $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required',
-        ]);
-
         $clase->codigo = $request->codigo;
         $clase->nombre = $request->nombre;
-
         $clase->save();
-
         return redirect()->route('clases.create',$clase);
     }
 

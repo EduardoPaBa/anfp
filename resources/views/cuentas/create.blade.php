@@ -15,11 +15,11 @@
 
 				<div class="form-group">
 					 <label for="clases">Clase a la que pertenece</label>
-					 <select 
+					 <select
 					 	name="clases"
 					 	class="form-control"
 					 	id="clases"
-					 >					 
+					 >
 					 	@foreach ($cl as $c )
 					 	@foreach ($gr as $g)
 					 	@foreach ($if as $i )
@@ -34,9 +34,9 @@
 					 	$infiFK="{$g->informefinancieros_id}";
 					 	$infiID="{$i->id}";
 					 	?>
-					 	
+
 					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
-					 	<option value="{{$c->id}}" >{{$c->codigo}} {{$c->nombre}} - balance: {{$i->nombre}} anio:{{$i->anio}}</option> 
+					 	<option value="{{$c->id}}" >{{$c->codigo}} {{$c->nombre}} - balance: {{$i->nombre}} anio:{{$i->anio}}</option>
 					 	@endif
 
 					 	@endforeach
@@ -47,34 +47,49 @@
 
 				<div class="form-group">
 					<label for="codigo">Código</label>
-					<input type="text" 
-						name="codigo" 
-						class="form-control" 
+					<input type="text"
+						name="codigo"
+                           class="form-control @error('codigo') is-invalid @enderror" value="{{ old('codigo') }}"
 						id="codigo"
 						placeholder="Código Cuenta"
 					/>
+                    @error('codigo') {{-- Error codigo de la cuenta --}}
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
 				</div>
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
-					<input type="text" 
-						name="nombre" 
-						class="form-control" 
+					<input type="text"
+						name="nombre"
+                           class="form-control @error('nombre') is-invalid @enderror" value="{{ old('nombre') }}"
 						id="nombre"
 						placeholder="Nombre Cuenta"
 					/>
+                    @error('nombre') {{-- Error nombre de la cuenta --}}
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
 				</div>
 				<div class="form-group">
 					<label for="valor">Valor</label>
-					<input type="text" 
-						name="valor" 
-						class="form-control" 
+					<input type="text"
+						name="valor"
+                           class="form-control @error('valor') is-invalid @enderror" value="{{ old('valor') }}"
 						id="valor"
 						placeholder="Valor Cuenta"
 					/>
+                    @error('valor') {{-- Error valor de la cuenta --}}
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
 				</div>
 
 				<div class="form-group">
-					<input type="submit" name="submit" class="btn btn-primary" 
+					<input type="submit" name="submit" class="btn btn-primary"
 					value="Agregar Cuenta">
 				</div>
 
@@ -100,17 +115,17 @@
 				<td>{{$sc->codigo}}</td>
 				<td>{{$sc->nombre}}</td>
 				<td>{{$sc->valor}}</td>
-				<?php 
-				$grande; 
-				$humilde; 
+				<?php
+				$grande;
+				$humilde;
 				?>
 				@foreach($cl as $ch)
-					<?php 
+					<?php
 						$grande="{{$ch->id}}";
 						$humilde="{{$sc->clases_id}}";
 					?>
 					@if( $grande == $humilde )
-						
+
 
 						@foreach ($gr as $g)
 					 	@foreach ($if as $i )
@@ -125,7 +140,7 @@
 					 	$infiFK="{$g->informefinancieros_id}";
 					 	$infiID="{$i->id}";
 					 	?>
-					 	
+
 					 	@if($grupoFK==$grupoID && $infiFK==$infiID)
 						<td>{{$ch->codigo}} {{$ch->nombre}} - balance: {{$i->nombre}} anio: {{$i->anio}}</td>
 					 	@endif
@@ -137,18 +152,18 @@
 
 					@endif
 				@endforeach
-					
+
 
 				<td>
 					<a href="{{ route('cuentas.edit', ['cuenta'=>$sc->id]) }}"class="btn btn-primary mr-2">Editar</a>
-				
+
 					<form action="{{ route('cuentas.destroy', ['cuenta'=>$sc->id]) }}" method="POST" id="miFormulario">
 						@csrf
 						@method('DELETE')
 						<input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
 					</form>
 				</td>
-			</tr> 
+			</tr>
 			@endforeach
 		</tbody>
 	</table>

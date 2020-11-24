@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="" />
+    <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ClaseFormValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/CuentaFormValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/EmpresaFormValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/GrupoFormValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/InformeFinancieroValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/SubCuentaFormValidation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CuentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CuentaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GrupoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GrupoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InformefinancieroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InformefinancieroController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubCuentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubCuentaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clases/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clases/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clases/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clases/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cuentas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cuentas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cuentas/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/empresas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/empresas/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/grupos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/grupos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/grupos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/grupos/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/informesfinancieros/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informesfinancieros/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/informesfinancieros/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informesfinancieros/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/subcuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subcuentas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/subcuentas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subcuentas/edit.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,6 +188,8 @@
       <workItem from="1605678866115" duration="183000" />
       <workItem from="1605679064206" duration="4716000" />
       <workItem from="1605736785958" duration="3608000" />
+      <workItem from="1605742821768" duration="672000" />
+      <workItem from="1606211944638" duration="4710000" />
     </task>
     <task id="LOCAL-00001" summary="Arreglo join RatioTestController">
       <created>1605742161116</created>
@@ -178,17 +206,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Arreglo join RatioTestController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglo join RatioTestController" />
+    <MESSAGE value="Validación en empresa, informes financieros, grupo, clase, cuenta y subcuenta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validación en empresa, informes financieros, grupo, clase, cuenta y subcuenta" />
   </component>
   <component name="WindowStateProjectService">
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605681795822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605681795822" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1605742152964">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1605742892549">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605742152964" />
+    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605742892549" />
     <state width="1201" height="163" key="GridCell.Tab.0.bottom" timestamp="1605615053292">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CuentaFormValidation;
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,59 +28,59 @@ class CuentaController extends Controller
     {
         //
         //DB::table('clases')->get()->pluck('id','codigo')->dd();
-        
+
         $clase = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $clas = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','nombre');
-        
+
         $cl = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $cuenta = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         return view('cuentas.create')
             ->with('clase',$clase)
             ->with('clas',$clas)
@@ -95,7 +96,7 @@ class CuentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CuentaFormValidation $request)
     {
         //
         $data=request();
@@ -105,47 +106,47 @@ class CuentaController extends Controller
             'valor'=>$data['valor'],
             'clases_id'=>$data['clases']
         ]);
-        
+
 
         $clase = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $clas = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','nombre');
-        
+
         $cl = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $cuenta = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -153,12 +154,12 @@ class CuentaController extends Controller
 
         $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         return view('cuentas.create')
             ->with('clase',$clase)
             ->with('clas',$clas)
@@ -202,21 +203,12 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta)
+    public function update(CuentaFormValidation $request, Cuenta $cuenta)
     {
-        //
-        $request->validate([
-            'codigo' => 'required',
-            'nombre' => 'required',
-            'valor' => 'required',
-        ]);
-
         $cuenta->codigo = $request->codigo;
         $cuenta->nombre = $request->nombre;
         $cuenta->valor = $request->valor;
-
         $cuenta->save();
-
         return redirect()->route('cuentas.create',$cuenta);
 
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InformeFinancieroValidation;
 use App\Models\informefinanciero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,30 +29,30 @@ class InformefinancieroController extends Controller
     {
         //
         //$if = DB::table('informefinancieros')->get();
-        
+
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $e = DB::table('empresas')
-        
+
         ->get();
-        
+
         $empresa = DB::table('empresas')
         ->join ('users','empresas.user_id','=','users.id')
         ->where ('users.id','=', Auth::id())
         ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
         ->get()->pluck('id','nombre');
-        
+
         $emp = DB::table('empresas')
         ->join ('users','empresas.user_id','=','users.id')
         ->where ('users.id','=', Auth::id())
         ->select('empresas.id','empresas.nombre','empresas.sector','empresas.user_id')
         ->get();
-        
+
         return view('informesfinancieros.create')
             ->with('if',$if)
             ->with('e',$e)
@@ -65,12 +66,12 @@ class InformefinancieroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InformeFinancieroValidation $request)
     {
         //
         $data=request();
         DB::table('informefinancieros')->insert([
-            
+
             'nombre'=>$data['nombre'],
             'anio'=>$data['anio'],
             'empresas_id'=>$data['empresas']
@@ -78,9 +79,9 @@ class InformefinancieroController extends Controller
 
 
         //$if = DB::table('informefinancieros')->get();
-        
+
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
@@ -98,10 +99,10 @@ class InformefinancieroController extends Controller
         ->get();
         return view('informesfinancieros.create')
             ->with('if',$if)
-            ->with('e',$e) 
+            ->with('e',$e)
             ->with('empresa',$empresa)
             ->with('emp',$emp);
-        
+
     }
 
     /**
@@ -135,20 +136,11 @@ class InformefinancieroController extends Controller
      * @param  \App\Models\informefinanciero  $informefinanciero
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, informefinanciero $informefinanciero)
+    public function update(InformeFinancieroValidation $request, informefinanciero $informefinanciero)
     {
-        //
-        $request->validate([
-            'nombre' => 'required',
-            'anio' => 'required',
-        ]);
-
         $informefinanciero->nombre = $request->nombre;
         $informefinanciero->anio = $request->anio;
-
         $informefinanciero->save();
-
-
         return redirect()->route('informefinancieros.create',$informefinanciero);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubCuentaFormValidation;
 use App\Models\SubCuenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,22 +29,22 @@ class SubCuentaController extends Controller
     {
         //
         //DB::table('cuentas')->get()->pluck('codigo','nombre')->dd();
-        
+
         $cuenta = DB::table('cuentas')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $cue = DB::table('cuentas')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
@@ -53,7 +54,7 @@ class SubCuentaController extends Controller
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
@@ -64,7 +65,7 @@ class SubCuentaController extends Controller
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('sub_cuentas.id','sub_cuentas.codigo','sub_cuentas.nombre','sub_cuentas.valor','sub_cuentas.cuentas_id')
         ->where ('users.id','=', Auth::id())
@@ -74,39 +75,39 @@ class SubCuentaController extends Controller
         $cl = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $cu = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
-        
-       
+
+
 
         return view('subcuentas.create')
             ->with('cuenta',$cuenta)
@@ -125,7 +126,7 @@ class SubCuentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubCuentaFormValidation $request)
     {
         //
         $data=request();
@@ -135,24 +136,24 @@ class SubCuentaController extends Controller
             'valor'=>$data['valor'],
             'cuentas_id'=>$data['cuentas']
         ]);
-        
-        
+
+
         //REDIRECCIONANDO
  $cuenta = DB::table('cuentas')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get()->pluck('id','codigo');
-        
+
         $cue = DB::table('cuentas')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
@@ -162,7 +163,7 @@ class SubCuentaController extends Controller
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
@@ -173,7 +174,7 @@ class SubCuentaController extends Controller
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('sub_cuentas.id','sub_cuentas.codigo','sub_cuentas.nombre','sub_cuentas.valor','sub_cuentas.cuentas_id')
         ->where ('users.id','=', Auth::id())
@@ -182,39 +183,39 @@ class SubCuentaController extends Controller
         $cl = DB::table('clases')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('clases.id','clases.nombre','clases.codigo','clases.grupos_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $cu = DB::table('cuentas')->orderBy('codigo')
         ->join ('clases','cuentas.clases_id','=', 'clases.id')
         ->join ('grupos','clases.grupos_id','=', 'grupos.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('cuentas.id','cuentas.codigo','cuentas.nombre','cuentas.valor','cuentas.clases_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
         $if = DB::table('informefinancieros')->orderBy('id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
         ->where ('users.id','=', Auth::id())
         ->get();
-        
+
         $gr = DB::table('grupos')->orderBy('informefinancieros.id')
         ->join ('informefinancieros','grupos.informefinancieros_id','=', 'informefinancieros.id')
-        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id') 
+        ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
         ->select('grupos.id','grupos.nombre','grupos.codigo','grupos.informefinancieros_id')
         ->where ('users.id','=', Auth::id())
         ->get();
 
-        
-       
+
+
 
         return view('subcuentas.create')
             ->with('cuenta',$cuenta)
@@ -259,21 +260,12 @@ class SubCuentaController extends Controller
      * @param  \App\Models\SubCuenta  $subCuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCuenta $subCuenta)
+    public function update(SubCuentaFormValidation $request, SubCuenta $subCuenta)
     {
-        //
-        $request->validate([
-            'codigo' => 'required',
-            'nombre' => 'required',
-            'valor' => 'required',
-        ]);
-
         $subCuenta->codigo = $request->codigo;
         $subCuenta->nombre = $request->nombre;
         $subCuenta->valor = $request->valor;
-
         $subCuenta->save();
-
         return redirect()->route('sub_cuentas.create',$subCuenta);
     }
 

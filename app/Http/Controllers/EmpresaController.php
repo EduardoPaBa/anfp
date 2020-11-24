@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpresaFormValidation;
 use App\Models\empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,7 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaFormValidation $request)
     {
         //
         $data=request();
@@ -48,7 +49,7 @@ class EmpresaController extends Controller
             'nombre'=>$data['nombre'],
             'sector'=>$data['sector'],
             'user_id'=>Auth::id()
-            
+
         ]);
 
         $empresa = DB::table('empresas')->orderBy('id')
@@ -92,22 +93,15 @@ class EmpresaController extends Controller
      * @param  \App\Models\empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, empresa $empresa)
+    public function update(EmpresaFormValidation $request, empresa $empresa)
     {
-        
-        $request->validate([
-            'nombre' => 'required',
-            'sector' => 'required',
-        ]);
-        
-
         $empresa->nombre = $request->nombre;
         $empresa->sector = $request->sector;
 
         $empresa->save();
 
-        //$grupo = Grupo::find($id)->update($request->all()); 
-        return redirect()->route('empresas.create', $empresa); 
+        //$grupo = Grupo::find($id)->update($request->all());
+        return redirect()->route('empresas.create', $empresa);
         //return $empresa;
     }
 
@@ -121,6 +115,6 @@ class EmpresaController extends Controller
     {
         //
         $empresa->delete();
-        return redirect()->route('empresas.create', $empresa); 
+        return redirect()->route('empresas.create', $empresa);
     }
 }
