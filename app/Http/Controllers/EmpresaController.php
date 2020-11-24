@@ -7,6 +7,8 @@ use App\Models\empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Exception;
+
 class EmpresaController extends Controller
 {
     /**
@@ -113,8 +115,11 @@ class EmpresaController extends Controller
      */
     public function destroy(empresa $empresa)
     {
-        //
-        $empresa->delete();
-        return redirect()->route('empresas.create', $empresa);
+        try {
+            $empresa->delete();
+            return redirect()->route('empresas.create', $empresa)->with('info', 'Empresa eliminada correctamente');;
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('empresas.create', $empresa)->with('error', 'No se pudo eliminar la empresa porque posee dependencias');
+        }
     }
 }
