@@ -101,8 +101,12 @@ $(function(){
       var buenale=", tu empresa esta bien";
       var malale=", tu empresa necesita ajuste financiero";
       var zero="primero debe de presionar el boton calcular";
-  $(document).on('click',"#concuRLiq",function(){
       var vcRL=1;
+      var vcRA=1;
+      var vcREN=1;
+      var vcRE=1; 
+  $(document).on('click',"#concuRLiq",function(){
+      
     function totalRL(){
       var nume1 = $("#inputTotal-razonLiquidez").val();
       var nume2 = $("#inputTotal-razonLiquidez1").val();
@@ -184,7 +188,7 @@ $(function(){
   //
 
 $(document).on('click',"#concuRAct",function(){
-      var vcRA=1; 
+       
     function totalIN(){
       var nume1 = $("#inputTotal-razonInventario").val();
       var nume2 = $("#inputTotal-razonInventario1").val();
@@ -384,7 +388,7 @@ function totalRAF(){
 });
 
 $(document).on('click',"#concuRRen",function(){
-      var vcREN=1; 
+      
     function totalNP(){
       var nume1 = $("#inputTotal-razonNetaPatr").val();
       var nume2 = $("#inputTotal-razonNetaPatr1").val();
@@ -487,7 +491,7 @@ $(document).on('click',"#concuRRen",function(){
 
 
 $(document).on('click',"#concuREdn",function(){
-      var vcRE=1;
+      
 
     function totalGE(){
       var nume1 = $("#inputTotal-razonGradoEnd").val();

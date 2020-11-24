@@ -201,13 +201,26 @@
 					<td>{{$arraynombreA[(int)$i]}}</td>
 					 <td>{{$arrayb[(int)$i]}} </td>
 					<td>{{$arraye[(int)$i]}}</td>
+
+					<?php
+					(float)$F=0;
+					?>
+
+					
 					<?php
 					
-					(float)$F="{$arrayb[(int)$i]}";
+					$F="{$arrayb[(int)$i]}";
 					(float)$FF="{$arraye[(int)$i]}";
+					?>
+					@if($F==0)
+						$F=1;
+					@else
+					denominador:{{$F}}
+					<?php
 					$madre =($FF-$F);
 					$total = (($FF-$F)/$F)*100;
 					?>
+					@endif
 					
 					<td>{{$madre}} </td>
 					<td>{{$total}}%</td>

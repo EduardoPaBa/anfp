@@ -156,7 +156,7 @@
 	<h1 class="text-center">RATIOS</h1>
 <!-- ######################## RATIOS DE LIQUIDEZ ############################-->
 	<br>
-	<u><h2>Razones de Liquidez - Primer año</h2></u>
+	<u><h2>Razones de Liquidez - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -286,7 +286,7 @@
 <br>
 
 <br>
-	<u><h2>Razones de Liquidez - Segundo año</h2></u>
+	<u><h2>Razones de Liquidez - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -438,7 +438,7 @@
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad - Primer año</h2></u>
+	<u><h2>Razones de Actividad - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -767,7 +767,7 @@
 
 	<!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad - Segundo año</h2></u>
+	<u><h2>Razones de Actividad - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -1121,7 +1121,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad - Primer año</h2></u>
+	<u><h2>Razones de Rentabilidad - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -1300,7 +1300,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad - Segundo año</h2></u>
+	<u><h2>Razones de Rentabilidad - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -1489,7 +1489,7 @@
 
 	<br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento - Primer año</h2></u>
+	<u><h2>Razones de Endeudamiento - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -1592,7 +1592,7 @@
 
 <br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento - Segundo año</h2></u>
+	<u><h2>Razones de Endeudamiento - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
