@@ -7,7 +7,7 @@
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
-			<form method="POST" action="{{ route('estadoresultados.update',['estadoresultados',$esre]) }}" novalidate>
+			<form method="POST" action="{{ route('estadoresultados.update',$Estadoresultado) }}" novalidate>
 				@csrf
 				@method('PUT')
 				<div class="form-group">
@@ -17,7 +17,7 @@
 						class="form-control" 
 						id="ingreso"
 						placeholder="Ingresos"
-						value="{{ $esre->ingreso }}" 
+						value="{{ $Estadoresultado->ingreso }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -27,7 +27,7 @@
 						class="form-control" 
 						id="costodeventa"
 						placeholder="Costo de Venta"
-						value="{{ $esre->costodeventa }}" 
+						value="{{ $Estadoresultado->costodeventa }}" 
 					/>
 				</div>
 
@@ -38,7 +38,7 @@
 						class="form-control" 
 						id="gastodeoperacion"
 						placeholder="Gastos de operacion"
-						value="{{ $esre->gastodeoperacion }}" 
+						value="{{ $Estadoresultado->gastodeoperacion }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -48,7 +48,7 @@
 						class="form-control" 
 						id="gastodeadministracion"
 						placeholder="Gastos de administracion"
-						value="{{ $esre->gastodeadministracion }}" 
+						value="{{ $Estadoresultado->gastodeadministracion }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -58,7 +58,7 @@
 						class="form-control" 
 						id="gastodeventaymercadeo"
 						placeholder="Gastos de venta y mercadeo"
-						value="{{ $esre->gastodeventaymercadeo }}" 
+						value="{{ $Estadoresultado->gastodeventaymercadeo }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -68,7 +68,7 @@
 						class="form-control" 
 						id="gastofinancieros"
 						placeholder="Gastos financieros"
-						value="{{ $esre->gastofinancieros }}" 
+						value="{{ $Estadoresultado->gastofinancieros }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -78,7 +78,7 @@
 						class="form-control" 
 						id="otrosingresos"
 						placeholder="Otros ingresos"
-						value="{{ $esre->otrosingresos }}" 
+						value="{{ $Estadoresultado->otrosingresos }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -88,7 +88,7 @@
 						class="form-control" 
 						id="reservalegal"
 						placeholder="Reserva legal"
-						value="{{ $esre->reservalegal }}" 
+						value="{{ $Estadoresultado->reservalegal }}" 
 					/>
 				</div>
 				<div class="form-group">
@@ -98,7 +98,7 @@
 						class="form-control" 
 						id="impuestosobrelarenta"
 						placeholder="Impuesto sobre la renta"
-						value="{{ $esre->impuestosobrelarenta }}" 
+						value="{{ $Estadoresultado->impuestosobrelarenta }}" 
 					/>
 				</div>
 

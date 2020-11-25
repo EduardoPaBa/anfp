@@ -17,7 +17,7 @@ class CreateCuentasTable extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('nombre');
-            $table->decimal('valor');
+            $table->decimal('valor',9, 2);
             $table->foreignId('clases_id');
             $table->foreign('clases_id')->references('id')->on('clases');
         });

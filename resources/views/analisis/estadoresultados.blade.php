@@ -172,6 +172,7 @@
 				<td>
 					<a href="{{ route('estadoresultados.edit', ['estadoresultado'=>$er->id]) }}" class="btn btn-primary mr-2">Editar</a>
 
+
                         <form action="{{ route('estadoresultados.destroy', ['estadoresultado'=>$er->id]) }}" method="POST"
                               id="miFormulario">
                             @csrf

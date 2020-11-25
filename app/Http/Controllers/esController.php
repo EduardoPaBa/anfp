@@ -238,10 +238,10 @@ class esController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstadoResultado $esre){
+    public function edit(EstadoResultado $Estadoresultado){
 
         return view('analisis.Edit_estadoresultados')
-        ->with('esre',$esre);
+        ->with('Estadoresultado',$Estadoresultado);
 
     }
 
@@ -252,7 +252,7 @@ class esController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, EstadoResultado $esre){
+    public function update(Request $request, EstadoResultado $estadoresultado){
 
         $request->validate([
             'ingreso' => 'required',
@@ -267,29 +267,29 @@ class esController extends Controller
 
         ]);
 
-        $esre->ingreso = $request->ingreso;
-        $esre->costodeventa = $request->costodeventa;
-        $esre->gastodeoperacion = $request->gastodeoperacion;
-        $esre->gastodeadministracion = $request->gastodeadministracion;
-        $esre->gastodeventaymercadeo = $request->gastodeventaymercadeo;
-        $esre->gastofinancieros = $request->gastofinancieros;
-        $esre->otrosingresos = $request->otrosingresos;
-        $esre->reservalegal = $request->reservalegal;
-        $esre->impuestosobrelarenta = $request->impuestosobrelarenta;
-        $esre->save();
+        $estadoresultado->ingreso = $request->ingreso;
+        $estadoresultado->costodeventa = $request->costodeventa;
+        $estadoresultado->gastodeoperacion = $request->gastodeoperacion;
+        $estadoresultado->gastodeadministracion = $request->gastodeadministracion;
+        $estadoresultado->gastodeventaymercadeo = $request->gastodeventaymercadeo;
+        $estadoresultado->gastofinancieros = $request->gastofinancieros;
+        $estadoresultado->otrosingresos = $request->otrosingresos;
+        $estadoresultado->reservalegal = $request->reservalegal;
+        $estadoresultado->impuestosobrelarenta = $request->impuestosobrelarenta;
+        $estadoresultado->save();
 
-        return redirect()->route('estadoresultados.index',$esre)
-        ->with('esre',$esre);
+        return redirect()->route('estadoresultados.index',$estadoresultado)
+        ->with('estadoresultado',$estadoresultado);
 
     }
 
-     public function destroy(EstadoResultado $esre)
+     public function destroy(EstadoResultado $estadoresultado)
     {
         //
-        $esre->delete();
+        $estadoresultado->delete();
 
-        return redirect()->route('estadoresultados.index',$esre)
-        ->with('esre',$esre);
+        return redirect()->route('estadoresultados.index',$estadoresultado)
+        ->with('estadoresultado',$estadoresultado);
     }
 
 
