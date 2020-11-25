@@ -156,7 +156,7 @@
 	<h1 class="text-center">RATIOS</h1>
 <!-- ######################## RATIOS DE LIQUIDEZ ############################-->
 	<br>
-	<u><h2>Razones de Liquidez - Primer año</h2></u>
+	<u><h2>Razones de Liquidez - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -286,7 +286,7 @@
 <br>
 
 <br>
-	<u><h2>Razones de Liquidez - Segundo año</h2></u>
+	<u><h2>Razones de Liquidez - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -427,18 +427,21 @@
 				onclick="razonEfectivo1();"
 				onclick="razonRapida1();"
 				onclick="razonPromedio1();">
+		<input id="valComRL" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RLiq">
 		<input class="btn btn-primary" type="button" id="concuRLiq" value="Conclusión" 
 				onclick="totalRL();"
 				onclick="totalRE();" 
 				onclick="totalRR();"
 				onclick="totalRC();"
 				>
+
+		
 	</div>
 
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad - Primer año</h2></u>
+	<u><h2>Razones de Actividad - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -767,7 +770,7 @@
 
 	<!-- ######################## RATIOS DE ACTIVIDAD ############################-->
 	<br>
-	<u><h2>Razones de Actividad - Segundo año</h2></u>
+	<u><h2>Razones de Actividad - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -1103,6 +1106,7 @@
 				onclick="razonActivosF1();"
 				onclick="razonMargenB1();"
 				onclick="razonMargenO1();">
+		<input id="valComRA" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RAct">
 		<input class="btn btn-primary" type="button" id="concuRAct" value="Conclusión" 
 				onclick="totalIN();"
 				onclick="totalDIN();" 
@@ -1121,7 +1125,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad - Primer año</h2></u>
+	<u><h2>Razones de Rentabilidad - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -1300,7 +1304,7 @@
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
-	<u><h2>Razones de Rentabilidad - Segundo año</h2></u>
+	<u><h2>Razones de Rentabilidad - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -1478,6 +1482,7 @@
 				onclick="razonActivoTotal1();"
 				onclick="razonRentVentas1();"
 				onclick="razonInversion1();">
+		<input id="valComRR" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RRen">
 		<input class="btn btn-primary" type="button" id="concuRRen" value="Conclusión" 
 				onclick="totalNP();"
 				onclick="totalRA();" 
@@ -1489,7 +1494,7 @@
 
 	<br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento - Primer año</h2></u>
+	<u><h2>Razones de Endeudamiento - Primer año Primera empresa</h2></u>
 
 	<div class="row">
 
@@ -1592,7 +1597,7 @@
 
 <br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
-	<u><h2>Razones de Endeudamiento - Segundo año</h2></u>
+	<u><h2>Razones de Endeudamiento - Primer año Segunda empresa</h2></u>
 
 	<div class="row">
 
@@ -1698,6 +1703,7 @@
 				onclick="razonPropiedad1();"
 				onclick="razonEndeudoPatr1();"
 				onclick="razonEndeudoGastosF1();">
+		<input id="valComRE" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo REnd">
 		<input class="btn btn-primary" type="button" id="concuREdn" value="Conclusión" 
 				onclick="totalGE();"
 				onclick="totalGP();"

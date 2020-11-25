@@ -19,9 +19,10 @@ Route::get('/', function () {
 */
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->name('indexx');
 
-
+Route::get('/inicio',[App\Http\Controllers\InicioController::class,'index'])
+	->name('index');
 Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
 	->name('analisis.balancegeneral');
 
