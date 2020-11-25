@@ -5,9 +5,46 @@
 @endsection
 @section('javascript')
     <script src="{{ asset('js/Eliminar.js') }}"></script>
+    <script type="text/javascript">
+        function deleteData(id) {
+            var id = id;
+            var url = '{{ route("sub_cuentas.destroy", ":id") }}';
+            url = url.replace(':id', id);
+            $("#deleteForm").attr('action', url);
+        }
+
+        function formSubmit() {
+            $("#deleteForm").submit();
+        }
+    </script>
+    <!-- Librería para mostrar alertas -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
     <h1 class="text-center mb-5">Crear Sub Cuentas</h1>
+
+    {{-- Incluyendo el modal para eliminar una subcuenta --}}
+    @include('subcuentas.eliminarSubcuenta')
+    <!-- Mensaje de éxito al eliminar una subcuenta -->
+    @if(session('info'))
+        <script>
+            swal({
+                title: "{{session('info')}}",
+                icon: "success",
+            });
+        </script>
+    @endif
+    <!-- Fin del mensaje de éxito al eliminar una subcuenta -->
+    <!-- Mensaje de error al eliminar una subcuenta -->
+    @if(session('error'))
+        <script>
+            swal({
+                title: "{{session('error')}}",
+                icon: "warning",
+            });
+        </script>
+    @endif
+    <!-- Fin del mensaje de error al eliminar una subcuenta -->
 
 
     <dir class="row justify-content-center mt-5">
@@ -155,13 +192,10 @@
 
                     <td>
                         <a href="{{ route('sub_cuentas.edit', ['sub_cuenta'=>$sc->id]) }}" class="btn btn-primary mr-2">Editar</a>
-
-                        <form action="{{ route('sub_cuentas.destroy', ['sub_cuenta'=>$sc->id]) }}" method="POST"
-                              id="miFormulario">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
-                        </form>
+                        <!-- Botón de eliminar un grupo -->
+                        <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$sc->id}})" data-target="#DeleteModal" class="btn btn-danger">
+                            Eliminar
+                        </a>
                     </td>
                 </tr>
             @endforeach

@@ -117,7 +117,7 @@ class EmpresaController extends Controller
     {
         try {
             $empresa->delete();
-            return redirect()->route('empresas.create', $empresa)->with('info', 'Empresa eliminada correctamente');;
+            return redirect()->route('empresas.create', $empresa)->with('info', 'Empresa eliminada correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('empresas.create', $empresa)->with('error', 'No se pudo eliminar la empresa porque posee dependencias');
         }

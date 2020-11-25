@@ -221,9 +221,12 @@ class CuentaController extends Controller
      */
     public function destroy(Cuenta $cuenta)
     {
-        //
-        $cuenta->delete();
+        try {
+            $cuenta->delete();
+            return redirect()->route('cuentas.create',$cuenta)->with('info', 'Cuenta eliminada correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('cuentas.create',$cuenta)->with('error', 'No se pudo eliminar la cuenta porque posee dependencias');
+        }
 
-        return redirect()->route('cuentas.create',$cuenta);
     }
 }

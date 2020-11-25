@@ -277,9 +277,12 @@ class SubCuentaController extends Controller
      */
     public function destroy(SubCuenta $subCuenta)
     {
-        //
-        $subCuenta->delete();
+        try {
+            $subCuenta->delete();
+            return redirect()->route('sub_cuentas.create',$subCuenta)->with('info', 'Subcuenta eliminada correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('sub_cuentas.create',$subCuenta)->with('error', 'No se pudo eliminar la subcuenta porque posee dependencias');
+        }
 
-        return redirect()->route('sub_cuentas.create',$subCuenta);
     }
 }

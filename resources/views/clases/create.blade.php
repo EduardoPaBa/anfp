@@ -6,10 +6,47 @@
 
 @section('javascript')
     <script src="{{ asset('js/Eliminar.js') }}"></script>
+    <script type="text/javascript">
+        function deleteData(id) {
+            var id = id;
+            var url = '{{ route("clases.destroy", ":id") }}';
+            url = url.replace(':id', id);
+            $("#deleteForm").attr('action', url);
+        }
+
+        function formSubmit() {
+            $("#deleteForm").submit();
+        }
+    </script>
+    <!-- Librería para mostrar alertas -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 
 @section('content')
     <h1 class="text-center mb-5">Crear Clase</h1>
+
+    {{-- Incluyendo el modal para eliminar una clase --}}
+    @include('clases.eliminarClase')
+    <!-- Mensaje de éxito al eliminar una clase -->
+    @if(session('info'))
+        <script>
+            swal({
+                title: "{{session('info')}}",
+                icon: "success",
+            });
+        </script>
+    @endif
+    <!-- Fin del mensaje de éxito al eliminar una clase -->
+    <!-- Mensaje de error al eliminar una clase -->
+    @if(session('error'))
+        <script>
+            swal({
+                title: "{{session('error')}}",
+                icon: "warning",
+            });
+        </script>
+    @endif
+    <!-- Fin del mensaje de error al eliminar una clase -->
 
     <dir class="row justify-content-center mt-5">
         <dir class="col-md-8">
@@ -126,13 +163,10 @@
 
                     <td>
                         <a href="{{ route('clases.edit', ['clase'=>$sc->id]) }}" class="btn btn-primary mr-2">Editar</a>
-
-                        <form action="{{ route('clases.destroy', ['clase'=>$sc->id]) }}" method="POST"
-                              id="miFormulario">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" name="Eliminar" class="btn btn-danger" value="Eliminar">
-                        </form>
+                        <!-- Botón de eliminar una clase -->
+                        <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$sc->id}})" data-target="#DeleteModal" class="btn btn-danger">
+                            Eliminar
+                        </a>
                     </td>
                 </tr>
             @endforeach

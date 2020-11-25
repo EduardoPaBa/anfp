@@ -195,9 +195,11 @@ class ClaseController extends Controller
      */
     public function destroy(Clase $clase)
     {
-        //
-        $clase->delete();
-
-        return redirect()->route('clases.create',$clase);
+        try {
+            $clase->delete();
+            return redirect()->route('clases.create',$clase)->with('info', 'Clase eliminada correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('clases.create',$clase)->with('error', 'No se pudo eliminar la clase porque posee dependencias');
+        }
     }
 }

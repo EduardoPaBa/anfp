@@ -23,7 +23,7 @@
 @section('content')
 
     <h1 class="text-center mb-5">Crear Empresa</h1>
-    {{-- Incluyendo el modal para eliminar un evento --}}
+    {{-- Incluyendo el modal para eliminar una empresa --}}
     @include('empresas.eliminarEmpresa')
     <!-- Mensaje de éxito al eliminar una empresa -->
     @if(session('info'))

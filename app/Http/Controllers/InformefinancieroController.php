@@ -152,9 +152,11 @@ class InformefinancieroController extends Controller
      */
     public function destroy(informefinanciero $informefinanciero)
     {
-        //
-        $informefinanciero->delete();
-
-        return redirect()->route('informefinancieros.create',$informefinanciero);
+        try {
+            $informefinanciero->delete();
+            return redirect()->route('informefinancieros.create', $informefinanciero)->with('info', 'Balance General eliminado correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('informefinancieros.create', $informefinanciero)->with('error', 'No se pudo eliminar el balance general porque posee dependencias');
+        }
     }
 }

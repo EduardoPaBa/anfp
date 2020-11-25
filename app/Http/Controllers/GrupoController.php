@@ -184,9 +184,11 @@ class GrupoController extends Controller
      */
     public function destroy(Grupo $grupo)
     {
-        $grupo->delete();
-
-        return redirect()->route('grupos.create');
-
+        try {
+            $grupo->delete();
+            return redirect()->route('grupos.create')->with('info', 'Grupo eliminado correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('grupos.create')->with('error', 'No se pudo eliminar el grupo porque posee dependencias');
+        }
     }
 }

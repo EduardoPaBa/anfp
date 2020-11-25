@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75698626-9bc1-4cf7-8da8-68a96f8fe16f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/DetalleRatioFormValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/clases/eliminarClase.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/cuentas/eliminarCuenta.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/grupos/eliminarGrupo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/informesfinancieros/eliminarInformeFinanciero.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/subcuentas/eliminarSubcuenta.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2020_1_14_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2020_1_14_AM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CuentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CuentaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GrupoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GrupoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InformefinancieroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InformefinancieroController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubCuentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubCuentaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clases/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clases/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cuentas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/empresas/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/grupos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/grupos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/informesfinancieros/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informesfinancieros/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/subcuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subcuentas/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +160,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/clases" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Documents\anf2\public" />
+      <recent name="E:\Documents\anf2\resources\views\clases" />
+      <recent name="E:\Documents\anf2\resources\views\cuentas" />
+      <recent name="E:\Documents\anf2\resources\views\subcuentas" />
+      <recent name="E:\Documents\anf2\resources\views\grupos" />
+      <recent name="E:\Documents\anf2\resources\views\informesfinancieros" />
     </key>
   </component>
   <component name="RunManager">
@@ -172,7 +194,8 @@
       <workItem from="1605736785958" duration="3608000" />
       <workItem from="1605742821768" duration="672000" />
       <workItem from="1606211944638" duration="5320000" />
-      <workItem from="1606236248178" duration="5801000" />
+      <workItem from="1606236248178" duration="7074000" />
+      <workItem from="1606324028971" duration="4311000" />
     </task>
     <task id="LOCAL-00001" summary="Arreglo join RatioTestController">
       <created>1605742161116</created>
@@ -195,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606240859948</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="DetalleRatioFormValidation">
+      <created>1606243250725</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606243250725</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,17 +235,18 @@
     <MESSAGE value="Arreglo join RatioTestController" />
     <MESSAGE value="Validación en empresa, informes financieros, grupo, clase, cuenta y subcuenta" />
     <MESSAGE value="Validacion de dependencias al momento de eliminar una empresa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Validacion de dependencias al momento de eliminar una empresa" />
+    <MESSAGE value="DetalleRatioFormValidation" />
+    <option name="LAST_COMMIT_MESSAGE" value="DetalleRatioFormValidation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605681795822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="114" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605681795822" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1606240856037">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1606243246433">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606240856037" />
+    <state x="308" y="0" key="CommitChangelistDialog2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606243246433" />
     <state width="1201" height="163" key="GridCell.Tab.0.bottom" timestamp="1605615053292">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -232,10 +263,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1201" height="163" key="GridCell.Tab.0.right/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1605615053292" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606240900632">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606243255973">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606240900632" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/1366.0.1280.760/0.0.1366.728@0.0.1366.728" timestamp="1606243255973" />
     <state x="467" y="273" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605742126050">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
