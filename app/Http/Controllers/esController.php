@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estadoresultado;
+use App\Models\EstadoResultado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -228,7 +228,7 @@ class esController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Estadoresultado $esre){
+    public function show(EstadoResultado $esre){
 
     }
 
@@ -238,7 +238,7 @@ class esController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estadoresultado $esre){
+    public function edit(EstadoResultado $esre){
 
         return view('analisis.Edit_estadoresultados')
         ->with('esre',$esre);
@@ -252,7 +252,7 @@ class esController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Estadoresultado $esre){
+    public function update(Request $request, EstadoResultado $esre){
 
         $request->validate([
             'ingreso' => 'required',
@@ -283,7 +283,7 @@ class esController extends Controller
 
     }
 
-     public function destroy(Estadoresultado $esre)
+     public function destroy(EstadoResultado $esre)
     {
         //
         $esre->delete();

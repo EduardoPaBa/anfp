@@ -7,7 +7,7 @@
 
 	<dir class="row justify-content-center mt-5">
 		<dir class="col-md-8">
-			<form method="POST" action="{{ route('estadoresultados.update',['estado_resultado',$esre->id]) }}" novalidate>
+			<form method="POST" action="{{ route('estadoresultados.update',['estadoresultados',$esre]) }}" novalidate>
 				@csrf
 				@method('PUT')
 				<div class="form-group">
