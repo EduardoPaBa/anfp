@@ -29,7 +29,7 @@
 -->
 <a href="{{ route('analisis.detalleratio') }}" class="btn btn-primary mr-2">Detalle Ratios</a>
 <a href="{{ route('analisis.detalleConclusion') }}" class="btn btn-primary mr-2">Conclusion Ratios</a>
-<a href="{{ route('analisis.estadoresultados') }}" class="btn btn-primary mr-2">Estado de Resultados</a>
+<a href="{{ route('estadoresultados.index') }}" class="btn btn-primary mr-2">Estado de Resultados</a>
 <a href="{{ route('detalleah.index') }}" class="btn btn-primary mr-2">Analisis Horizontal</a>
 <a href="{{ route('analisisvertical.index') }}" class="btn btn-primary mr-2">Analisis Vertical</a>
 
