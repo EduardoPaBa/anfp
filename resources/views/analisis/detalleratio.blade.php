@@ -22,7 +22,7 @@
             <select class="form-control @error('informe1') is-invalid @enderror" id="informe1" name="informe1">
                 <option value="">Seleccione el primer año</option>
                 @foreach($informe as $i)
-                    <option value="{{ $i->id }}">{{ $i->nombre }} - año:{{ $i->anio }}</option>
+                    <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Sector: {{ $i->esector }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
                 @endforeach
             </select>
             @error('informe1') {{-- Error balance general del primer año --}}
@@ -36,7 +36,7 @@
             <select id="informe2" name="informe2" class="form-control @error('informe2') is-invalid @enderror">
                 <option value="">Seleccione el segundo año</option>
                 @foreach($informe as $i)
-                    <option value="{{ $i->id }}">{{ $i->nombre }} - año:{{ $i->anio }}</option>
+                    <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Sector: {{ $i->esector }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
                 @endforeach
             </select>
             @error('informe2') {{-- Error balance general del segundo año --}}

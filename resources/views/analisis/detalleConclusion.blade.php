@@ -21,7 +21,7 @@
         <h3>Balance General y Estado de Resultados de la Primer Empresa</h3>
         <select class="form-control" id="informe1" name="informe1">
             @foreach($informe as $i)
-                <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
+                <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Sector: {{ $i->esector }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
             @endforeach
         </select>
         <br>
@@ -29,7 +29,7 @@
         <h3>Balance General y Estado de Resultados de la Segunda Empresa</h3>
         <select id="informe2" name="informe2" class="form-control">
             @foreach($informe as $i)
-                <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
+                <option value="{{ $i->iid }}">Empresa: {{ $i->enombre }} - Sector: {{ $i->esector }} - Balance: {{ $i->inombre }} - año:{{ $i->ianio }}</option>
             @endforeach
         </select>
         <br>

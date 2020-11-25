@@ -13,13 +13,16 @@ class DetalleRatio extends Controller
      */
     public function index()
     {
-
-
-        
-    	$informe = DB::table('informefinancieros')->orderBy('nombre')
+        $informe = DB::table('informefinancieros')->orderBy('nombre')
         ->join ('empresas','informefinancieros.empresas_id','=','empresas.id')
         ->join ('users','empresas.user_id','=','users.id')
-        ->select('informefinancieros.id','informefinancieros.nombre','informefinancieros.anio','informefinancieros.empresas_id')
+        ->select('informefinancieros.*',
+                'informefinancieros.id as iid',
+                'informefinancieros.nombre as inombre',
+                'informefinancieros.anio as ianio',
+                'informefinancieros.empresas_id as iempresa',
+                'empresas.nombre as enombre',
+                'empresas.sector as esector')
         ->where ('users.id','=', Auth::id())
         ->get();
 
