@@ -192,7 +192,7 @@
 
                     <td>
                         <a href="{{ route('sub_cuentas.edit', ['sub_cuenta'=>$sc->id]) }}" class="btn btn-primary mr-2">Editar</a>
-                        <!-- Botón de eliminar un grupo -->
+                        <!-- Botón de eliminar una subcuenta -->
                         <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$sc->id}})" data-target="#DeleteModal" class="btn btn-danger">
                             Eliminar
                         </a>
