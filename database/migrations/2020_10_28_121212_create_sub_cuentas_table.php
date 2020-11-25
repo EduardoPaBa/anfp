@@ -18,7 +18,7 @@ class CreateSubCuentasTable extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('nombre');
-            $table->decimal('valor');
+            $table->decimal('valor',9, 2);
             $table->foreignId('cuentas_id');
             $table->foreign('cuentas_id')->references('id')->on('cuentas');
             

@@ -9,7 +9,7 @@
 @endsection
 
 @section('javascript')
-
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 	<script src="{{ asset('js/seleccion.js') }}"></script>
 	<script src="{{ asset('js/ratios.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
