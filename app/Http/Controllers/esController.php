@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estadoresultado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -219,6 +220,76 @@ class esController extends Controller
 
 
 
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Cuenta  $cuenta
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show(Estadoresultado $esre){
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Cuenta  $cuenta
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Estadoresultado $esre){
+
+        return view('analisis.Edit_estadoresultados')
+        ->with('esre',$esre);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Cuenta  $cuenta
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(Request $request, Estadoresultado $esre){
+
+        $request->validate([
+            'ingreso' => 'required',
+            'costodeventa' => 'required',
+            'gastodeoperacion' => 'required',
+            'gastodeadministracion' => 'required',
+            'gastodeventaymercadeo' => 'required',
+            'gastofinancieros' => 'required',
+            'otrosingresos' => 'required',
+            'reservalegal' => 'required',
+            'impuestosobrelarenta' => 'required',
+
+        ]);
+
+        $esre->ingreso = $request->ingreso;
+        $esre->costodeventa = $request->costodeventa;
+        $esre->gastodeoperacion = $request->gastodeoperacion;
+        $esre->gastodeadministracion = $request->gastodeadministracion;
+        $esre->gastodeventaymercadeo = $request->gastodeventaymercadeo;
+        $esre->gastofinancieros = $request->gastofinancieros;
+        $esre->otrosingresos = $request->otrosingresos;
+        $esre->reservalegal = $request->reservalegal;
+        $esre->impuestosobrelarenta = $request->impuestosobrelarenta;
+        $esre->save();
+
+        return redirect()->route('estadoresultados.index',$esre)
+        ->with('esre',$esre);
+
+    }
+
+     public function destroy(Estadoresultado $esre)
+    {
+        //
+        $esre->delete();
+
+        return redirect()->route('estadoresultados.index',$esre)
+        ->with('esre',$esre);
     }
 
 

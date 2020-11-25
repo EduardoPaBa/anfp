@@ -24,11 +24,20 @@ Route::get('/', function () {
 
 Route::get('/balancegeneral',[App\Http\Controllers\prueba::class,'index'])
 	->name('analisis.balancegeneral');
-Route::get('/estadoresultados',[App\Http\Controllers\esController::class,'index'])
-	->name('analisis.estadoresultados');
+
+//Route::get('/estadoresultados',[App\Http\Controllers\esController::class,'index'])
+//	->name('analisis.estadoresultados');
+Route::resource('/estadoresultados', 'App\Http\Controllers\esController');
+/*
 Route::post('/estadoresultados',[App\Http\Controllers\esController::class,'store'])
 	->name('estadoresultados.store');
-
+Route::get('/estadoresultados/{estadoresultados}/edit',[App\Http\Controllers\esController::class,'edit'])
+	->name('estadoresultados.edit');
+Route::put('/estadoresultados/{estadoresultados}',[App\Http\Controllers\esController::class,'update'])
+	->name('estadoresultados.update');
+Route::delete('/estadoresultados/{estadoresultados}',[App\Http\Controllers\esController::class,'destroy'])
+	->name('estadoresultados.destroy');
+*/
 Route::get('/analisishorizontal',[App\Http\Controllers\ahController::class,'index'])
 	->name('analisishorizontal.index');
 
