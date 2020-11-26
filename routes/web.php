@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+//Route::name('')->get('/imprimir', 'Controller@');
+Route::get('/print',[App\Http\Controllers\Controller::class,'imprimir'])
+	->name('print');
+
+
 Route::get('/', function () {
     return view('index');
 })->name('indexx');

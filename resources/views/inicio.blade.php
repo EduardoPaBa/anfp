@@ -32,5 +32,7 @@
 <a href="{{ route('estadoresultados.index') }}" class="btn btn-primary mr-2">Estado de Resultados</a>
 <a href="{{ route('detalleah.index') }}" class="btn btn-primary mr-2">Analisis Horizontal</a>
 <a href="{{ route('analisisvertical.index') }}" class="btn btn-primary mr-2">Analisis Vertical</a>
-
+<br>
+<br>
+<a href="{{ route('print')}}" class="btn btn-primary mr-2">pdf</a>
 @endsection
