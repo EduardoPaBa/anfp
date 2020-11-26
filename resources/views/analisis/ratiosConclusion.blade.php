@@ -15,6 +15,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+  	<!--SCRIPT PARA GRAFICA-->
+  	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  	<script type="text/javascript">
+    
+  </script>
 @endsection
 
 @section('botones')
@@ -437,6 +442,8 @@
 
 		
 	</div>
+	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
+<div id="barchart_values" style="width: 900px; height: 300px;"></div>
 
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
@@ -1121,7 +1128,11 @@
 				
 				>
 	</div>
+	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
+	<div id="barchart_values1" style="width: 900px; height: 300px;"></div>
 
+	<br>
+	<br>
 	<br>
 
 	<!-- ######################## RATIOS DE RENTABILIDAD ############################-->
@@ -1491,7 +1502,10 @@
 				>
 	</div>
 
+	<div id="barchart_values2" style="width: 900px; height: 300px;"></div>
 
+	<br>
+	<br>
 	<br>
 	<!-- ######################## RATIOS DE ENDEUDAMIENTO ############################-->
 	<u><h2>Razones de Endeudamiento - Primer año Primera empresa</h2></u>
@@ -1713,6 +1727,7 @@
 
 
 	</div>
+	<div id="barchart_values3" style="width: 900px; height: 300px;"></div>
 
 
 </div>
