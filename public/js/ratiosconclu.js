@@ -98,8 +98,8 @@ $(function(){
       $("#input_numerador_patrimonioTotal_razonEndeudoPatr1").val(grupoPatrimonio1);
 
       //alert(input);
-      var buenale=", tu empresa esta bien";
-      var malale=", tu empresa necesita ajuste financiero";
+      var buenale=", esta bien";
+      var malale=", necesita ajuste financiero";
       var zero="primero debe de presionar el boton calcular";
       //var vcRL=1;
       //var vcRA=1;
@@ -117,16 +117,26 @@ $(function(){
       var totalls = ( (parseFloat(nume1) + parseFloat(nume2) ) /2);
       //$("#ttrl").val(totalls).toFixed(5);
       //alert(totalls);
-      if (totalls<vcRL ) {
+      if (totalls<1 && totalls>0 ) {
         //alert("efe bru");
-        $("#ttrl").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
+        $("#ttrl").val("el ratio promedio es: "+totalls+ " las empresas no pueden pagar a corto plazo").toFixed(5);
       }
       if(isNaN(totalls)){
         $("#ttrl").val(zero).toFixed(5);
       }
-      else{
-        $("#ttrl").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
+      if (totalls<2 && totalls>1 && totalls>vcRL) {
+        //alert("efe bru");
+        $("#ttrl").val("el ratio promedio es: "+totalls+ " las empresas estan saludables y arriba del promedio nacional").toFixed(5);
       }
+      if (totalls<2 && totalls>1 && totalls<vcRL) {
+        //alert("efe bru");
+        $("#ttrl").val("el ratio promedio es: "+totalls+ " las empresas estan saludables y abajo del promedio nacional").toFixed(5);
+      }
+      if (totalls>2) {
+        //alert("efe bru");
+        $("#ttrl").val("el ratio promedio es: "+totalls+ " las empresas tienen dinero ocioso").toFixed(5);
+      }
+
     }
     function totalRE(){
       var nume1 = $("#inputTotal-razonEfectivo").val();
@@ -151,16 +161,29 @@ $(function(){
       var totalls = ( (parseFloat(nume1) + parseFloat(nume2) ) /2);
       //$("#ttrr").val(totalls).toFixed(5);
      // alert(totalls);
-     if (totalls<vcRL ) {
+     
+      if (totalls<1 && totalls>0 ) {
         //alert("efe bru");
-        $("#ttrr").val("el ratio promedio es: "+totalls+ malale).toFixed(5);
+        $("#ttrr").val("el ratio promedio es: "+totalls+ " las empresas no pueden pagar a corto plazo").toFixed(5);
       }
       if(isNaN(totalls)){
         $("#ttrr").val(zero).toFixed(5);
       }
-      else{
-        $("#ttrr").val("el ratio promedio es: "+totalls+buenale).toFixed(5);
+      if (totalls<2 && totalls>1 && totalls>vcRL) {
+        //alert("efe bru");
+        $("#ttrr").val("el ratio promedio es: "+totalls+ " las empresas estan saludables y arriba del promedio nacional").toFixed(5);
       }
+      if (totalls<2 && totalls>1 && totalls<vcRL) {
+        //alert("efe bru");
+        $("#ttrr").val("el ratio promedio es: "+totalls+ " las empresas estan saludables y abajo del promedio nacional").toFixed(5);
+      }
+      if (totalls>2) {
+        //alert("efe bru");
+        $("#ttrr").val("el ratio promedio es: "+totalls+ " las empresas tienen dinero ocioso").toFixed(5);
+      }
+
+
+
     }
     function totalRC(){
       var nume1 = $("#inputTotal-razonCapital").val();

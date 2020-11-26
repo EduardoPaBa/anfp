@@ -415,10 +415,22 @@
 	</div>
 	<br>
 	<br>
-	<div><input id="ttrl" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttre" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrr" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrc" input type="text"  value=""  class="col-md-4"></div>
+<div class="text-center" id="boton-razonLiquidez1">
+<input class="btn btn-primary" type="button" id="resultados-razonLiquidez1" value="Calcular" 
+				onclick="razonLiquidez1();" 
+				onclick="razonCapital1();"
+				onclick="razonEfectivo1();"
+				onclick="razonRapida1();"
+				onclick="razonPromedio1();">
+			</div>
+
+	<br>
+	<br>
+
+	<div><input id="ttrl" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttre" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrr" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrc" input type="text"  value=""  class="col-md-12"></div>
 	
 	
 	
@@ -426,12 +438,7 @@
 
 
 	<div class="text-center" id="boton-razonLiquidez1">
-		<input class="btn btn-primary" type="button" id="resultados-razonLiquidez1" value="Calcular" 
-				onclick="razonLiquidez1();" 
-				onclick="razonCapital1();"
-				onclick="razonEfectivo1();"
-				onclick="razonRapida1();"
-				onclick="razonPromedio1();">
+		
 		<input id="valComRL" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RLiq">
 		<input class="btn btn-primary" type="button" id="concuRLiq" value="Conclusión" 
 				onclick="totalRL();"
@@ -1089,23 +1096,10 @@
         
 	</div>
 	</div>
-	<div><input id="ttrin" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttdin" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrrcc" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrmc" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrcp" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttpmp" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrat" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttraf" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttmb" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttmo" input type="text"  value=""  class="col-md-4"></div>
 
-
-	
+	<br>
 	<div class="text-center" id="boton-razonActividad1">
-		<br>
-		<br>
-		<input class="btn btn-primary" type="button" id="resultados-razonActividad1" value="Calcular" 
+	<input class="btn btn-primary" type="button" id="resultados-razonActividad1" value="Calcular" 
 				onclick="razonInventario1();"
 				onclick="razonDiasInventario1();"
 				onclick="razonCxC1();"
@@ -1116,6 +1110,27 @@
 				onclick="razonActivosF1();"
 				onclick="razonMargenB1();"
 				onclick="razonMargenO1();">
+			</div>
+	<br>
+
+
+	<div><input id="ttrin" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttdin" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrrcc" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrmc" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrcp" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttpmp" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrat" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttraf" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttmb" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttmo" input type="text"  value=""  class="col-md-12"></div>
+
+
+	
+	<div class="text-center" id="boton-razonActividad1">
+		<br>
+		<br>
+		
 		<input id="valComRA" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RAct">
 		<input class="btn btn-primary" type="button" id="concuRAct" value="Conclusión" 
 				onclick="totalIN();"
@@ -1481,24 +1496,28 @@
 		</div>
         
 	</div>
-
-
-	<div><input id="ttnp" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttra" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrda" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrv" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrsi" input type="text"  value=""  class="col-md-4"></div>
-
-
+	<br>
 	<div class="text-center" id="boton-razonRentabilidad1">
-		<br>
-		<br>
-		<input class="btn btn-primary" type="button" id="resultados-razonRentabilidad1" value="Calcular" 
+<input class="btn btn-primary" type="button" id="resultados-razonRentabilidad1" value="Calcular" 
 				onclick="razonNetaPatr1();"
 				onclick="razonAccion1();"
 				onclick="razonActivoTotal1();"
 				onclick="razonRentVentas1();"
 				onclick="razonInversion1();">
+			</div>
+	<br>
+
+	<div><input id="ttnp" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttra" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrda" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrv" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrsi" input type="text"  value=""  class="col-md-12"></div>
+
+
+	<div class="text-center" id="boton-razonRentabilidad1">
+		<br>
+		<br>
+		
 		<input id="valComRR" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo RRen">
 		<input class="btn btn-primary" type="button" id="concuRRen" value="Conclusión" 
 				onclick="totalNP();"
@@ -1707,12 +1726,19 @@
         
 	</div>
 	</div>
-
 	<br>
-	<div><input id="ttge" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttgp" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttrep" input type="text"  value=""  class="col-md-4"></div>
-	<div><input id="ttcgf" input type="text"  value=""  class="col-md-4"></div>
+	<div class="text-center" id="boton-razonEndeudamiento1">
+<input class="btn btn-primary" type="button" id="resultados-razonGradoEnd1" value="Calcular" 
+				onclick="razonGradoEnd1();"
+				onclick="razonPropiedad1();"
+				onclick="razonEndeudoPatr1();"
+				onclick="razonEndeudoGastosF1();">
+			</div>
+	<br>
+	<div><input id="ttge" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttgp" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttrep" input type="text"  value=""  class="col-md-12"></div>
+	<div><input id="ttcgf" input type="text"  value=""  class="col-md-12"></div>
 	
 
 	<div class="text-center" id="boton-razonEndeudamiento1">
@@ -1722,11 +1748,7 @@
 	
 
 
-		<input class="btn btn-primary" type="button" id="resultados-razonGradoEnd1" value="Calcular" 
-				onclick="razonGradoEnd1();"
-				onclick="razonPropiedad1();"
-				onclick="razonEndeudoPatr1();"
-				onclick="razonEndeudoGastosF1();">
+		
 		<input id="valComRE" input type="text"  value=""  class="solo-numero" placeholder="Valor comparativo REnd">
 		<input class="btn btn-primary" type="button" id="concuREdn" value="Conclusión" 
 				onclick="totalGE();"
