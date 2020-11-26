@@ -443,7 +443,10 @@
 		
 	</div>
 	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
-<div id="barchart_values" style="width: 900px; height: 300px;"></div>
+	<div class="row">
+		<div class="col-sm" id="barchart_values" style="width: 900px; height: 300px;"></div>
+		<div class="col-sm" id="barchart_valuesL" style="width: 900px; height: 300px;"></div>
+	</div>
 
 <br>
 <!-- ######################## RATIOS DE ACTIVIDAD ############################-->
@@ -1129,7 +1132,10 @@
 				>
 	</div>
 	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
-	<div id="barchart_values1" style="width: 900px; height: 300px;"></div>
+	<div class="row">
+		<div class="col-sm" id="barchart_values1" style="width: 900px; height: 300px;"></div>
+		<div class="col-sm" id="barchart_valuesA" style="width: 900px; height: 300px;"></div>
+	</div>
 
 	<br>
 	<br>
@@ -1502,7 +1508,11 @@
 				>
 	</div>
 
-	<div id="barchart_values2" style="width: 900px; height: 300px;"></div>
+	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
+	<div class="row">
+		<div class="col-sm" id="barchart_values2" style="width: 900px; height: 300px;"></div>
+		<div class="col-sm" id="barchart_valuesR" style="width: 900px; height: 300px;"></div>
+	</div>
 
 	<br>
 	<br>
@@ -1727,7 +1737,11 @@
 
 
 	</div>
-	<div id="barchart_values3" style="width: 900px; height: 300px;"></div>
+	<!--DIV NECESARIO PARA GRAFICA MEDIANTE EL ID-->
+	<div class="row">
+		<div class="col-sm" id="barchart_values3" style="width: 900px; height: 300px;"></div>
+		<div class="col-sm" id="barchart_valuesE" style="width: 900px; height: 300px;"></div>
+	</div>
 
 
 </div>

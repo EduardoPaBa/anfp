@@ -203,7 +203,7 @@ $(function(){
 
 
       var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
+        ["Element", "Resultado", { role: "style" } ],
         ["razonLiquidez",total1,"blue"],
         ["razonEfectivo",total2 , "#b87333"],
         ["razonCapital", total3, "silver"],
@@ -228,6 +228,62 @@ $(function(){
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
       chart.draw(view, options);
   }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartL);
+    function drawChartL() {
+
+      var nume1 = $("#inputTotal-razonLiquidez").val();
+      var nume2 = $("#inputTotal-razonLiquidez1").val();
+      var num1 = parseFloat(nume1);
+      var num2 = parseFloat(nume2);
+
+      var nume3 = $("#inputTotal-razonEfectivo").val();
+      var nume4 = $("#inputTotal-razonEfectivo1").val();
+      var num3 = parseFloat(nume3);
+      var num4 = parseFloat(nume4);      
+
+      var nume5 = $("#inputTotal-razonRapida").val();
+      var nume6 = $("#inputTotal-razonRapida1").val();
+      var num5 = parseFloat(nume5);
+      var num6 = parseFloat(nume6);
+
+      var nume7 = $("#inputTotal-razonCapital").val();
+      var nume8 = $("#inputTotal-razonCapital1").val();
+      var num7 = parseFloat(nume7);
+      var num8 = parseFloat(nume8);
+
+
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Resultado", { role: "style" } ],
+        ["razonLiquidez1",num1,"blue"],
+        ["razonLiquidez2",num2,"blue"],
+        ["razonEfectivo1",num3 , "#b87333"],
+        ["razonEfectivo2",num4 , "#b87333"],
+        ["razonCapital1", num5, "silver"],
+        ["razonCapital2", num6, "silver"],
+        ["razonRapida", num7, "gold"],
+        ["razonRapida", num8, "gold"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Razones de liquidez de cada empresa",
+        width: 550,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_valuesL"));
+      chart.draw(view, options);
+  }
     
     var btn = document.querySelector('#concuRLiq');
 
@@ -236,6 +292,7 @@ $(function(){
     btn.addEventListener('click',totalRR, false);
     btn.addEventListener('click',totalRC, false);
     btn.addEventListener('click',drawChart,false);
+    btn.addEventListener('click',drawChartL,false);
 
   });
   //
@@ -477,7 +534,7 @@ function totalRAF(){
 
 
       var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
+        ["Element", "Resultado", { role: "style" } ],
         ["razonInventario",total,"blue"],
         ["razonDiasInventario",total1,"red"],
         ["razonCxC",total2 , "#b87333"],
@@ -500,7 +557,7 @@ function totalRAF(){
 
       var options = {
         title: "Promedio de razones de actividad entre dos empresas",
-        width: 500,
+        width: 450,
         height: 350,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -508,6 +565,113 @@ function totalRAF(){
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values1"));
       chart.draw(view, options);
     }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartA);
+    function drawChartA() {
+
+      var nume1 = $("#inputTotal-razonInventario").val();
+      var nume2 = $("#inputTotal-razonInventario1").val();
+      var num1 =parseFloat(nume1);
+      var num2 =parseFloat(nume2);
+      
+
+      var nume3 = $("#inputTotal-razonDiasInventario").val();
+      var nume4 = $("#inputTotal-razonDiasInventario1").val();
+      var num3 =parseFloat(nume3);
+      var num4 =parseFloat(nume4);
+      
+
+      var nume5 = $("#inputTotal-razonCxC").val();
+      var nume6 = $("#inputTotal-razonCxC1").val();
+      var num5 =parseFloat(nume5);
+      var num6 =parseFloat(nume6);
+      
+
+      var nume7 = $("#inputTotal-razonMedioC").val();
+      var nume8 = $("#inputTotal-razonMedioC1").val();
+      var num7 =parseFloat(nume7);
+      var num8 =parseFloat(nume8);
+      
+
+      var nume9 = $("#inputTotal-razonCxP").val();
+      var nume10 = $("#inputTotal-razonCxP1").val();
+      var num9 =parseFloat(nume9);
+      var num10 =parseFloat(nume10);
+      
+
+      var nume11 = $("#inputTotal-razonMedioP").val();
+      var nume12 = $("#inputTotal-razonMedioP1").val();
+      var num11 =parseFloat(nume11);
+      var num12 =parseFloat(nume12);
+      
+
+      var nume13 = $("#inputTotal-razonIndiceA").val();
+      var nume14 = $("#inputTotal-razonIndiceA1").val();
+      var num13 =parseFloat(nume13);
+      var num14 =parseFloat(nume14);
+      
+
+      var nume15 = $("#inputTotal-razonActivosF").val();
+      var nume16 = $("#inputTotal-razonActivosF1").val();
+      var num15 =parseFloat(nume15);
+      var num16 =parseFloat(nume16);
+      
+
+      var nume17 = $("#inputTotal-razonMargenB").val();
+      var nume18 = $("#inputTotal-razonMargenB1").val();
+      var num17 =parseFloat(nume17);
+      var num18 =parseFloat(nume18);
+      
+
+      var nume19 = $("#inputTotal-razonMargenO").val();
+      var nume20 = $("#inputTotal-razonMargenO1").val();
+      var num19 =parseFloat(nume19);
+      var num20 =parseFloat(nume20);
+      
+
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Resultado", { role: "style" } ],
+        ["razonInventario1",num1,"blue"],
+        ["razonInventario2",num2,"blue"],
+        ["razonDiasInventario1",num3,"red"],
+        ["razonDiasInventario2",num4,"red"],
+        ["razonCxC1",num5 , "#b87333"],
+        ["razonCxC2",num6 , "#b87333"],
+        ["razonMedioC1", num7, "silver"],
+        ["razonMedioC2", num8, "silver"],
+        ["razonCxP1", num9, "gold"],
+        ["razonCxP2", num10, "gold"],
+        ["razonMedioP1", num11, "gray"],
+        ["razonMedioP2", num12, "gray"],
+        ["razonIndiceA1", num13, "green"],
+        ["razonIndiceA2", num14, "green"],
+        ["razonActivosF1", num15, "yellow"],
+        ["razonActivosF2", num16, "yellow"],
+        ["razonMargenB1", num17, "orange"],
+        ["razonMargenB2", num18, "orange"],
+        ["razonMargenO1", num19, "purple"],
+        ["razonMargenO2", num20, "purple"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Razones de actividad de cada empresa",
+        width: 500,
+        height: 350,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_valuesA"));
+      chart.draw(view, options);
+  }
 
     var btn = document.querySelector('#concuRAct');
 
@@ -522,6 +686,7 @@ function totalRAF(){
     btn.addEventListener('click',totalMB, false);
     btn.addEventListener('click',totalMO, false);
     btn.addEventListener('click',drawChart1, false);
+    btn.addEventListener('click',drawChartA, false);
 });
 
 $(document).on('click',"#concuRRen",function(){
@@ -645,7 +810,7 @@ $(document).on('click',"#concuRRen",function(){
 
 
       var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
+        ["Element", "Resultado", { role: "style" } ],
         ["razonNetaPatr",total,"blue"],
         ["razonAccion",total1,"red"],
         ["razonActivoTotal",total2 , "#b87333"],
@@ -663,7 +828,7 @@ $(document).on('click',"#concuRRen",function(){
 
       var options = {
         title: "Promedio de razones de rentabilidad entre dos empresas",
-        width: 500,
+        width: 400,
         height: 350,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -671,6 +836,69 @@ $(document).on('click',"#concuRRen",function(){
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values2"));
       chart.draw(view, options);
     }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartR);
+    function drawChartR() {
+
+      var nume1 = $("#inputTotal-razonNetaPatr").val();
+      var nume2 = $("#inputTotal-razonNetaPatr1").val();
+      var num1 = parseFloat(nume1);
+      var num2 = parseFloat(nume2);
+
+      var nume3 = $("#inputTotal-razonAccion").val();
+      var nume4 = $("#inputTotal-razonAccion1").val();
+      var num3 = parseFloat(nume3);
+      var num4 = parseFloat(nume4);      
+
+      var nume5 = $("#inputTotal-razonActivoTotal").val();
+      var nume6 = $("#inputTotal-razonActivoTotal1").val();
+      var num5 = parseFloat(nume5);
+      var num6 = parseFloat(nume6);
+
+      var nume7 = $("#inputTotal-razonRentVentas").val();
+      var nume8 = $("#inputTotal-razonRentVentas1").val();
+      var num7 = parseFloat(nume7);
+      var num8 = parseFloat(nume8);
+
+      var nume9 = $("#inputTotal-razonInversion").val();
+      var nume10 = $("#inputTotal-razonInversion1").val();
+      var num9 = parseFloat(nume9);
+      var num10 = parseFloat(nume10);
+
+
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Resultado", { role: "style" } ],
+        ["razonNetaPatr1",num1,"blue"],
+        ["razonNetaPatr2",num2,"blue"],
+        ["razonAccion1",num3,"red"],
+        ["razonAccion2",num4,"red"],
+        ["razonActivoTotal1",num5 , "#b87333"],
+        ["razonActivoTotal2",num6 , "#b87333"],
+        ["razonRentVentas1", num7, "silver"],
+        ["razonRentVentas2", num8, "silver"],
+        ["razonInversion1", num9, "purple"],
+        ["razonInversion2", num10, "purple"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Razones de rentabilidad de cada empresa",
+        width: 550,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_valuesR"));
+      chart.draw(view, options);
+  }
 
     var btn = document.querySelector('#concuRRen');
 
@@ -800,7 +1028,7 @@ $(document).on('click',"#concuREdn",function(){
 
       var options = {
         title: "Promedio de razones de endeudamiento entre dos empresas",
-        width: 500,
+        width: 400,
         height: 350,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -808,6 +1036,63 @@ $(document).on('click',"#concuREdn",function(){
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values3"));
       chart.draw(view, options);
     }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartE);
+    function drawChartE() {
+
+      var nume1 = $("#inputTotal-razonGradoEnd").val();
+      var nume2 = $("#inputTotal-razonGradoEnd1").val();
+      var num1 = parseFloat(nume1);
+      var num2 = parseFloat(nume2);
+
+      var nume3 = $("#inputTotal-razonPropiedad").val();
+      var nume4 = $("#inputTotal-razonPropiedad1").val();
+      var num3 = parseFloat(nume3);
+      var num4 = parseFloat(nume4);      
+
+      var nume5 = $("#inputTotal-razonEndeudoPatr").val();
+      var nume6 = $("#inputTotal-razonEndeudoPatr1").val();
+      var num5 = parseFloat(nume5);
+      var num6 = parseFloat(nume6);
+
+      var nume7 = $("#inputTotal-razonGastosF").val();
+      var nume8 = $("#inputTotal-razonGastosF1").val();
+      var num7 = parseFloat(nume7);
+      var num8 = parseFloat(nume8);
+
+
+
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Resultado", { role: "style" } ],
+        ["razonGradoEnd1",num1,"blue"],
+        ["razonGradoEnd2",num2,"blue"],
+        ["razonPropiedad1",num3,"red"],
+        ["razonPropiedad2",num4,"red"],
+        ["razonEndeudoPatr1",num5 , "#b87333"],
+        ["razonEndeudoPatr2",num6 , "#b87333"],
+        ["razonGastosF1", num7, "silver"],
+        ["razonGastosF2", num8, "silver"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Razones de endeudamiento de cada empresa",
+        width: 550,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_valuesE"));
+      chart.draw(view, options);
+  }
 
     var btn = document.querySelector('#concuREdn');
 
