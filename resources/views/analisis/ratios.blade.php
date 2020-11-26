@@ -338,8 +338,8 @@
 			<input type="text" id="inputTotal-razonEfectivo1" class="solo-numero">
 		</div>
 
-		<input type="hidden" class="input_numerador_efectivo1">
-  		<input type="hidden" class="input_numerador_valorCortoPlazo1">
+		<input type="hidden" id="input_numerador_efectivo1">
+  		<input type="hidden" id="input_numerador_valorCortoPlazo1">
   		
 
 	</div>
