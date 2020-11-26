@@ -1129,7 +1129,7 @@ $(document).on('click',"#concuREdn",function(){
 
 
 
-  $(document).on('click',"#resultados-razonLiquidez",function(){
+  //$(document).on('click',"#resultados-razonLiquidez",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
   
   function razonPromedio(){
@@ -1214,10 +1214,10 @@ var btn = document.querySelector('#resultados-razonLiquidez');
     btn.addEventListener('click',razonRapida, false);
     btn.addEventListener('click',razonPromedio, false);
 
-  });
+  //});
 
 //############################# RATIOS 2 ##################################
-  $(document).on('click',"#resultados-razonLiquidez1",function(){
+  //$(document).on('click',"#resultados-razonLiquidez1",function(){
   //$("body").on("click", "#resultados-razonLiquidez", function() {
   
   
@@ -1298,7 +1298,7 @@ var btn = document.querySelector('#resultados-razonLiquidez1');
     btn.addEventListener('click',razonRapida1, false);
     //btn.addEventListener('click',razonPromedio, false);
 
-  });
+  //});
 //#########################RATIOS DE ACTIVIDAD###########################################
 
   //$(document).on('click',"#resultados-razonActividad",function(){
@@ -1586,7 +1586,7 @@ var btn1 = document.querySelector('#resultados-razonActividad1');
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
-$(document).on('click',"#resultados-razonRentabilidad",function(){
+//$(document).on('click',"#resultados-razonRentabilidad",function(){
 
 
 function razonNetaPatr(){
@@ -1709,11 +1709,11 @@ var btn2 = document.querySelector('#resultados-razonRentabilidad');
 
   
 
-});
+//});
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
-$(document).on('click',"#resultados-razonRentabilidad1",function(){
+//$(document).on('click',"#resultados-razonRentabilidad1",function(){
 
 
 function razonNetaPatr1(){
@@ -1832,11 +1832,11 @@ var btn2 = document.querySelector('#resultados-razonRentabilidad1');
   
   //});
 
-});
+//});
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
-$(document).on('click',"#resultados-razonGradoEnd",function(){
+//$(document).on('click',"#resultados-razonGradoEnd",function(){
 
 function razonGradoEnd(){
     
@@ -1916,12 +1916,12 @@ var btn3 = document.querySelector('#resultados-razonGradoEnd');
     btn3.addEventListener('click',razonEndeudoPatr, false);
     btn3.addEventListener('click',razonGastosF, false);
 
-});
+//});
 
 
 //#########################RATIOS DE RENTABILIDAD###########################################
 
-$(document).on('click',"#resultados-razonGradoEnd1",function(){
+//$(document).on('click',"#resultados-razonGradoEnd1",function(){
 
 function razonGradoEnd1(){
     
@@ -2001,6 +2001,6 @@ var btn3 = document.querySelector('#resultados-razonGradoEnd1');
     btn3.addEventListener('click',razonEndeudoPatr1, false);
     btn3.addEventListener('click',razonGastosF1, false);
 
-});
+//});
 
 });
